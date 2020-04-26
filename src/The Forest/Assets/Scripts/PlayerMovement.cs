@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 1;
 
+    public bool isCurrentCharacter = false;
+
     private Rigidbody2D rigidbody;
     private PlayerIsometricDirection playerIsometricDirection;
 
@@ -17,6 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isCurrentCharacter)
+        {
+            playerIsometricDirection.SetDirection(Vector2.zero);
+            return;
+        }
+
         var currentPosition = rigidbody.position;
 
         var horizontal = Input.GetAxis("Horizontal");
@@ -27,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
         var movement = input * speed;
         var newPosition = currentPosition + movement * Time.deltaTime;
 
-        rigidbody.MovePosition(newPosition);
         playerIsometricDirection.SetDirection(movement);
+        rigidbody.MovePosition(newPosition);
     }
 
     // Start is called before the first frame update
