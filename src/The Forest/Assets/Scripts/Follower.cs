@@ -12,7 +12,7 @@ public class Follower : MonoBehaviour
     {
         pathUnit = gameObject.AddComponent<PathUnit>();
         pathUnit.target = player;
-        pathUnit.speed = 4.5f;
+        pathUnit.speed = 1.5f;
         timeLeft = pathUpdateTime;
     }
     private void Start()

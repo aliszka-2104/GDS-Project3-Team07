@@ -7,6 +7,7 @@ public class PathGrid : MonoBehaviour
     public Vector2   worldSize;
     public float     nodeSize;
     public LayerMask traverseMask;                 //Maska warstwy obiektów terenu (nie do pokonania)
+    public bool      debugGizmos;
     Node[,]          pathGrid;
 
     float            nodeDiameter;
@@ -83,7 +84,7 @@ public class PathGrid : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(worldSize.x, worldSize.y, 0));
-        if (pathGrid != null)
+        if (pathGrid != null && debugGizmos)
         {
             foreach (Node node in pathGrid)
             {
