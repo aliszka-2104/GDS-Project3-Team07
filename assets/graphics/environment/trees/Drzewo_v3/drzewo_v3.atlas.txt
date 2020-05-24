@@ -1,0 +1,41 @@
+
+drzewo_v3.png
+size: 1138,683
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leaf1
+  rotate: true
+  xy: 692, 151
+  size: 530, 227
+  orig: 530, 227
+  offset: 0, 0
+  index: -1
+leaf2
+  rotate: true
+  xy: 921, 254
+  size: 427, 202
+  orig: 427, 202
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 692, 25
+  size: 412, 69
+  orig: 414, 71
+  offset: 1, 1
+  index: -1
+trunk
+  rotate: false
+  xy: 2, 2
+  size: 688, 679
+  orig: 688, 679
+  offset: 0, 0
+  index: -1
+trunk2
+  rotate: true
+  xy: 921, 96
+  size: 156, 215
+  orig: 156, 215
+  offset: 0, 0
+  index: -1
