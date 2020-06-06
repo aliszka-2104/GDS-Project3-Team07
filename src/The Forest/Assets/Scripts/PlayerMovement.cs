@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public float speed = 1;
 
     public bool isCurrentCharacter = false;
 
     private Rigidbody2D rigidbody;
     private PlayerIsometricDirection playerIsometricDirection;
+    private LightMovement lightMovement;
+    private PlayerEnemyInteraction playerEnemyInteraction;
+    private Vector2 myMovement = Vector2.zero;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         playerIsometricDirection = GetComponent<PlayerIsometricDirection>();
+        lightMovement = GetComponentInChildren<LightMovement>();
+        playerEnemyInteraction = GetComponent<PlayerEnemyInteraction>();
     }
 
     private void FixedUpdate()
@@ -35,8 +41,9 @@ public class PlayerMovement : MonoBehaviour
         var movement = input * speed;
         var newPosition = currentPosition + movement * Time.deltaTime;
 
-        playerIsometricDirection.SetDirection(movement);
+        myMovement = movement;
         rigidbody.MovePosition(newPosition);
+
     }
 
     // Start is called before the first frame update
@@ -48,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        playerIsometricDirection.SetDirection(myMovement);
+
+        if (myMovement.magnitude > 0.1f) lightMovement.SetRotation(playerIsometricDirection.GetIndex(myMovement) * 45f);
+        playerEnemyInteraction.Raycast(myMovement);
     }
 }

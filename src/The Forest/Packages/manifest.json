@@ -16,6 +16,7 @@
     "com.unity.timeline": "1.2.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.legacyinputhelpers": "1.3.11",
+    "spine-runtimes": "https://github.com/EsotericSoftware/spine-runtimes.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -52,6 +53,10 @@
     "com.unity.2d.tilemap.extras": {
       "revision": "master",
       "hash": "7bac29caf2db04323260d437581e1cc5f22df2c7"
+    },
+    "spine-runtimes": {
+      "revision": "HEAD",
+      "hash": "6a9403511dbc45ae56875343b41b549c00127b63"
     }
   }
 }

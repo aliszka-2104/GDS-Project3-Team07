@@ -33,7 +33,7 @@ public class PlayerIsometricDirection : MonoBehaviour
         animator.Play(state);
     }
 
-    private int GetIndex(Vector2 direction)
+    public int GetIndex(Vector2 direction)
     {
         var step = 360f / 8;
         var halfStep = step / 2;
