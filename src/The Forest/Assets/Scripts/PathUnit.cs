@@ -13,6 +13,14 @@ public class PathUnit : MonoBehaviour
     bool followingPath = false;
     bool stopCommand = false;
 
+    public bool Following
+    {
+        get
+        {
+            return followingPath;
+        }
+    }
+
     public void GoToTarget()
     {
         PathManager.RequestPath(transform.position, target.position, OnPathFound);
@@ -71,7 +79,7 @@ public class PathUnit : MonoBehaviour
                 Gizmos.DrawLine(from, to);
                 from = to;
             }
-            if(path.Length <= 1)
+            if(path.Length < 1)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(transform.position, target.position);
