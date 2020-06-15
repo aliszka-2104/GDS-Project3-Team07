@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEditor.EventSystems;
 using UnityEngine;
@@ -21,30 +22,35 @@ public struct StateDesc
 }
 public class Agent : MonoBehaviour
 {
+    public Light peripheralLight;
+    public Light fieldOfVisionLight;
     public StateDesc[] stateDescs;
     public int startingState;
     public bool debug;
 
+    public Light[] Lights
+    {
+        get
+        {
+            return visionLights;
+        }
+    }
+
+    Light[] visionLights;
     State[] states;
     int currentState;
 
     void Awake()
     {
+        visionLights = new Light[2]
+        {
+            peripheralLight,
+            fieldOfVisionLight
+        };
+
         CreateStatesFromSet();
-    }
-    void Start()
-    {
         currentState = startingState;
         states[currentState].Start();
-    }
-    void CreateStatesFromSet()
-    {
-        states = new State[stateDescs.Length];
-        for(int stateDescIter = 0; stateDescIter < stateDescs.Length; stateDescIter++)
-        {
-            StateDesc stateDesc = stateDescs[stateDescIter];
-            states[stateDescIter] = Activator.CreateInstance(Type.GetType(stateDesc.stateName), this.gameObject, stateDesc) as State;
-        }
     }
     void Update()
     {
@@ -52,42 +58,54 @@ public class Agent : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if(states != null && debug)
+        if (visionLights != null)
+        {
+            Gizmos.color = Lights[0].color;
+            Gizmos.DrawRay(transform.position, transform.forward * Lights[1].range);
+            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, Lights[1].spotAngle/2, 0) * transform.forward * Lights[1].range);
+            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -Lights[1].spotAngle/2, 0) * transform.forward * Lights[1].range);
+            Gizmos.DrawWireSphere(transform.position, Lights[0].range);
+        }
+        if (states != null && debug)
         {
             states[currentState].DebugGizmos();
         }
     }
+    private void OnApplicationQuit()
+    {
+        visionLights = null;
+    }
 
 
-    public void ChangeState(string name, params object[] data)
+    public void ChangeState(string name, float delay = 0f, params object[] data)
     {
         for (int i = 0; i < states.Length; i++)
         {
             if (states[i].Name == name)
             {
-                states[currentState].End();
-                currentState = i;
-                states[currentState].Start(data);
+                StartCoroutine(OnStateChange(i, delay, data));
                 break;
             }
-            else if (i == states.Length-1)
+            else if (i == states.Length - 1)
             {
                 throw new System.ArgumentException("No state with name: " + name + " found");
             }
         }
     }
-    public void ChangeState(int stateNr)
+    void CreateStatesFromSet()
     {
-        if(stateNr < 0)
+        states = new State[stateDescs.Length];
+        for (int stateDescIter = 0; stateDescIter < stateDescs.Length; stateDescIter++)
         {
-            throw new System.ArgumentException("State number is negative.");
+            StateDesc stateDesc = stateDescs[stateDescIter];
+            states[stateDescIter] = Activator.CreateInstance(Type.GetType(stateDesc.stateName), this.gameObject, stateDesc) as State;
         }
-        if(stateNr >= states.Length)
-        {
-            throw new System.ArgumentException("State number exceeds maximum.");
-        }
+    }
+    IEnumerator OnStateChange(int newState, float delay = 0f, params object[] data)
+    {
+        yield return new WaitForSeconds(delay);
         states[currentState].End();
-        currentState = stateNr;
-        states[currentState].Start();
-    }   //To update for params
+        currentState = newState;
+        states[currentState].Start(data);
+    }
 }

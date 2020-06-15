@@ -9,13 +9,14 @@ public abstract class State
     public string nextStateName;
     public abstract string Name { get; }
     GameObject gameObject;
+    Agent aiAgent;
     string[] linkedStateNames;
 
-    public GameObject AiGameObject
+    public Agent AiAgent
     {
         get
         {
-            return gameObject;
+            return aiAgent;
         }
     }
     public string[] LinkedStateNames
@@ -26,6 +27,7 @@ public abstract class State
     public State(GameObject agent, StateDesc stateDesc = new StateDesc())
     {
         gameObject = agent;
+        aiAgent = agent.GetComponent<Agent>();
     }
     public abstract void Start(params object[] data);
     public abstract void Update();

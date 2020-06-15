@@ -2,12 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Windows.WebCam;
 
-[System.Serializable]
 public class Hostile : State
 {
     private const string name = "Hostile";
@@ -24,23 +21,25 @@ public class Hostile : State
     float fovDegrees;
     float peripheralRange;
     LayerMask visionMask;
-    LayerMask lineOfSightMask = LayerMask.GetMask("VisualObstacle");
+    LayerMask lineOfSightMask;
 
-    Vector3 lastSeen;
     Transform target;
-    Transform lights;
     
     
     public Hostile(GameObject agent, StateDesc stateDesc) : base(agent)  // 0 - reserved, 1 - movementSpeed, 2 - LayerMask name, 3 - Vision Range, 4 - FoV Degrees, 5 - Peripheral Range
     {
-        string[] parameters = new string[6]
+        string[] parameters = new string[10]
         {
             GetParameterFromName("movementSpeed", stateDesc.stateParameters),
             GetParameterFromName("visionMask", stateDesc.stateParameters),
             GetParameterFromName("visionRange", stateDesc.stateParameters),
             GetParameterFromName("fovDegrees", stateDesc.stateParameters),
             GetParameterFromName("peripheralRange", stateDesc.stateParameters),
-            GetParameterFromName("linkedStates", stateDesc.stateParameters)
+            GetParameterFromName("linkedStates", stateDesc.stateParameters),
+            null,
+            null,
+            null,
+            null
         };
         movementSpeed    = parameters[0] != null ? Convert.ToSingle(parameters[0], CultureInfo.InvariantCulture) : 5f;
         visionMask       = parameters[1] != null ? LayerMask.GetMask(parameters[1]) : 1 << 0;
@@ -48,34 +47,27 @@ public class Hostile : State
         fovDegrees       = parameters[3] != null ? Convert.ToSingle(parameters[3], CultureInfo.InvariantCulture) / 2 : 45f;
         peripheralRange  = parameters[4] != null ? Convert.ToSingle(parameters[4], CultureInfo.InvariantCulture) : 1f;
         LinkedStateNames = parameters[5] != null ? parameters[5].Split(null) : new string[1] { "Alert" };
-
-        lights = AiGameObject.transform.Find("Light");
+        lineOfSightMask  = parameters[6] != null ? LayerMask.GetMask(parameters[6]) : LayerMask.GetMask("VisualObstacle");
     }
 
     public override void Start(params object[] data)
     {
         Debug.Log("Hostile Start()");
-        AiGameObject.GetComponent<NavMeshAgent>().speed = movementSpeed;
+        AiAgent.GetComponent<NavMeshAgent>().speed = movementSpeed;
 
-        lights.Find("Peripheral").GetComponent<Light>().range = peripheralRange;
-        lights.Find("Peripheral").GetComponent<Light>().color = new Color(1, 0, 0, 1);
-        lights.Find("FoV").GetComponent<Light>().range = visionRange;
-        lights.Find("FoV").GetComponent<Light>().spotAngle = fovDegrees * 2;
-        lights.Find("FoV").GetComponent<Light>().color = new Color(1, 0, 0, 1);
+        AiAgent.Lights[0].range = peripheralRange;
+        AiAgent.Lights[0].color = Color.red;
+        AiAgent.Lights[1].range = visionRange;
+        AiAgent.Lights[1].spotAngle = fovDegrees * 2;
+        AiAgent.Lights[1].color = Color.red;
 
-        Collider[] hitColliders = Physics.OverlapSphere(AiGameObject.transform.position, visionRange, visionMask);
-        if (hitColliders.Length != 0)
-        {
-            target = hitColliders[0].transform;
-        }
-        lastSeen = target.position;
+        target = data[0] as Transform;
     }
     public override void Update()
     {
         if(!VisualCheck())
         {
-            AiGameObject.GetComponent<NavMeshAgent>().SetDestination(target.position);
-            lastSeen = target.position;
+            AiAgent.GetComponent<NavMeshAgent>().SetDestination(target.position);
         }
     }
     public override void End()
@@ -84,29 +76,19 @@ public class Hostile : State
     }
     public override void DebugGizmos()
     {
-        Gizmos.color = new Color(1, 0, 0, 1f);
-        Transform currentPosition = AiGameObject.transform;
-        Gizmos.DrawRay(currentPosition.position, currentPosition.forward * visionRange);
-        Gizmos.DrawRay(currentPosition.position, Quaternion.Euler(0, fovDegrees, 0) * currentPosition.forward * visionRange);
-        Gizmos.DrawRay(currentPosition.position, Quaternion.Euler(0, -fovDegrees, 0) * currentPosition.forward * visionRange);
-        Gizmos.DrawWireSphere(currentPosition.position, peripheralRange);
-
-        if (lastSeen != null)
-        {
-            Gizmos.color = new Color(1, 1, 1, 1);
-            Gizmos.DrawSphere(lastSeen, 0.2f);
-            Gizmos.DrawRay(currentPosition.position, lastSeen - currentPosition.position);
-        }
+        Gizmos.color = Color.white;
+        Gizmos.DrawSphere(target.position, 0.2f);
+        Gizmos.DrawRay(AiAgent.transform.position, target.position - AiAgent.transform.position);
     }
 
     bool VisualCheck()
     {
-        Vector3 currentPosition = AiGameObject.transform.position;
+        Vector3 currentPosition = AiAgent.transform.position;
         bool inLineofSight = !Physics.Raycast(currentPosition, target.position - currentPosition, Vector3.Distance(currentPosition, target.position), lineOfSightMask);
-        bool inFieldOfView = Vector3.Angle(AiGameObject.transform.forward, target.position - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
+        bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
         if ((!inLineofSight && inFieldOfView) || !inFieldOfView)
         {
-            AiGameObject.GetComponent<Agent>().ChangeState(LinkedStateNames[0], lastSeen);
+            AiAgent.ChangeState(LinkedStateNames[0], 0f, target.position);
             return true;
         }
         return false;
