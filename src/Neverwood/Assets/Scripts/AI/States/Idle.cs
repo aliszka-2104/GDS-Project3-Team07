@@ -8,11 +8,19 @@ using UnityEngine.AI;
 public class Idle : State
 {
     private const string name = "Idle";
+    private const bool isStunState = true;
     public override string Name
     {
         get
         {
             return name;
+        }
+    }
+    public override bool IsStunState
+    {
+        get
+        {
+            return isStunState;
         }
     }
 
@@ -22,10 +30,13 @@ public class Idle : State
     float peripheralRange;
     LayerMask visionMask;
     LayerMask lineOfSightMask;
-
     Transform path;
+
     int currentWaypoint = 0;
     bool goingForward = false;
+
+    float stunTime = 0f;
+    bool stunned = false;
 
     //Debug
     Vector3[] lineOfSight = new Vector3[2];
@@ -81,6 +92,12 @@ public class Idle : State
         Debug.Log("Idle End()");
         lineOfSight = new Vector3[2];
     }
+    public override void Stun(float time)
+    {
+        stunTime = 5f;
+        if (!stunned) { AiAgent.StartCoroutine(Unstun(time)); }
+        stunned = true;
+    }
     public override void DebugGizmos()
     {
         if (lineOfSight[0] != null)
@@ -103,7 +120,7 @@ public class Idle : State
     }
     void PathFollowHandling()
     {
-        if(Vector3.Distance(AiAgent.transform.position, path.GetChild(currentWaypoint).position) < 0.25f)
+        if(Vector3.Distance(AiAgent.transform.position, path.GetChild(currentWaypoint).position) < 0.1f)
         {
             if(currentWaypoint == 0 || currentWaypoint == path.childCount-1)
             {
@@ -121,8 +138,26 @@ public class Idle : State
             AiAgent.GetComponent<NavMeshAgent>().SetDestination(path.GetChild(currentWaypoint).position);
         }
     }
+    IEnumerator Unstun(float time)
+    {
+        foreach (Light light in AiAgent.Lights) { light.color = Color.red + Color.blue; }
+        AiAgent.GetComponent<NavMeshAgent>().isStopped = true;
+
+        while (stunTime > 0)
+        { 
+            stunTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (Light light in AiAgent.Lights) { light.color = Color.white; }
+        AiAgent.GetComponent<NavMeshAgent>().isStopped = false;
+
+        stunned = false;
+        yield return null;
+    }
     bool VisualCheck()
     {
+        if(stunned) { return false; }
         Vector3 currentPosition = AiAgent.transform.position;
         Collider[] sensedColliders = Physics.OverlapSphere(currentPosition, visionRange, visionMask);
         if (sensedColliders.Length != 0)
@@ -143,7 +178,7 @@ public class Idle : State
                 bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);
                 if(inLineOfSight)
                 {
-                    AiAgent.ChangeState(LinkedStateNames[0], 0f, sensedColliders[0].transform);
+                    AiAgent.ChangeState(LinkedStateNames[0], sensedColliders[0].transform);
                     return true;
                 }
             }

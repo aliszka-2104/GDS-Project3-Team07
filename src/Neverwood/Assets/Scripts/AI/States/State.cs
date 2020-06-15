@@ -6,7 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public abstract class State
 {
-    public string nextStateName;
     public abstract string Name { get; }
     GameObject gameObject;
     Agent aiAgent;
@@ -23,6 +22,7 @@ public abstract class State
     {
         get; set;
     }
+    public abstract bool IsStunState { get; }
 
     public State(GameObject agent, StateDesc stateDesc = new StateDesc())
     {
@@ -32,6 +32,7 @@ public abstract class State
     public abstract void Start(params object[] data);
     public abstract void Update();
     public abstract void End();
+    public virtual void Stun(float time) { }
     public virtual void DebugGizmos() { }
 
     public string GetParameterFromName(string name, StateDesc.StateParameter[] stateParameters)

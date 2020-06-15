@@ -8,11 +8,19 @@ using UnityEngine.AI;
 public class Alert : State
 {
     private const string name = "Alert";
+    private const bool isStunState = false;
     public override string Name
     {
         get
         {
             return name;
+        }
+    }
+    public override bool IsStunState
+    {
+        get
+        {
+            return isStunState;
         }
     }
 
@@ -76,6 +84,7 @@ public class Alert : State
     public override void End()
     {
         Debug.Log("Alert End()");
+        lastSeen = new Vector3();
     }
     public override void DebugGizmos()
     {
@@ -97,7 +106,7 @@ public class Alert : State
                 bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);
                 if (inLineOfSight)
                 {
-                    AiAgent.ChangeState(LinkedStateNames[1], 0f, sensedColliders[0].transform);
+                    AiAgent.ChangeState(LinkedStateNames[1], sensedColliders[0].transform);
                     return true;
                 }
             }

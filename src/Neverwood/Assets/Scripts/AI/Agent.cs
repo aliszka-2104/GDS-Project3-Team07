@@ -55,10 +55,14 @@ public class Agent : MonoBehaviour
     void Update()
     {
         states[currentState].Update();
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StunAgent(5f);
+        }
     }
     private void OnDrawGizmos()
     {
-        if (visionLights != null)
+        if (Application.isPlaying)
         {
             Gizmos.color = Lights[0].color;
             Gizmos.DrawRay(transform.position, transform.forward * Lights[1].range);
@@ -77,13 +81,15 @@ public class Agent : MonoBehaviour
     }
 
 
-    public void ChangeState(string name, float delay = 0f, params object[] data)
+    public void ChangeState(string name, params object[] data)
     {
         for (int i = 0; i < states.Length; i++)
         {
             if (states[i].Name == name)
             {
-                StartCoroutine(OnStateChange(i, delay, data));
+                states[currentState].End();
+                currentState = i;
+                states[currentState].Start(data);
                 break;
             }
             else if (i == states.Length - 1)
@@ -101,11 +107,19 @@ public class Agent : MonoBehaviour
             states[stateDescIter] = Activator.CreateInstance(Type.GetType(stateDesc.stateName), this.gameObject, stateDesc) as State;
         }
     }
-    IEnumerator OnStateChange(int newState, float delay = 0f, params object[] data)
+    public void StunAgent(float time)
     {
-        yield return new WaitForSeconds(delay);
-        states[currentState].End();
-        currentState = newState;
-        states[currentState].Start(data);
+        foreach(State state in states)
+        {
+            if(state.IsStunState)
+            {
+                if(state.Name != states[currentState].Name)
+                {
+                    ChangeState(state.Name);
+                    break;
+                }
+            }
+        }
+        states[currentState].Stun(time);
     }
 }

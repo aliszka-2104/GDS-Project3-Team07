@@ -8,11 +8,19 @@ using UnityEngine.AI;
 public class Hostile : State
 {
     private const string name = "Hostile";
+    private const bool isStunState = false;
     public override string Name
     {
         get
         {
             return name;
+        }
+    }
+    public override bool IsStunState
+    {
+        get
+        {
+            return isStunState;
         }
     }
 
@@ -24,7 +32,6 @@ public class Hostile : State
     LayerMask lineOfSightMask;
 
     Transform target;
-    
     
     public Hostile(GameObject agent, StateDesc stateDesc) : base(agent)  // 0 - reserved, 1 - movementSpeed, 2 - LayerMask name, 3 - Vision Range, 4 - FoV Degrees, 5 - Peripheral Range
     {
@@ -57,6 +64,7 @@ public class Hostile : State
 
         AiAgent.Lights[0].range = peripheralRange;
         AiAgent.Lights[0].color = Color.red;
+
         AiAgent.Lights[1].range = visionRange;
         AiAgent.Lights[1].spotAngle = fovDegrees * 2;
         AiAgent.Lights[1].color = Color.red;
@@ -73,6 +81,7 @@ public class Hostile : State
     public override void End()
     {
         Debug.Log("Hostile End()");
+        target = null;
     }
     public override void DebugGizmos()
     {
@@ -80,7 +89,6 @@ public class Hostile : State
         Gizmos.DrawSphere(target.position, 0.2f);
         Gizmos.DrawRay(AiAgent.transform.position, target.position - AiAgent.transform.position);
     }
-
     bool VisualCheck()
     {
         Vector3 currentPosition = AiAgent.transform.position;
@@ -88,7 +96,7 @@ public class Hostile : State
         bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
         if ((!inLineofSight && inFieldOfView) || !inFieldOfView)
         {
-            AiAgent.ChangeState(LinkedStateNames[0], 0f, target.position);
+            AiAgent.ChangeState(LinkedStateNames[0], target.position);
             return true;
         }
         return false;
