@@ -7,13 +7,13 @@ using UnityEngine.AI;
 
 public class Idle : State
 {
-    private const string name = "Idle";
+    private const string stateName = "Idle";
     private const bool isStunState = true;
     public override string Name
     {
         get
         {
-            return name;
+            return stateName;
         }
     }
     public override bool IsStunState
@@ -24,13 +24,13 @@ public class Idle : State
         }
     }
 
-    float movementSpeed;
-    float visionRange;
-    float fovDegrees;
-    float peripheralRange;
-    LayerMask visionMask;
-    LayerMask lineOfSightMask;
-    Transform path;
+    public float movementSpeed;
+    public float visionRange;
+    public float fovDegrees;
+    public float peripheralRange;
+    public LayerMask visionMask;
+    public LayerMask lineOfSightMask;
+    public Transform path;
 
     int currentWaypoint = 0;
     bool goingForward = false;
@@ -38,35 +38,12 @@ public class Idle : State
     float stunTime = 0f;
     bool stunned = false;
 
+
     //Debug
     Vector3[] lineOfSight = new Vector3[2];
     //End Debug
 
-    public Idle(GameObject agent, StateDesc stateDesc) : base(agent)
-    {
-        string[] parameters = new string[10]
-        {
-            GetParameterFromName("movementSpeed", stateDesc.stateParameters),
-            GetParameterFromName("visionMask", stateDesc.stateParameters),
-            GetParameterFromName("visionRange", stateDesc.stateParameters),
-            GetParameterFromName("fovDegrees", stateDesc.stateParameters),
-            GetParameterFromName("peripheralRange", stateDesc.stateParameters),
-            GetParameterFromName("linkedStates", stateDesc.stateParameters),
-            GetParameterFromName("path", stateDesc.stateParameters),
-            null,
-            null,
-            null
-        };
-        movementSpeed    = parameters[0] != null ? Convert.ToSingle(parameters[0], CultureInfo.InvariantCulture) : 5f;
-        visionMask       = parameters[1] != null ? LayerMask.GetMask(parameters[1]) : 1 << 0;
-        visionRange      = parameters[2] != null ? Convert.ToSingle(parameters[2], CultureInfo.InvariantCulture) : 10f;
-        fovDegrees       = parameters[3] != null ? Convert.ToSingle(parameters[3], CultureInfo.InvariantCulture) / 2 : 45f;
-        peripheralRange  = parameters[4] != null ? Convert.ToSingle(parameters[4], CultureInfo.InvariantCulture) : 1f;
-        LinkedStateNames = parameters[5] != null ? parameters[5].Split(null) : new string[1] { "Hostile" };
-        lineOfSightMask  = parameters[7] != null ? LayerMask.GetMask(parameters[6]) : LayerMask.GetMask("VisualObstacle");
-        path             = GameObject.Find(parameters[6]).transform;
-    }
-    public override void Start(params object[] data)
+    public override void Entry(params object[] data)
     {
         Debug.Log("Idle Start()");
         AiAgent.GetComponent<NavMeshAgent>().speed = movementSpeed;
@@ -79,24 +56,22 @@ public class Idle : State
 
         FindNearWaypoint();
         AiAgent.GetComponent<NavMeshAgent>().SetDestination(path.GetChild(currentWaypoint).position);
+        base.Entry(data);
     }
-    public override void Update()
+    public override IEnumerator Step()
     {
-        if(!VisualCheck())
+        while(!Exiting)
         {
-            PathFollowHandling();
-        }   
-    }
-    public override void End()
-    {
-        Debug.Log("Idle End()");
-        lineOfSight = new Vector3[2];
-    }
-    public override void Stun(float time)
-    {
-        stunTime = 5f;
-        if (!stunned) { AiAgent.StartCoroutine(Unstun(time)); }
-        stunned = true;
+            if (!VisualCheck())
+            {
+                PathFollowHandling();
+            }
+
+            EndOfFrameYield = new WaitForEndOfFrame();
+            yield return EndOfFrameYield;
+        }
+        Exiting = false;
+        yield return null;
     }
     public override void DebugGizmos()
     {
@@ -105,6 +80,12 @@ public class Idle : State
             Gizmos.color = Color.white;
             Gizmos.DrawRay(lineOfSight[0], lineOfSight[1]);
         }
+    }
+    public override void Stun(float time)
+    {
+        stunTime = 5f;
+        if (!stunned) { AiAgent.StartCoroutine(Unstun(time)); }
+        stunned = true;
     }
 
     void FindNearWaypoint()
@@ -178,7 +159,7 @@ public class Idle : State
                 bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);
                 if(inLineOfSight)
                 {
-                    AiAgent.ChangeState(LinkedStateNames[0], sensedColliders[0].transform);
+                    AiAgent.ChangeState(linkedStateNames[0], sensedColliders[0].transform);
                     return true;
                 }
             }

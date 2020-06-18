@@ -7,13 +7,13 @@ using UnityEngine.AI;
 
 public class Hostile : State
 {
-    private const string name = "Hostile";
+    private const string stateName = "Hostile";
     private const bool isStunState = false;
     public override string Name
     {
         get
         {
-            return name;
+            return stateName;
         }
     }
     public override bool IsStunState
@@ -24,40 +24,16 @@ public class Hostile : State
         }
     }
 
-    float movementSpeed;
-    float visionRange;
-    float fovDegrees;
-    float peripheralRange;
-    LayerMask visionMask;
-    LayerMask lineOfSightMask;
+    public float movementSpeed;
+    public float visionRange;
+    public float fovDegrees;
+    public float peripheralRange;
+    public LayerMask visionMask;
+    public LayerMask lineOfSightMask;
 
     Transform target;
-    
-    public Hostile(GameObject agent, StateDesc stateDesc) : base(agent)  // 0 - reserved, 1 - movementSpeed, 2 - LayerMask name, 3 - Vision Range, 4 - FoV Degrees, 5 - Peripheral Range
-    {
-        string[] parameters = new string[10]
-        {
-            GetParameterFromName("movementSpeed", stateDesc.stateParameters),
-            GetParameterFromName("visionMask", stateDesc.stateParameters),
-            GetParameterFromName("visionRange", stateDesc.stateParameters),
-            GetParameterFromName("fovDegrees", stateDesc.stateParameters),
-            GetParameterFromName("peripheralRange", stateDesc.stateParameters),
-            GetParameterFromName("linkedStates", stateDesc.stateParameters),
-            null,
-            null,
-            null,
-            null
-        };
-        movementSpeed    = parameters[0] != null ? Convert.ToSingle(parameters[0], CultureInfo.InvariantCulture) : 5f;
-        visionMask       = parameters[1] != null ? LayerMask.GetMask(parameters[1]) : 1 << 0;
-        visionRange      = parameters[2] != null ? Convert.ToSingle(parameters[2], CultureInfo.InvariantCulture) : 10f;
-        fovDegrees       = parameters[3] != null ? Convert.ToSingle(parameters[3], CultureInfo.InvariantCulture) / 2 : 45f;
-        peripheralRange  = parameters[4] != null ? Convert.ToSingle(parameters[4], CultureInfo.InvariantCulture) : 1f;
-        LinkedStateNames = parameters[5] != null ? parameters[5].Split(null) : new string[1] { "Alert" };
-        lineOfSightMask  = parameters[6] != null ? LayerMask.GetMask(parameters[6]) : LayerMask.GetMask("VisualObstacle");
-    }
 
-    public override void Start(params object[] data)
+    public override void Entry(params object[] data)
     {
         Debug.Log("Hostile Start()");
         AiAgent.GetComponent<NavMeshAgent>().speed = movementSpeed;
@@ -70,18 +46,22 @@ public class Hostile : State
         AiAgent.Lights[1].color = Color.red;
 
         target = data[0] as Transform;
+        base.Entry();
     }
-    public override void Update()
+    public override IEnumerator Step()
     {
-        if(!VisualCheck())
+        while (!Exiting)
         {
-            AiAgent.GetComponent<NavMeshAgent>().SetDestination(target.position);
+            if (!VisualCheck())
+            {
+                AiAgent.GetComponent<NavMeshAgent>().SetDestination(target.position);
+            }
+
+            EndOfFrameYield = new WaitForEndOfFrame();
+            yield return EndOfFrameYield;
         }
-    }
-    public override void End()
-    {
-        Debug.Log("Hostile End()");
-        target = null;
+        Exiting = false;
+        yield return null;
     }
     public override void DebugGizmos()
     {
@@ -89,6 +69,7 @@ public class Hostile : State
         Gizmos.DrawSphere(target.position, 0.2f);
         Gizmos.DrawRay(AiAgent.transform.position, target.position - AiAgent.transform.position);
     }
+    
     bool VisualCheck()
     {
         Vector3 currentPosition = AiAgent.transform.position;
@@ -96,7 +77,7 @@ public class Hostile : State
         bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
         if ((!inLineofSight && inFieldOfView) || !inFieldOfView)
         {
-            AiAgent.ChangeState(LinkedStateNames[0], target.position);
+            AiAgent.ChangeState(linkedStateNames[0], target.position);
             return true;
         }
         return false;

@@ -6,26 +6,15 @@ using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using UnityEditor.EventSystems;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
 
-[System.Serializable]
-public struct StateDesc
-{
-    [System.Serializable]
-    public struct StateParameter
-    {
-        public string variableName;
-        public string variableValue;
-    }
-    public string stateName;
-    public StateParameter[] stateParameters;
-}
 public class Agent : MonoBehaviour
 {
     public Light peripheralLight;
     public Light fieldOfVisionLight;
-    public StateDesc[] stateDescs;
-    public int startingState;
+
+    public string startingState;
     public bool debug;
 
     public Light[] Lights
@@ -47,39 +36,21 @@ public class Agent : MonoBehaviour
             peripheralLight,
             fieldOfVisionLight
         };
+        states = GetComponents<State>();
 
-        CreateStatesFromSet();
-        currentState = startingState;
-        states[currentState].Start();
-    }
-    void Update()
-    {
-        states[currentState].Update();
-        if(Input.GetKeyDown(KeyCode.Space))
+        for(int i = 0; i < states.Length; i++)
         {
-            StunAgent(5f);
+            if(states[i].Name == startingState)
+            {
+                currentState = i;
+                break;
+            }
         }
     }
-    private void OnDrawGizmos()
+    void Start()
     {
-        if (Application.isPlaying)
-        {
-            Gizmos.color = Lights[0].color;
-            Gizmos.DrawRay(transform.position, transform.forward * Lights[1].range);
-            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, Lights[1].spotAngle/2, 0) * transform.forward * Lights[1].range);
-            Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -Lights[1].spotAngle/2, 0) * transform.forward * Lights[1].range);
-            Gizmos.DrawWireSphere(transform.position, Lights[0].range);
-        }
-        if (states != null && debug)
-        {
-            states[currentState].DebugGizmos();
-        }
+        states[currentState].Entry();
     }
-    private void OnApplicationQuit()
-    {
-        visionLights = null;
-    }
-
 
     public void ChangeState(string name, params object[] data)
     {
@@ -87,24 +58,15 @@ public class Agent : MonoBehaviour
         {
             if (states[i].Name == name)
             {
-                states[currentState].End();
+                states[currentState].Exit();
                 currentState = i;
-                states[currentState].Start(data);
+                states[currentState].Entry(data);
                 break;
             }
             else if (i == states.Length - 1)
             {
                 throw new System.ArgumentException("No state with name: " + name + " found");
             }
-        }
-    }
-    void CreateStatesFromSet()
-    {
-        states = new State[stateDescs.Length];
-        for (int stateDescIter = 0; stateDescIter < stateDescs.Length; stateDescIter++)
-        {
-            StateDesc stateDesc = stateDescs[stateDescIter];
-            states[stateDescIter] = Activator.CreateInstance(Type.GetType(stateDesc.stateName), this.gameObject, stateDesc) as State;
         }
     }
     public void StunAgent(float time)

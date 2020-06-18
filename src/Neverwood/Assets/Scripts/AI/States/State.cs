@@ -4,40 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class State
+public abstract class State : MonoBehaviour
 {
     public abstract string Name { get; }
-    GameObject gameObject;
-    Agent aiAgent;
-    string[] linkedStateNames;
-
+    public abstract bool IsStunState { get; }
     public Agent AiAgent
-    {
-        get
-        {
-            return aiAgent;
-        }
-    }
-    public string[] LinkedStateNames
     {
         get; set;
     }
-    public abstract bool IsStunState { get; }
 
-    public State(GameObject agent, StateDesc stateDesc = new StateDesc())
+    public string[] linkedStateNames;
+
+    public bool Exiting { get; set; } = false; 
+    public WaitForEndOfFrame EndOfFrameYield { get; set; }
+
+    private void Awake()
     {
-        gameObject = agent;
-        aiAgent = agent.GetComponent<Agent>();
+        AiAgent = GetComponent<Agent>();
     }
-    public abstract void Start(params object[] data);
-    public abstract void Update();
-    public abstract void End();
+
+    public virtual void Entry(params object[] data)
+    {
+        StartCoroutine(Step());
+    }
+    public virtual void Exit()
+    {
+        Exiting = true;
+    }
+    public abstract IEnumerator Step();
     public virtual void Stun(float time) { }
     public virtual void DebugGizmos() { }
-
-    public string GetParameterFromName(string name, StateDesc.StateParameter[] stateParameters)
-    {
-        StateDesc.StateParameter parameter = Array.Find<StateDesc.StateParameter>(stateParameters, elem => elem.variableName == name);
-        return parameter.variableValue;
-    }
 }
