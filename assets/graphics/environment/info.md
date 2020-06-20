@@ -1,1 +1,0 @@
-assety środowiska
