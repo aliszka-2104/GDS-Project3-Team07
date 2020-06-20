@@ -41,7 +41,7 @@ public class Alert : State
         AiAgent.Lights[0].range = peripheralRange;
         AiAgent.Lights[0].color = Color.yellow;
         AiAgent.Lights[1].range = visionRange;
-        AiAgent.Lights[1].spotAngle = fovDegrees * 2;
+        AiAgent.Lights[1].spotAngle = fovDegrees;
         AiAgent.Lights[1].color = Color.yellow;
 
         lastSeen = (Vector3)data[0];
@@ -80,7 +80,7 @@ public class Alert : State
         if (sensedColliders.Length != 0)
         {
             Vector3 sensedPosition = sensedColliders[0].transform.position;
-            bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, sensedPosition - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
+            bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, sensedPosition - currentPosition) < fovDegrees / 2 || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
             if (inFieldOfView)
             {
                 bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);

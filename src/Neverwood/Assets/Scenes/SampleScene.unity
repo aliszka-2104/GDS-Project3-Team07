@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 141039557}
   - component: {fileID: 141039556}
   - component: {fileID: 141039555}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,11 +469,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 39960222}
     m_Modifications:
-    - target: {fileID: 2031048882819241377, guid: bb58e81ea3423ec4faa740eea15eb560,
-        type: 3}
-      propertyPath: startingState
-      value: Idle
-      objectReference: {fileID: 0}
     - target: {fileID: 2031048882819241382, guid: bb58e81ea3423ec4faa740eea15eb560,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -950,7 +945,8 @@ GameObject:
   - component: {fileID: 745484561}
   - component: {fileID: 745484563}
   - component: {fileID: 745484562}
-  m_Layer: 0
+  - component: {fileID: 745484564}
+  m_Layer: 11
   m_Name: LightSrc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745484560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0.178, z: -4.12}
+  m_LocalPosition: {x: 2.81, y: 0.178, z: -3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 141039554}
@@ -1049,6 +1045,21 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &745484564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745484560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bdbb76ef94dc8546b167478c24c50ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affectedEntitiesTag: NPC
+  afflictionDurationSeconds: 3
+  lightEnabled: 0
 --- !u!1 &819093208
 GameObject:
   m_ObjectHideFlags: 0

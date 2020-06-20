@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\DeprecatedPrototype\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Follower.cs" />
     <Compile Include="Assets\Scripts\Heap.cs" />
+    <Compile Include="Assets\Scripts\LightSource.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\PathGrid.cs" />
     <Compile Include="Assets\Scripts\PathManager.cs" />

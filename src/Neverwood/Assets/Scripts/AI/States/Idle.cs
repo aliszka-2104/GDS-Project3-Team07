@@ -35,7 +35,7 @@ public class Idle : State
     int currentWaypoint = 0;
     bool goingForward = false;
 
-    float stunTime = 0f;
+    public float stunTime = 0f;
     bool stunned = false;
 
 
@@ -51,7 +51,7 @@ public class Idle : State
         AiAgent.Lights[0].range = peripheralRange;
         AiAgent.Lights[0].color = Color.white;
         AiAgent.Lights[1].range = visionRange;
-        AiAgent.Lights[1].spotAngle = fovDegrees * 2;
+        AiAgent.Lights[1].spotAngle = fovDegrees;
         AiAgent.Lights[1].color = Color.white;
 
         FindNearWaypoint();
@@ -62,9 +62,12 @@ public class Idle : State
     {
         while(!Exiting)
         {
-            if (!VisualCheck())
+            if(!stunned)
             {
-                PathFollowHandling();
+                if (!VisualCheck())
+                {
+                    PathFollowHandling();
+                }
             }
 
             EndOfFrameYield = new WaitForEndOfFrame();
@@ -83,8 +86,8 @@ public class Idle : State
     }
     public override void Stun(float time)
     {
-        stunTime = 5f;
-        if (!stunned) { AiAgent.StartCoroutine(Unstun(time)); }
+        stunTime = time;
+        if (!stunned) { AiAgent.StartCoroutine(Unstun()); }
         stunned = true;
     }
 
@@ -119,10 +122,10 @@ public class Idle : State
             AiAgent.GetComponent<NavMeshAgent>().SetDestination(path.GetChild(currentWaypoint).position);
         }
     }
-    IEnumerator Unstun(float time)
+    IEnumerator Unstun()
     {
         foreach (Light light in AiAgent.Lights) { light.color = Color.red + Color.blue; }
-        AiAgent.GetComponent<NavMeshAgent>().isStopped = true;
+        AiAgent.GetComponent<NavMeshAgent>().enabled = false;
 
         while (stunTime > 0)
         { 
@@ -131,7 +134,10 @@ public class Idle : State
         }
 
         foreach (Light light in AiAgent.Lights) { light.color = Color.white; }
-        AiAgent.GetComponent<NavMeshAgent>().isStopped = false;
+        AiAgent.GetComponent<NavMeshAgent>().enabled = true;
+        FindNearWaypoint();
+        AiAgent.GetComponent<NavMeshAgent>().SetDestination(path.GetChild(currentWaypoint).position);
+
 
         stunned = false;
         yield return null;
@@ -153,7 +159,7 @@ public class Idle : State
             }
             //End Debug
 
-            bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, sensedPosition - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
+            bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, sensedPosition - currentPosition) < fovDegrees / 2 || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
             if (inFieldOfView)
             {
                 bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);

@@ -42,7 +42,7 @@ public class Hostile : State
         AiAgent.Lights[0].color = Color.red;
 
         AiAgent.Lights[1].range = visionRange;
-        AiAgent.Lights[1].spotAngle = fovDegrees * 2;
+        AiAgent.Lights[1].spotAngle = fovDegrees;
         AiAgent.Lights[1].color = Color.red;
 
         target = data[0] as Transform;
@@ -74,7 +74,7 @@ public class Hostile : State
     {
         Vector3 currentPosition = AiAgent.transform.position;
         bool inLineofSight = !Physics.Raycast(currentPosition, target.position - currentPosition, Vector3.Distance(currentPosition, target.position), lineOfSightMask);
-        bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
+        bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees / 2 || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
         if ((!inLineofSight && inFieldOfView) || !inFieldOfView)
         {
             AiAgent.ChangeState(linkedStateNames[0], target.position);
