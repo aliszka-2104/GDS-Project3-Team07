@@ -1,0 +1,34 @@
+
+drzewo_v2.png
+size: 1759,804
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Branches
+  rotate: false
+  xy: 1138, 402
+  size: 619, 400
+  orig: 619, 400
+  offset: 0, 0
+  index: -1
+Main_tree
+  rotate: true
+  xy: 2, 3
+  size: 799, 1134
+  orig: 920, 1179
+  offset: 110, 0
+  index: -1
+Shadow
+  rotate: false
+  xy: 1138, 2
+  size: 574, 108
+  orig: 574, 108
+  offset: 0, 0
+  index: -1
+crown
+  rotate: false
+  xy: 1138, 112
+  size: 474, 288
+  orig: 806, 1102
+  offset: 0, 814
+  index: -1
