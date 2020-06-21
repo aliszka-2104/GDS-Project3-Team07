@@ -1,85 +1,85 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Hostile : State
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Vision))]
+public class Hostile : MonoBehaviour, IState
 {
-    private const string stateName = "Hostile";
-    private const bool isStunState = false;
-    public override string Name
+    #region State parameters
+
+    [Header("Parameters")]
+    public float movementSpeed = 2.5f;
+    public float spotAngle = 60f;
+    public float visionRange = 6f;
+    public float peripheralVisionRange = 2f;
+    public float hearingRange = 4f;
+    public int executesPerSecond = 20;
+    [Header("State Links")]
+    public StateType onTargetLostStateChange = StateType.Alert;
+
+    #endregion
+    #region Private value holders 
+
+    WaitForSeconds waitFor;
+    Collider target;
+
+    #endregion
+    #region Unity callbacks
+    #endregion
+    #region Interface implementation
+
+    public string stateName { get; } = "Hostile";
+    public StateType stateType { get; } = StateType.Hostile;
+    public void Entry(object[] data = null)
     {
-        get
+        GetComponent<NavMeshAgent>().speed = movementSpeed;
+        GetComponent<Vision>().spotAngle = spotAngle;
+        GetComponent<Vision>().range = visionRange;
+        GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
+        GetComponent<Hearing>().range = hearingRange;
+
+        target = data[0] as Collider;
+        SetDestinationToTarget();
+    }
+    public object[] Exit()
+    {
+        return new object[2] { target, true };
+    }
+    public IEnumerator StateProcess()
+    {
+        if(TargetSense() != target)
         {
-            return stateName;
+            GetComponent<Agent>().ChangeState(onTargetLostStateChange);
+        } else
+        {
+            SetDestinationToTarget();
         }
+        yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
     }
-    public override bool IsStunState
+
+    #endregion
+    #region Methods
+
+    void SetDestinationToTarget()
     {
-        get
+        GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+    }
+    Collider TargetSense()
+    {
+        Collider sensedTarget = null;
+        Collider[] visualPossibleTargets = GetComponent<Vision>().UseSense();
+        foreach (Collider coll in visualPossibleTargets)
         {
-            return isStunState;
-        }
-    }
-
-    public float movementSpeed;
-    public float visionRange;
-    public float fovDegrees;
-    public float peripheralRange;
-    public LayerMask visionMask;
-    public LayerMask lineOfSightMask;
-
-    Transform target;
-
-    public override void Entry(params object[] data)
-    {
-        Debug.Log("Hostile Start()");
-        AiAgent.GetComponent<NavMeshAgent>().speed = movementSpeed;
-
-        AiAgent.Lights[0].range = peripheralRange;
-        AiAgent.Lights[0].color = Color.red;
-
-        AiAgent.Lights[1].range = visionRange;
-        AiAgent.Lights[1].spotAngle = fovDegrees;
-        AiAgent.Lights[1].color = Color.red;
-
-        target = data[0] as Transform;
-        base.Entry();
-    }
-    public override IEnumerator Step()
-    {
-        while (!Exiting)
-        {
-            if (!VisualCheck())
+            if (coll.tag == "Player")
             {
-                AiAgent.GetComponent<NavMeshAgent>().SetDestination(target.position);
+                sensedTarget = coll;
+                break;
             }
+        }
+        return sensedTarget;
+    }
 
-            EndOfFrameYield = new WaitForEndOfFrame();
-            yield return EndOfFrameYield;
-        }
-        Exiting = false;
-        yield return null;
-    }
-    public override void DebugGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawSphere(target.position, 0.2f);
-        Gizmos.DrawRay(AiAgent.transform.position, target.position - AiAgent.transform.position);
-    }
-    
-    bool VisualCheck()
-    {
-        Vector3 currentPosition = AiAgent.transform.position;
-        bool inLineofSight = !Physics.Raycast(currentPosition, target.position - currentPosition, Vector3.Distance(currentPosition, target.position), lineOfSightMask);
-        bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, target.position - currentPosition) < fovDegrees / 2 || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
-        if ((!inLineofSight && inFieldOfView) || !inFieldOfView)
-        {
-            AiAgent.ChangeState(linkedStateNames[0], target.position);
-            return true;
-        }
-        return false;
-    }
+    #endregion
 }

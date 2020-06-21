@@ -18,5 +18,9 @@ public class PlayerMovement : MonoBehaviour
         movementVector.x = horAxis;
         movementVector.z = verAxis;
         charController.Move(movementVector * movementSpeed * Time.deltaTime);
+        if(Input.GetKey(KeyCode.Space))                                         //For a dummy stun, to be deleted
+        {
+            GameObject.Find("AI").GetComponent<Agent>().Stun();
+        }
     }
 }

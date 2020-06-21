@@ -1,87 +1,81 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using UnityEditor.EventSystems;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using UnityEngine.Networking;
+using UnityEngine.AI;
 
 public class Agent : MonoBehaviour
 {
-    public Light peripheralLight;
-    public Light fieldOfVisionLight;
+    #region Agent parameters
 
-    public string startingState;
-    public bool debug;
+    public StateType startingState;
 
-    public Light[] Lights
+    #endregion
+    #region Private value holders
+
+    Dictionary<StateType, IState> stateDict = new Dictionary<StateType, IState>();
+    public StateType currentState { get; set; }
+    bool agentTerminating = false;
+
+    #endregion
+    #region Unity callbacks
+
+    private void Awake()
     {
-        get
+        IState[] states = GetComponents<IState>();
+        foreach (IState state in states)
         {
-            return visionLights;
+            stateDict.Add(state.stateType, state);
+        }
+        SetState(startingState);
+    }
+    private void Start()
+    {
+        StartCoroutine(GameLoop());
+    }
+
+    #endregion
+    #region State machine
+
+    IEnumerator GameLoop()
+    {
+        while (!agentTerminating)
+        {
+            yield return StartCoroutine(stateDict[currentState].StateProcess());
+        }
+        yield return null;
+    }
+
+    public void ChangeState(StateType newState)
+    {
+        object[] data = stateDict[currentState].Exit();
+        stateDict[currentState = newState].Entry(data);
+    }
+    void SetState(StateType newState)
+    {
+        stateDict[currentState = newState].Entry();
+    }
+
+    public void Stun()
+    {
+        SetState(StateType.Stunned);
+    }
+
+    #endregion
+    #region Debug
+
+    GUIStyle debugLabel = new GUIStyle();
+
+    private void OnDrawGizmos()
+    {
+        debugLabel.fontSize = 32;
+        debugLabel.normal.textColor = Color.white;
+        if(stateDict.ContainsKey(currentState))
+        {
+            Handles.Label(this.transform.position + Vector3.up, stateDict[currentState].stateName, debugLabel);
         }
     }
 
-    Light[] visionLights;
-    State[] states;
-    int currentState;
-
-    void Awake()
-    {
-        visionLights = new Light[2]
-        {
-            peripheralLight,
-            fieldOfVisionLight
-        };
-        states = GetComponents<State>();
-
-        for(int i = 0; i < states.Length; i++)
-        {
-            if(states[i].Name == startingState)
-            {
-                currentState = i;
-                break;
-            }
-        }
-    }
-    void Start()
-    {
-        states[currentState].Entry();
-    }
-
-    public void ChangeState(string name, params object[] data)
-    {
-        for (int i = 0; i < states.Length; i++)
-        {
-            if (states[i].Name == name)
-            {
-                states[currentState].Exit();
-                currentState = i;
-                states[currentState].Entry(data);
-                break;
-            }
-            else if (i == states.Length - 1)
-            {
-                throw new System.ArgumentException("No state with name: " + name + " found");
-            }
-        }
-    }
-    public void StunAgent(float time)
-    {
-        foreach(State state in states)
-        {
-            if(state.IsStunState)
-            {
-                if(state.Name != states[currentState].Name)
-                {
-                    ChangeState(state.Name);
-                    break;
-                }
-            }
-        }
-        states[currentState].Stun(time);
-    }
+    #endregion
 }

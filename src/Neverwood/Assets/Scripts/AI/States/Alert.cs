@@ -1,96 +1,137 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Alert : State
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Vision))]
+[RequireComponent(typeof(Hearing))]
+public class Alert : MonoBehaviour, IState
 {
-    private const string stateName = "Alert";
-    private const bool isStunState = false;
-    public override string Name
+    #region State parameters
+
+    [Header("Parameters")]
+    public float movementSpeed = 1f;
+    public float spotAngle = 50f;
+    public float visionRange = 6f;
+    public float peripheralVisionRange = 1f;
+    public float hearingRange = 9f;
+    public int executesPerSecond = 14;
+    public float noNewTargetTimeFallOff = 2f;
+    public float minTimeInAlertState = 2f;
+    [Header("State Links")]
+    public StateType onTargetSensedStateChange = StateType.Hostile;
+    public StateType onTimeFallOffStateChange = StateType.Idle;
+
+    #endregion
+    #region Private value holders
+
+    WaitForSeconds waitFor;
+    Collider target;
+    float noNewTargetTimer;
+    float minTimeInAlertTimer;
+
+    #endregion
+    #region Unity callbacks
+    #endregion
+    #region Interface implementation
+
+    public string stateName { get; } = "Alert";
+    public StateType stateType { get; } = StateType.Alert;
+    public void Entry(object[] data = null)
     {
-        get
+        GetComponent<NavMeshAgent>().speed = movementSpeed;
+        GetComponent<Vision>().spotAngle = spotAngle;
+        GetComponent<Vision>().range = visionRange;
+        GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
+        GetComponent<Hearing>().range = hearingRange;
+
+        target = data[0] as Collider;
+        minTimeInAlertTimer = minTimeInAlertState;
+        if (data.Length > 1)
         {
-            return stateName;
-        }
-    }
-    public override bool IsStunState
-    {
-        get
-        {
-            return isStunState;
-        }
-    }
-
-    public float movementSpeed;
-    public float visionRange;
-    public float fovDegrees;
-    public float peripheralRange;
-    public LayerMask visionMask;
-    public LayerMask lineOfSightMask;
-
-    Vector3 lastSeen;
-
-    public override void Entry(params object[] data)
-    {
-        Debug.Log("Alert Start()");
-        AiAgent.GetComponent<NavMeshAgent>().speed = movementSpeed;
-
-        AiAgent.Lights[0].range = peripheralRange;
-        AiAgent.Lights[0].color = Color.yellow;
-        AiAgent.Lights[1].range = visionRange;
-        AiAgent.Lights[1].spotAngle = fovDegrees;
-        AiAgent.Lights[1].color = Color.yellow;
-
-        lastSeen = (Vector3)data[0];
-        AiAgent.GetComponent<NavMeshAgent>().SetDestination(lastSeen);
-        base.Entry(data);
-    }
-    public override IEnumerator Step()
-    {
-        while (!Exiting)
-        {
-            if (!VisualCheck())
+            if ((bool)data[1])
             {
-                if (!AiAgent.GetComponent<NavMeshAgent>().hasPath)
-                {
-                    AiAgent.ChangeState(linkedStateNames[0]);
-                }
-            }
-
-            EndOfFrameYield = new WaitForEndOfFrame();
-            yield return EndOfFrameYield;
-        }
-        Exiting = false;
-        yield return null;
-    }
-    public override void DebugGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawSphere(lastSeen, 0.2f);
-        Gizmos.DrawRay(AiAgent.transform.position, lastSeen - AiAgent.transform.position);
-    }
-    
-    bool VisualCheck()
-    {
-        Vector3 currentPosition = AiAgent.transform.position;
-        Collider[] sensedColliders = Physics.OverlapSphere(currentPosition, visionRange, visionMask);
-        if (sensedColliders.Length != 0)
-        {
-            Vector3 sensedPosition = sensedColliders[0].transform.position;
-            bool inFieldOfView = Vector3.Angle(AiAgent.transform.forward, sensedPosition - currentPosition) < fovDegrees / 2 || Physics.OverlapSphere(currentPosition, peripheralRange, visionMask).Length != 0;
-            if (inFieldOfView)
-            {
-                bool inLineOfSight = !Physics.Raycast(currentPosition, sensedPosition - currentPosition, Vector3.Distance(currentPosition, sensedPosition), lineOfSightMask);
-                if (inLineOfSight)
-                {
-                    AiAgent.ChangeState(linkedStateNames[1], sensedColliders[0].transform);
-                    return true;
-                }
+                minTimeInAlertTimer = 0f;
             }
         }
-        return false;
+
+        SetDestinationToTarget();
+        StartCoroutine(NoNewTargetFallOff(noNewTargetTimeFallOff));
     }
+    public object[] Exit()
+    {
+        return new object[1] { target };
+    }
+    public IEnumerator StateProcess()
+    {
+        if (target != null)
+        {
+            noNewTargetTimer = noNewTargetTimeFallOff;
+        }
+        if (GetComponent<Vision>().IsColliderInSight(target))
+        {
+            if (minTimeInAlertTimer < 0)
+            {
+                GetComponent<Agent>().ChangeState(onTargetSensedStateChange);
+            }
+        }
+        else
+        {
+            target = null;
+            target = TargetSense();
+            if (target != null)
+            {
+                SetDestinationToTarget();
+            }
+        }
+        minTimeInAlertTimer -= 1f / executesPerSecond;
+        yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
+    }
+
+    #endregion
+    #region Methods
+
+    IEnumerator NoNewTargetFallOff(float time)
+    {
+        noNewTargetTimer = noNewTargetTimeFallOff;
+        while (noNewTargetTimer > 0)
+        {
+            noNewTargetTimer -= Time.deltaTime;
+            if (GetComponent<Agent>().currentState != this.stateType)
+            {
+                yield break;
+            }
+            yield return null;
+        }
+        GetComponent<Agent>().ChangeState(onTimeFallOffStateChange);
+    }
+    void SetDestinationToTarget()
+    {
+        GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+    }
+    Collider TargetSense()
+    {
+        Collider sensedTarget = null;
+        Collider[] visualPossibleTargets = GetComponent<Vision>().UseSense();
+        foreach (Collider coll in visualPossibleTargets)
+        {
+            if (coll.tag == "Player")
+            {
+                sensedTarget = coll;
+                break;
+            }
+        }
+        if (sensedTarget == null)
+        {
+            Collider[] auditoryPossibleTargets = GetComponent<Hearing>().UseSense();
+            if (auditoryPossibleTargets.Length != 0)
+            {
+                sensedTarget = auditoryPossibleTargets[0];
+            }
+        }
+        return sensedTarget;
+    }
+
+    #endregion
 }

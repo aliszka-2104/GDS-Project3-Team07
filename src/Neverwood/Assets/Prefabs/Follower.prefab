@@ -180,7 +180,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 4.44e-43, y: 7.7614937e-10, z: 4.44e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -195,10 +195,7 @@ GameObject:
   - component: {fileID: 2031048882819241382}
   - component: {fileID: 2031048882819241386}
   - component: {fileID: 2031048882819241376}
-  - component: {fileID: 2031048882819241377}
-  - component: {fileID: 4489894440678110209}
-  - component: {fileID: 6372141895335865509}
-  - component: {fileID: 1533695951066696995}
+  - component: {fileID: 80656033350163475}
   m_Layer: 8
   m_Name: Follower
   m_TagString: NPC
@@ -262,7 +259,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
---- !u!114 &2031048882819241377
+--- !u!114 &80656033350163475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,87 +268,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031048882819241387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5ca9174fe423b4f8f1088fce013353, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ab58ef2b28a47343b5f74138697342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peripheralLight: {fileID: 2031048882247570296}
-  fieldOfVisionLight: {fileID: 2031048882542272836}
-  startingState: Idle
-  debug: 1
---- !u!114 &4489894440678110209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031048882819241387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90c6dc2326150a4c96594f4faf6a565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedStateNames:
-  - Hostile
-  movementSpeed: 1.5
-  visionRange: 4
-  fovDegrees: 45
-  peripheralRange: 1
-  visionMask:
+  range: 3
+  centerOffset: {x: 0, y: 0, z: 0}
+  senseMask:
     serializedVersion: 2
-    m_Bits: 512
-  lineOfSightMask:
+    m_Bits: 1048576
+  senseBlockingMask:
     serializedVersion: 2
-    m_Bits: 1024
-  path: {fileID: 0}
---- !u!114 &6372141895335865509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031048882819241387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d760e74e753bac248b0779d04abd2faf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedStateNames:
-  - Idle
-  - Hostile
-  movementSpeed: 2
-  visionRange: 4
-  fovDegrees: 45
-  peripheralRange: 1
-  visionMask:
-    serializedVersion: 2
-    m_Bits: 512
-  lineOfSightMask:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!114 &1533695951066696995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031048882819241387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5fd58ddead2e943914a9b0b50bb768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedStateNames:
-  - Alert
-  movementSpeed: 4
-  visionRange: 4.5
-  fovDegrees: 60
-  peripheralRange: 1.5
-  visionMask:
-    serializedVersion: 2
-    m_Bits: 512
-  lineOfSightMask:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2097152
+  spotAngle: 45
+  peripheralVisionRange: 1
+  DEBUGActive: 1
+  DEBUGColor: {r: 0.17999507, g: 0.8490566, b: 0.1481844, a: 1}
 --- !u!1 &2031048883275761425
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ TagManager:
   - 
   - NPC
   - Player
-  - VisualObstacle
+  - 
   - LightSource
   - 
   - 
@@ -26,13 +26,13 @@ TagManager:
   - 
   - 
   - 
+  - Vision
+  - VisionObstruction
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Hearing
+  - HearingObstruction
   - 
   - 
   - 
