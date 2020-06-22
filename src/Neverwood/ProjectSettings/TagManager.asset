@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Land
+    uniqueID: 307467841
+    locked: 0
+  - name: Environment
+    uniqueID: 3004126737
+    locked: 0
+  - name: Props
+    uniqueID: 3817179797
+    locked: 0
