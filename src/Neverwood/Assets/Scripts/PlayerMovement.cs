@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
     private CharacterController charController;
+    public GameObject audioCue;
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
@@ -18,9 +19,22 @@ public class PlayerMovement : MonoBehaviour
         movementVector.x = horAxis;
         movementVector.z = verAxis;
         charController.Move(movementVector * movementSpeed * Time.deltaTime);
-        if(Input.GetKey(KeyCode.Space))                                         //For a dummy stun, to be deleted
+        if (Input.GetKeyDown(KeyCode.Space))                                         //For a dummy stun, to be deleted
         {
-            GameObject.Find("AI").GetComponent<Agent>().Stun();
+            GameObject a = Instantiate(audioCue) as GameObject;
+            a.GetComponent<AuditoryCue>().range = 8f;
+            a.GetComponent<AuditoryCue>().length = 3f;
+            a.transform.position = transform.position;
         }
+    }
+    public void Quit()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #elif UNITY_WEBPLAYER
+        Application.OpenURL(webplayerQuitURL);
+        #else
+        Application.Quit();
+        #endif
     }
 }

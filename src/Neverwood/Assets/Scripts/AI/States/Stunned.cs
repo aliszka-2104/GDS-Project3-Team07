@@ -11,6 +11,7 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
     #region Private value holders 
 
     WaitForSeconds waitFor;
+    float stunTime = 2f;
 
     #endregion
     #region Unity callbacks
@@ -23,6 +24,7 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
 
     public void Entry(object[] data = null)
     {
+        stunTime = (float)data[0];
         GetComponent<NavMeshAgent>().ResetPath();
     }
 
@@ -33,8 +35,11 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
 
     public IEnumerator StateProcess()
     {
-        yield return waitFor = new WaitForSeconds(3f);
-        GetComponent<Agent>().ChangeState(StateType.Idle);
+        yield return waitFor = new WaitForSeconds(stunTime);
+        if (GetComponent<Agent>().currentState == this.stateType)
+        {
+            GetComponent<Agent>().ChangeState(StateType.Idle);
+        }
     }
 
     #endregion

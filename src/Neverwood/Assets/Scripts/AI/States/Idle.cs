@@ -18,6 +18,7 @@ public class Idle : MonoBehaviour, IState
     public float peripheralVisionRange = 1f;
     public float hearingRange = 7f;
     public int executesPerSecond = 10;
+    public Splice splicePath;
     [Header("State Links")]
     public StateType onTargetSensedStateChange = StateType.Alert;
 
@@ -26,6 +27,9 @@ public class Idle : MonoBehaviour, IState
 
     WaitForSeconds waitFor;
     Collider target;
+    Vector3 destination;
+    private int currentWaypoint = 0;
+    private bool goingForward = true;
 
     #endregion
     #region Unity callbacks
@@ -44,6 +48,7 @@ public class Idle : MonoBehaviour, IState
 
         target = null;
         GetComponent<NavMeshAgent>().ResetPath();
+        GoToWaypoint(splicePath.path[currentWaypoint]);
     }
     public object[] Exit()
     {
@@ -52,10 +57,11 @@ public class Idle : MonoBehaviour, IState
     public IEnumerator StateProcess()
     {
         target = TargetSense();
-        if(target != null)
+        if (target != null)
         {
             GetComponent<Agent>().ChangeState(onTargetSensedStateChange);
         }
+        HandlePathFollow();
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
     }
 
@@ -66,23 +72,55 @@ public class Idle : MonoBehaviour, IState
     {
         Collider sensedTarget = null;
         Collider[] visualPossibleTargets = GetComponent<Vision>().UseSense();
-        foreach(Collider coll in visualPossibleTargets)
+        foreach (Collider coll in visualPossibleTargets)
         {
-            if(coll.tag == "Player")
+            if (coll.tag == "Player")
             {
                 sensedTarget = coll;
                 break;
             }
         }
-        if(sensedTarget == null)
+        if (sensedTarget == null)
         {
             Collider[] auditoryPossibleTargets = GetComponent<Hearing>().UseSense();
-            if(auditoryPossibleTargets.Length != 0)
+            if (auditoryPossibleTargets.Length != 0)
             {
                 sensedTarget = auditoryPossibleTargets[0];
             }
         }
         return sensedTarget;
+    }
+    void GoToWaypoint(Vector3 wp)
+    {
+        destination = new Vector3(wp.x, transform.position.y, wp.z);
+        GetComponent<NavMeshAgent>().SetDestination(destination);
+    }
+    void HandlePathFollow()
+    {
+        if (Vector3.Distance(transform.position, destination) <= 0.1f)
+        {
+            if (currentWaypoint == splicePath.path.Length - 1)
+            {
+                goingForward = false;
+            }
+            else if (currentWaypoint == 0)
+            {
+                goingForward = true;
+            }
+            if (goingForward)
+            {
+                currentWaypoint++;
+            }
+            else
+            {
+                currentWaypoint--;
+            }
+            GoToWaypoint(splicePath.path[currentWaypoint]);
+        }
+    }
+    void Turn(float velocity)
+    {
+        transform.Rotate(0f, velocity * Time.deltaTime, 0f);
     }
 
     #endregion

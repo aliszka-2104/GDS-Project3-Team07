@@ -28,10 +28,10 @@ public class Agent : MonoBehaviour
         {
             stateDict.Add(state.stateType, state);
         }
-        SetState(startingState);
     }
     private void Start()
     {
+        SetState(startingState);
         StartCoroutine(GameLoop());
     }
 
@@ -52,14 +52,14 @@ public class Agent : MonoBehaviour
         object[] data = stateDict[currentState].Exit();
         stateDict[currentState = newState].Entry(data);
     }
-    void SetState(StateType newState)
+    void SetState(StateType newState, params object[] data)
     {
-        stateDict[currentState = newState].Entry();
+        stateDict[currentState = newState].Entry(data);
     }
 
-    public void Stun()
+    public void Stun(float time)
     {
-        SetState(StateType.Stunned);
+        SetState(StateType.Stunned, time);
     }
 
     #endregion
@@ -69,6 +69,8 @@ public class Agent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, 1f);
         debugLabel.fontSize = 32;
         debugLabel.normal.textColor = Color.white;
         if(stateDict.ContainsKey(currentState))

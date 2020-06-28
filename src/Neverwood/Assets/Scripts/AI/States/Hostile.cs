@@ -16,6 +16,7 @@ public class Hostile : MonoBehaviour, IState
     public float peripheralVisionRange = 2f;
     public float hearingRange = 4f;
     public int executesPerSecond = 20;
+    public float killRange = 1f;
     [Header("State Links")]
     public StateType onTargetLostStateChange = StateType.Alert;
 
@@ -49,11 +50,13 @@ public class Hostile : MonoBehaviour, IState
     }
     public IEnumerator StateProcess()
     {
-        if(TargetSense() != target)
+        if (TargetSense() != target)
         {
             GetComponent<Agent>().ChangeState(onTargetLostStateChange);
-        } else
+        }
+        else
         {
+            KillRangeCheck();
             SetDestinationToTarget();
         }
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
@@ -79,6 +82,16 @@ public class Hostile : MonoBehaviour, IState
             }
         }
         return sensedTarget;
+    }
+    void KillRangeCheck()
+    {
+        if (Vector3.Distance(target.transform.position, transform.position) <= killRange)
+        {
+            if (target.tag == "Player")
+            {
+                target.GetComponent<PlayerMovement>().Quit();
+            }
+        }
     }
 
     #endregion

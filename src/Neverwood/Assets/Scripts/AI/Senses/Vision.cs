@@ -79,9 +79,6 @@ public class Vision : Sense
             Gizmos.DrawRay(currentPosition, forwardVector);
             Gizmos.DrawRay(currentPosition, Quaternion.Euler(0, spotAngle / 2, 0) * forwardVector);
             Gizmos.DrawRay(currentPosition, Quaternion.Euler(0, -spotAngle / 2, 0) * forwardVector);
-
-            Gizmos.color = Gizmos.color - new Color(0, 0, 0, 0.5f);
-            Gizmos.DrawWireSphere(currentPosition, range);
         }
     }
 

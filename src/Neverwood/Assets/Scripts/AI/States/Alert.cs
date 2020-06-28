@@ -17,6 +17,7 @@ public class Alert : MonoBehaviour, IState
     public float peripheralVisionRange = 1f;
     public float hearingRange = 9f;
     public int executesPerSecond = 14;
+    public float killRange = 1f;
     public float noNewTargetTimeFallOff = 2f;
     public float minTimeInAlertState = 2f;
     [Header("State Links")]
@@ -38,7 +39,7 @@ public class Alert : MonoBehaviour, IState
 
     public string stateName { get; } = "Alert";
     public StateType stateType { get; } = StateType.Alert;
-    public void Entry(object[] data = null)
+    public void Entry(object[] data = null)                     //Data[1] holds a bool that tells if Alert was changed from Hostile (there's no min time if true)
     {
         GetComponent<NavMeshAgent>().speed = movementSpeed;
         GetComponent<Vision>().spotAngle = spotAngle;
@@ -68,9 +69,11 @@ public class Alert : MonoBehaviour, IState
         if (target != null)
         {
             noNewTargetTimer = noNewTargetTimeFallOff;
+            SetDestinationToTarget();
         }
         if (GetComponent<Vision>().IsColliderInSight(target))
         {
+            KillRangeCheck();
             if (minTimeInAlertTimer < 0)
             {
                 GetComponent<Agent>().ChangeState(onTargetSensedStateChange);
@@ -80,10 +83,6 @@ public class Alert : MonoBehaviour, IState
         {
             target = null;
             target = TargetSense();
-            if (target != null)
-            {
-                SetDestinationToTarget();
-            }
         }
         minTimeInAlertTimer -= 1f / executesPerSecond;
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
@@ -131,6 +130,16 @@ public class Alert : MonoBehaviour, IState
             }
         }
         return sensedTarget;
+    }
+    void KillRangeCheck()
+    {
+        if (Vector3.Distance(target.transform.position, transform.position) <= killRange)
+        {
+            if (target.tag == "Player")
+            {
+                target.GetComponent<PlayerMovement>().Quit();
+            }
+        }
     }
 
     #endregion

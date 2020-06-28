@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AI\Agent.cs" />
+    <Compile Include="Assets\Scripts\AI\AgentStunner.cs" />
+    <Compile Include="Assets\Scripts\AI\AuditoryCue.cs" />
     <Compile Include="Assets\Scripts\AI\Senses\Hearing.cs" />
     <Compile Include="Assets\Scripts\AI\Senses\Sense.cs" />
     <Compile Include="Assets\Scripts\AI\Senses\Vision.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Scripts\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\PlayerIsometricDirection.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Splice.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/GitHub/GDS-Project3-Team07/src/Neverwood/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
