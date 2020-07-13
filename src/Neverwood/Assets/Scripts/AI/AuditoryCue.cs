@@ -17,15 +17,8 @@ public class AuditoryCue : MonoBehaviour
     {
         GetComponent<SphereCollider>().isTrigger = true;
         GetComponent<SphereCollider>().radius = range;
-        StartCoroutine(DestroyAfterDelay(length));
+        Destroy(this, length);
     }
-
-    IEnumerator DestroyAfterDelay(float time)
-    {
-        yield return new WaitForSeconds(length);
-        Destroy(this.gameObject);
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
