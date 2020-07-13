@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{24E1CDFC-4964-0F9F-4D47-541DCF57AFD6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -75,22 +74,13 @@
     <Compile Include="Assets\Scripts\AI\States\IState.cs" />
     <Compile Include="Assets\Scripts\AI\States\Idle.cs" />
     <Compile Include="Assets\Scripts\AI\States\Stunned.cs" />
-    <Compile Include="Assets\Scripts\AI\TestingAgent.cs" />
     <Compile Include="Assets\Scripts\DebugPath.cs" />
-    <Compile Include="Assets\Scripts\DeprecatedPrototype\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\Follower.cs" />
-    <Compile Include="Assets\Scripts\Heap.cs" />
     <Compile Include="Assets\Scripts\Interactive\Interactive.cs" />
     <Compile Include="Assets\Scripts\Interactive\Interactor.cs" />
     <Compile Include="Assets\Scripts\Interactive\Pickup.cs" />
     <Compile Include="Assets\Scripts\Interactive\ProximityTrigger.cs" />
     <Compile Include="Assets\Scripts\Interactive\TripWire.cs" />
     <Compile Include="Assets\Scripts\LightSource.cs" />
-    <Compile Include="Assets\Scripts\Node.cs" />
-    <Compile Include="Assets\Scripts\PathGrid.cs" />
-    <Compile Include="Assets\Scripts\PathManager.cs" />
-    <Compile Include="Assets\Scripts\PathUnit.cs" />
-    <Compile Include="Assets\Scripts\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\PlayerIsometricDirection.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Splice.cs" />
