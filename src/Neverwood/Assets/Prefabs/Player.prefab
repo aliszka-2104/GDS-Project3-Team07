@@ -448,8 +448,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5464ef7f5b553e4aa64984dde5d1581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  obstaclesICanCross: 00000000
+  speed: 10
   light: {fileID: 1936030833537449998}
+  collider: {fileID: 0}
+  movingTo: 0
+  myTarget: {x: 0, y: 0, z: 0}
 --- !u!54 &1936030833847225771
 Rigidbody:
   m_ObjectHideFlags: 0
