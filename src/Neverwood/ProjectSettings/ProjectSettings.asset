@@ -254,7 +254,7 @@ PlayerSettings:
   clonedFromGUID: c71a6e77368cc6048998f34f4bbe2b86
   templatePackageId: com.unity.template.hd@7.1.8
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  AndroidTargetArchitectures: 5
+  AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: '{inproject}: '
