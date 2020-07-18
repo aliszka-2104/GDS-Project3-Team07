@@ -32,6 +32,20 @@ public class PlayerMovement : MonoBehaviour
         {
             light.SetActive(!light.activeSelf);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            var colliders = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Campfire"));
+            
+            if (colliders.Length>0)
+            {
+                var first = colliders[0];
+
+                if (first.GetComponent<Campfire>())
+                {
+                    first.GetComponent<Campfire>().ToggleLight();
+                }
+            }
+        }
         if (movingTo)
         {
             Teleport(myTarget);
