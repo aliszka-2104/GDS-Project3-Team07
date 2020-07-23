@@ -451,6 +451,7 @@ MonoBehaviour:
   obstaclesICanCross: 00000000
   speed: 10
   light: {fileID: 1936030833537449998}
+  collider: {fileID: 0}
   movingTo: 0
   myTarget: {x: 0, y: 0, z: 0}
 --- !u!54 &1936030833847225771
