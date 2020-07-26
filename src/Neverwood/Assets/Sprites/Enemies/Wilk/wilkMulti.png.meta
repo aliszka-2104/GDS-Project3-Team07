@@ -1,55 +1,19 @@
 fileFormatVersion: 2
-guid: d20fb670b65564a4da03087a254219b9
+guid: 468d448a57a78d24e95564ff0f9ea9e0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3502413190459855260
-    second: Dzieci_0
+      213: 2700208637620627518
+    second: wilkMulti_0
   - first:
-      213: -7145220758728980161
-    second: Dzieci_1
+      213: 590222806163776119
+    second: wilkMulti_1
   - first:
-      213: 465212920046286544
-    second: Dzieci_2
+      213: -3391517302333547460
+    second: wilkMulti_2
   - first:
-      213: 537869786803227073
-    second: Dzieci_3
-  - first:
-      213: -6423965716660901958
-    second: Dzieci_4
-  - first:
-      213: 9063477362191735669
-    second: Dzieci_5
-  - first:
-      213: 7858889781492664254
-    second: Dzieci_6
-  - first:
-      213: 1537033837058811869
-    second: Dzieci_7
-  - first:
-      213: 611524775099362033
-    second: Dzieci_0
-  - first:
-      213: -9113450860167048058
-    second: Dzieci_1
-  - first:
-      213: 8639425067148232118
-    second: Dzieci_2
-  - first:
-      213: -9185078958863864365
-    second: Dzieci_3
-  - first:
-      213: 8682662125566052075
-    second: Dzieci_4
-  - first:
-      213: 6340984805074669288
-    second: Dzieci_5
-  - first:
-      213: -1891610293151413218
-    second: Dzieci_6
-  - first:
-      213: 1085317216412978653
-    second: Dzieci_7
+      213: -648106674042089373
+    second: wilkMulti_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -159,97 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dzieci_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 753
-        width: 466
-        height: 753
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fae52ffa829c7800800000000000000
-      internalID: 611524775099362033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dzieci_1
-      rect:
-        serializedVersion: 2
-        x: 465
-        y: 753
-        width: 465.75
-        height: 753
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 684d3c15ab4868180800000000000000
-      internalID: -9113450860167048058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dzieci_2
-      rect:
-        serializedVersion: 2
-        x: 930
-        y: 753
-        width: 465.75
-        height: 753
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b5c9fe235765e770800000000000000
-      internalID: 8639425067148232118
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dzieci_3
-      rect:
-        serializedVersion: 2
-        x: 1395
-        y: 753
-        width: 465.75
-        height: 753
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3dd210ff95b088080800000000000000
-      internalID: -9185078958863864365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dzieci_4
+      name: wilkMulti_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 465.75
-        height: 753
+        width: 1560
+        height: 1854
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be64a1353330f7870800000000000000
-      internalID: 8682662125566052075
+      spriteID: e38a1d81371197520800000000000000
+      internalID: 2700208637620627518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dzieci_5
+      name: wilkMulti_1
       rect:
         serializedVersion: 2
-        x: 465
+        x: 1560
         y: 0
-        width: 465.75
-        height: 753
+        width: 1560
+        height: 1854
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ee00a09514bff750800000000000000
-      internalID: 6340984805074669288
+      spriteID: 772e9bbd384e03800800000000000000
+      internalID: 590222806163776119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dzieci_6
+      name: wilkMulti_2
       rect:
         serializedVersion: 2
-        x: 930
+        x: 3120
         y: 0
-        width: 465.75
-        height: 753
+        width: 1560
+        height: 1854
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1ccc37e576afb5e0800000000000000
-      internalID: -1891610293151413218
+      spriteID: c3c51d88bf8eee0d0800000000000000
+      internalID: -3391517302333547460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dzieci_7
+      name: wilkMulti_3
       rect:
         serializedVersion: 2
-        x: 1395
+        x: 4680
         y: 0
-        width: 465.75
-        height: 753
+        width: 1560
+        height: 1854
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddd49e01242df0f00800000000000000
-      internalID: 1085317216412978653
+      spriteID: 360592de9667107f0800000000000000
+      internalID: -648106674042089373
       vertices: []
       indices: 
       edges: []
@@ -329,7 +209,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7ea7b3f64588f36429f1c226de506f95
     internalID: 0
     vertices: []
     indices: 
