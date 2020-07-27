@@ -7,7 +7,7 @@ public class Obstacle : MonoBehaviour
     public enum OBSTACLE
     {
         ROCK,
-        WOOD
+        LOG
     }
 
     public Transform target;
