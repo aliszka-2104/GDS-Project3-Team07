@@ -6,12 +6,14 @@ using static Obstacle;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public List<OBSTACLE> obstaclesICanCross=new List<OBSTACLE>();
+    public List<OBSTACLE> obstaclesICanCross = new List<OBSTACLE>();
     public float speed = 5f;
     public GameObject light;
+    private bool isCurrentCharacter = false;
 
     private Rigidbody rb;
     private CharacterController cc;
+    private Camera camera;
     private PlayerDirection playerDirection;
     private Vector3 input = Vector3.zero;
     private Vector3 moveDirection;
@@ -23,11 +25,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
+        camera = GetComponentInChildren<Camera>();
+        SetCurrentCharacter(false);
         playerDirection = GetComponentInChildren<PlayerDirection>();
     }
 
     void Update()
     {
+        if (!isCurrentCharacter)
+        {
+            cc.Move(Vector3.zero);
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             light.SetActive(!light.activeSelf);
@@ -35,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             var colliders = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Campfire"));
-            
-            if (colliders.Length>0)
+
+            if (colliders.Length > 0)
             {
                 var first = colliders[0];
 
@@ -59,6 +69,17 @@ public class PlayerMovement : MonoBehaviour
 
             playerDirection.SetDirection(moveDirection);
         }
+    }
+
+    public void SetCurrentCharacter(bool isCurrent)
+    {
+        isCurrentCharacter = isCurrent;
+        if (isCurrent)
+        {
+            camera.gameObject.SetActive(true);
+            return;
+        }
+        camera.gameObject.SetActive(false);
     }
 
     public void CrossObstacle(Vector3 target, OBSTACLE obstacleType)
@@ -91,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             movingTo = false;
-        //collider.enabled = true;
+            //collider.enabled = true;
         }
     }
 }
