@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 468d448a57a78d24e95564ff0f9ea9e0
+guid: 721272c1db1593e4496ebdaf2435dfb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2700208637620627518
-    second: wilkMulti_0
+      213: -8784140115798763446
+    second: drzewov2_0
   - first:
-      213: 590222806163776119
-    second: wilkMulti_1
+      213: -1543631881191594535
+    second: drzewov2_1
   - first:
-      213: -3391517302333547460
-    second: wilkMulti_2
+      213: 7584097992485762586
+    second: drzewov2_2
   - first:
-      213: -648106674042089373
-    second: wilkMulti_3
+      213: 6887556850759768992
+    second: drzewov2_3
   - first:
-      213: 2022966514641366826
-    second: wilkMulti_0
+      213: 618274103343692651
+    second: drzewov2_0
   - first:
-      213: 8534891755946177402
-    second: wilkMulti_1
+      213: -4388747628032853533
+    second: drzewov2_1
   - first:
-      213: 2616167744205531167
-    second: wilkMulti_2
+      213: -8706065551178855329
+    second: drzewov2_2
   - first:
-      213: 3779624432811661316
-    second: wilkMulti_3
+      213: 9049584263289561408
+    second: drzewov2_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -135,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wilkMulti_0
+      name: drzewov2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1560
-        height: 1854
+        width: 591
+        height: 966
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f65b1b355031c10800000000000000
-      internalID: 2022966514641366826
+      spriteID: b6bbf9f650d849800800000000000000
+      internalID: 618274103343692651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_1
+      name: drzewov2_1
       rect:
         serializedVersion: 2
-        x: 1560
+        x: 591
         y: 0
-        width: 1560
-        height: 1854
+        width: 591
+        height: 966
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,20 +170,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a73f49d05d6027670800000000000000
-      internalID: 8534891755946177402
+      spriteID: 3e9734ee8490813c0800000000000000
+      internalID: -4388747628032853533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_2
+      name: drzewov2_2
       rect:
         serializedVersion: 2
-        x: 3120
+        x: 1182
         y: 0
-        width: 1560
-        height: 1854
+        width: 591
+        height: 966
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f18a43ac3be7e4420800000000000000
-      internalID: 2616167744205531167
+      spriteID: f5c08b60287dd2780800000000000000
+      internalID: -8706065551178855329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_3
+      name: drzewov2_3
       rect:
         serializedVersion: 2
-        x: 4680
+        x: 1773
         y: 0
-        width: 1560
-        height: 1854
+        width: 591
+        height: 966
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4085026756ce37430800000000000000
-      internalID: 3779624432811661316
+      spriteID: 041e652d0f4969d70800000000000000
+      internalID: 9049584263289561408
       vertices: []
       indices: 
       edges: []
@@ -221,7 +221,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7ea7b3f64588f36429f1c226de506f95
+    spriteID: 1ae7165345eee33488dc6b8c587b99de
     internalID: 0
     vertices: []
     indices: 

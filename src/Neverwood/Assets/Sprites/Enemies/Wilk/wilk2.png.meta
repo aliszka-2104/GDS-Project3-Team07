@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 468d448a57a78d24e95564ff0f9ea9e0
+guid: b0258a986afa496439b8da15fee706d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2700208637620627518
-    second: wilkMulti_0
+      213: 449628247048874043
+    second: wilk2_0
   - first:
-      213: 590222806163776119
-    second: wilkMulti_1
+      213: -2583036978358022605
+    second: wilk2_1
   - first:
-      213: -3391517302333547460
-    second: wilkMulti_2
+      213: 7690544633381620160
+    second: wilk2_2
   - first:
-      213: -648106674042089373
-    second: wilkMulti_3
+      213: 4936367955992668690
+    second: wilk2_3
   - first:
-      213: 2022966514641366826
-    second: wilkMulti_0
+      213: 1766089311852965316
+    second: wilk2_0
   - first:
-      213: 8534891755946177402
-    second: wilkMulti_1
+      213: -569176958471570741
+    second: wilk2_1
   - first:
-      213: 2616167744205531167
-    second: wilkMulti_2
+      213: -8378483829041500050
+    second: wilk2_2
   - first:
-      213: 3779624432811661316
-    second: wilkMulti_3
+      213: 3396198899860996950
+    second: wilk2_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -135,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wilkMulti_0
+      name: wilk2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f65b1b355031c10800000000000000
-      internalID: 2022966514641366826
+      spriteID: 4cd2c9a3fd8628810800000000000000
+      internalID: 1766089311852965316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_1
+      name: wilk2_1
       rect:
         serializedVersion: 2
         x: 1560
@@ -170,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a73f49d05d6027670800000000000000
-      internalID: 8534891755946177402
+      spriteID: bcaf6f76290e918f0800000000000000
+      internalID: -569176958471570741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_2
+      name: wilk2_2
       rect:
         serializedVersion: 2
         x: 3120
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f18a43ac3be7e4420800000000000000
-      internalID: 2616167744205531167
+      spriteID: e6070ad3955a9bb80800000000000000
+      internalID: -8378483829041500050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wilkMulti_3
+      name: wilk2_3
       rect:
         serializedVersion: 2
         x: 4680
@@ -212,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4085026756ce37430800000000000000
-      internalID: 3779624432811661316
+      spriteID: 65389c4d7e8b12f20800000000000000
+      internalID: 3396198899860996950
       vertices: []
       indices: 
       edges: []
@@ -221,7 +221,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7ea7b3f64588f36429f1c226de506f95
+    spriteID: 28bfc072337719a4990e62d7a35d8b31
     internalID: 0
     vertices: []
     indices: 
