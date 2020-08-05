@@ -252,15 +252,25 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1936030835081828165, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030835081828165, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030835081828165, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2427060881536531865, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_Layer
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 7425825616747817859, guid: a7517e48446afff4b9da83a661c86810,
-        type: 3}
-      propertyPath: orthographic size
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7517e48446afff4b9da83a661c86810, type: 3}
