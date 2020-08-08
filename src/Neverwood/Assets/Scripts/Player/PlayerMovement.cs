@@ -8,12 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public List<OBSTACLE> obstaclesICanCross = new List<OBSTACLE>();
     public float speed = 5f;
-    public GameObject light;
-    private bool isCurrentCharacter = false;
 
+    private Player player;
     private Rigidbody rb;
     private CharacterController cc;
-    private Camera camera;
     private PlayerDirection playerDirection;
     private Vector3 input = Vector3.zero;
     private Vector3 moveDirection;
@@ -23,39 +21,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        player = GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
-        camera = GetComponentInChildren<Camera>();
-        SetCurrentCharacter(false);
         playerDirection = GetComponentInChildren<PlayerDirection>();
     }
 
     void Update()
     {
-        if (!isCurrentCharacter)
+        if (!player.IsCurentCharacter)
         {
             cc.Move(Vector3.zero);
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            light.SetActive(!light.activeSelf);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            var colliders = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Campfire"));
-
-            if (colliders.Length > 0)
-            {
-                var first = colliders[0];
-
-                if (first.GetComponent<Campfire>())
-                {
-                    first.GetComponent<Campfire>().ToggleLight();
-                }
-            }
-        }
         if (movingTo)
         {
             Teleport(myTarget);
@@ -71,16 +50,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SetCurrentCharacter(bool isCurrent)
-    {
-        isCurrentCharacter = isCurrent;
-        if (isCurrent)
-        {
-            camera.gameObject.SetActive(true);
-            return;
-        }
-        camera.gameObject.SetActive(false);
-    }
 
     public void CrossObstacle(Vector3 target, OBSTACLE obstacleType)
     {

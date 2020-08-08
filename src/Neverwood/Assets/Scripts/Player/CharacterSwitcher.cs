@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class CharacterSwitcher : MonoBehaviour
 {
-    private PlayerMovement[] characters;
+    public static CharacterSwitcher instance;
+    public Action onCharacterSwitch;
+
+    private Player[] characters;
     private int currentCharacter = 0;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        characters = FindObjectsOfType<PlayerMovement>();
+        characters = FindObjectsOfType<Player>();
         characters[currentCharacter].SetCurrentCharacter(true);
     }
 
@@ -24,6 +31,8 @@ public class CharacterSwitcher : MonoBehaviour
 
     private void SwitchCharacter()
     {
+        onCharacterSwitch?.Invoke();
+
         characters[currentCharacter].SetCurrentCharacter(false);
 
         currentCharacter++;

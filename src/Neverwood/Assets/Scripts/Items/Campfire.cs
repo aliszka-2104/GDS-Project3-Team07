@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Campfire : MonoBehaviour
+public class Campfire : Interactive
 {
-    public GameObject light;
+    public GameObject campfireLIght;
+
+    public override void Interact()
+    {
+        campfireLIght.SetActive(true);
+    }
 
     public void ToggleLight()
     {
-        light.SetActive(!light.activeSelf);
+        campfireLIght.SetActive(!campfireLIght.activeSelf);
     }
 }
