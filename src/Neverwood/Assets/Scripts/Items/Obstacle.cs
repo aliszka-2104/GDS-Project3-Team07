@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
 
     public Transform target;
     public OBSTACLE obstacleType;
+    public GameObject effects;
 
     private void Start()
     {
@@ -20,7 +21,10 @@ public class Obstacle : MonoBehaviour
 
     private void OnCharacterSwitch()
     {
-
+        if (effects!=null)
+        {
+            effects.SetActive(!effects.activeSelf); 
+        }
     }
 
     private void OnTriggerEnter(Collider other)

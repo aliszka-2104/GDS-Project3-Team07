@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Campfire : Interactive
 {
-    public GameObject campfireLIght;
+    public GameObject campfireOn;
+    public GameObject campfireOff;
+    public GameObject effects;
+
+    private bool disabled = false;
+
+    private void Start()
+    {
+        CharacterSwitcher.instance.onCharacterSwitch += OnCharacterSwitch;
+    }
+
+    private void OnCharacterSwitch()
+    {
+        if (!disabled)
+        {
+            effects.SetActive(!effects.activeSelf);
+        }
+    }
 
     public override void Interact()
     {
-        campfireLIght.SetActive(true);
+        campfireOn.SetActive(true);
+        campfireOff.SetActive(false);
     }
 
     public void ToggleLight()
     {
-        campfireLIght.SetActive(!campfireLIght.activeSelf);
+        campfireOn.SetActive(!campfireOn.activeSelf);
     }
 }
