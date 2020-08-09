@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435501102683333303}
-  m_Layer: 0
+  - component: {fileID: 7180510862842512101}
+  m_Layer: 28
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7180510862842512101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435501102683333256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7315779, y: 2.0870237, z: 1.3658249}
+  m_Center: {x: 0.27903318, y: 0.54351187, z: 0.18291244}
 --- !u!1 &6773098767163312794
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610822393189110904}
   - component: {fileID: 5604549025907897092}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
