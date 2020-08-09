@@ -64,6 +64,7 @@ public class Agent : MonoBehaviour
 
     #endregion
     #region Debug
+#if UNITY_EDITOR
 
     GUIStyle debugLabel = new GUIStyle();
 
@@ -73,11 +74,12 @@ public class Agent : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 1f);
         debugLabel.fontSize = 32;
         debugLabel.normal.textColor = Color.white;
-        if(stateDict.ContainsKey(currentState))
+        if (stateDict.ContainsKey(currentState))
         {
             Handles.Label(this.transform.position + Vector3.up, stateDict[currentState].stateName, debugLabel);
         }
     }
 
+#endif
     #endregion
 }

@@ -16,8 +16,8 @@ TagManager:
   - 
   - PostProcessing
   - Interactive
-  - 
-  - 
+  - Projectile
+  - Ground
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: Props
     uniqueID: 3817179797
+    locked: 0
+  - name: Boy
+    uniqueID: 3816339817
     locked: 0

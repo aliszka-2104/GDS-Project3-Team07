@@ -89,7 +89,7 @@ public class Hostile : MonoBehaviour, IState
         {
             if (target.tag == "Player")
             {
-                Application.Quit();
+                //Application.Quit();
             }
         }
     }

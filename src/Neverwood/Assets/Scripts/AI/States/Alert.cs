@@ -137,7 +137,7 @@ public class Alert : MonoBehaviour, IState
         {
             if (target.tag == "Player")
             {
-                Application.Quit();
+                //Application.Quit();
             }
         }
     }

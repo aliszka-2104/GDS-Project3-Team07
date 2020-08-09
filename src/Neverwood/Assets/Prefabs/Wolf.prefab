@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 7376450769571358715}
   - component: {fileID: 7376450769571358714}
   - component: {fileID: 7376450769571358693}
+  - component: {fileID: 4866299735841026748}
+  - component: {fileID: 5223944734395589436}
   m_Layer: 30
   m_Name: Wolf
   m_TagString: NPC
@@ -59,7 +61,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 268435456
   spotAngle: 60
-  peripheralVisionRange: 3
+  peripheralVisionRange: 5
   DEBUGActive: 1
   DEBUGColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7376450769571358718
@@ -74,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1537304f2d5af8c4885cebaa9126356b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 40
+  range: 20
   centerOffset: {x: 0, y: 0, z: 0}
   senseMask:
     serializedVersion: 2
@@ -106,7 +108,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7376450769571358692}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.5
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 20
   avoidancePriority: 50
@@ -115,7 +117,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 10
+  m_Height: 5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -135,7 +137,7 @@ MonoBehaviour:
   spotAngle: 60
   visionRange: 25
   peripheralVisionRange: 3
-  hearingRange: 40
+  hearingRange: 20
   executesPerSecond: 10
   splicePath: {fileID: 0}
   onTargetSensedStateChange: 1
@@ -155,7 +157,7 @@ MonoBehaviour:
   spotAngle: 90
   visionRange: 35
   peripheralVisionRange: 5
-  hearingRange: 50
+  hearingRange: 30
   executesPerSecond: 14
   killRange: 2
   noNewTargetTimeFallOff: 2
@@ -182,6 +184,32 @@ MonoBehaviour:
   executesPerSecond: 20
   killRange: 3
   onTargetLostStateChange: 1
+--- !u!114 &4866299735841026748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376450769571358692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6626725dff3dc54b8074070a2038c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &5223944734395589436
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376450769571358692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.8785348
+  m_Height: 6.745326
+  m_Direction: 1
+  m_Center: {x: -0.19188452, y: 2.872663, z: 0}
 --- !u!1 &7376450770672238184
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7376450770672238184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7376450769571358706}

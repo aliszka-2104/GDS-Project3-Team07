@@ -6,6 +6,8 @@ using UnityEngine;
 public class CharacterSwitcher : MonoBehaviour
 {
     public static CharacterSwitcher instance;
+    public Player boy;
+    public Player girl;
     public Action onCharacterSwitch;
 
     private Player[] characters;
@@ -17,7 +19,10 @@ public class CharacterSwitcher : MonoBehaviour
     }
     void Start()
     {
-        characters = FindObjectsOfType<Player>();
+        boy = GameObject.Find("Boy").GetComponent<Player>();
+        girl = GameObject.Find("Girl").GetComponent<Player>();
+
+        characters = new[] {girl,boy };
         characters[currentCharacter].SetCurrentCharacter(true);
     }
 

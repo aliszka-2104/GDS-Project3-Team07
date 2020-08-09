@@ -17,7 +17,7 @@ public class AuditoryCue : MonoBehaviour
     {
         GetComponent<SphereCollider>().isTrigger = true;
         GetComponent<SphereCollider>().radius = range;
-        Destroy(this, length);
+        Destroy(gameObject, length);
     }
     private void OnDrawGizmos()
     {

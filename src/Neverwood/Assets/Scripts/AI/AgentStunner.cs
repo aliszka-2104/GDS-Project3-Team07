@@ -37,15 +37,17 @@ public class AgentStunner : MonoBehaviour
         yield return waitFor = new WaitForSeconds(time);
         onCooldown.Remove(coll);
     }
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, range);
-        foreach(Collider coll in onCooldown)
+        foreach (Collider coll in onCooldown)
         {
             Handles.color = Color.white;
             Handles.Label(coll.transform.position + Vector3.up * 3 + Vector3.right * 2, "Stun on cooldown");
         }
-    }
+    } 
+#endif
 
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7376450769571358715}
   - component: {fileID: 7376450769571358714}
   - component: {fileID: 7376450769571358693}
+  - component: {fileID: 799426340180311681}
   m_Layer: 30
   m_Name: Witch
   m_TagString: NPC
@@ -182,6 +183,20 @@ MonoBehaviour:
   executesPerSecond: 20
   killRange: 7
   onTargetLostStateChange: 1
+--- !u!136 &799426340180311681
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376450769571358692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.8785348
+  m_Height: 6.745326
+  m_Direction: 1
+  m_Center: {x: -0.19188452, y: 2.872663, z: 0}
 --- !u!1 &7376450770672238184
 GameObject:
   m_ObjectHideFlags: 0
