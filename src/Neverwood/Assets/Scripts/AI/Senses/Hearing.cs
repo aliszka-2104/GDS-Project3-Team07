@@ -29,7 +29,12 @@ public class Hearing : Sense
 
     public override bool PreciseSense(Collider vaguelySensed)
     {
-        return true;
+        Vector3 currentPosition = transform.position + centerOffset;
+        Vector3 colliderPosition = vaguelySensed.transform.position;
+        Vector3 vectorToCollider = colliderPosition - currentPosition;
+        float distanceToCollider = Vector3.Distance(currentPosition, colliderPosition);
+        bool inLineOfSight = !Physics.Raycast(currentPosition, vectorToCollider, distanceToCollider, senseBlockingMask);
+        return inLineOfSight;
     }
 
     #endregion
