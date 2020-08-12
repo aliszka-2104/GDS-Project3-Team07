@@ -345,7 +345,7 @@ SpriteRenderer:
   m_GameObject: {fileID: 1936030834627252412}
   m_Enabled: 1
   m_CastShadows: 2
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1

@@ -1,0 +1,146 @@
+
+Dziewczyna_front_view_.png
+size: 269,695
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back_view_head
+  rotate: true
+  xy: 2, 219
+  size: 148, 186
+  orig: 148, 186
+  offset: 0, 0
+  index: -1
+Back_view_head_background
+  rotate: true
+  xy: 2, 533
+  size: 160, 215
+  orig: 160, 215
+  offset: 0, 0
+  index: -1
+Front_view_L_hand
+  rotate: true
+  xy: 77, 3
+  size: 14, 54
+  orig: 14, 54
+  offset: 0, 0
+  index: -1
+Front_view_L_hand_background
+  rotate: true
+  xy: 77, 39
+  size: 23, 67
+  orig: 23, 67
+  offset: 0, 0
+  index: -1
+Front_view_L_leg
+  rotate: true
+  xy: 77, 19
+  size: 18, 56
+  orig: 18, 56
+  offset: 0, 0
+  index: -1
+Front_view_L_leg_background
+  rotate: true
+  xy: 201, 370
+  size: 28, 61
+  orig: 28, 61
+  offset: 0, 0
+  index: -1
+Front_view_R_hand
+  rotate: false
+  xy: 254, 519
+  size: 13, 53
+  orig: 13, 53
+  offset: 0, 0
+  index: -1
+Front_view_R_hand_background
+  rotate: true
+  xy: 201, 484
+  size: 25, 66
+  orig: 25, 66
+  offset: 0, 0
+  index: -1
+Front_view_R_leg
+  rotate: false
+  xy: 146, 7
+  size: 21, 55
+  orig: 21, 55
+  offset: 0, 0
+  index: -1
+Front_view_R_leg_background
+  rotate: false
+  xy: 219, 511
+  size: 33, 61
+  orig: 33, 61
+  offset: 0, 0
+  index: -1
+Front_view_but
+  rotate: false
+  xy: 219, 574
+  size: 34, 20
+  orig: 34, 20
+  offset: 0, 0
+  index: -1
+Front_view_but_background
+  rotate: false
+  xy: 219, 596
+  size: 40, 25
+  orig: 40, 25
+  offset: 0, 0
+  index: -1
+Front_view_eyes
+  rotate: true
+  xy: 219, 623
+  size: 70, 40
+  orig: 72, 48
+  offset: 1, 4
+  index: -1
+Front_view_head
+  rotate: true
+  xy: 2, 64
+  size: 153, 175
+  orig: 153, 175
+  offset: 0, 0
+  index: -1
+Front_view_head_background
+  rotate: true
+  xy: 2, 369
+  size: 162, 197
+  orig: 162, 197
+  offset: 0, 0
+  index: -1
+Front_view_torso
+  rotate: true
+  xy: 2, 12
+  size: 50, 73
+  orig: 52, 75
+  offset: 1, 1
+  index: -1
+Front_view_torso_background
+  rotate: false
+  xy: 201, 400
+  size: 61, 82
+  orig: 61, 82
+  offset: 0, 0
+  index: -1
+LEFT_view_eyes
+  rotate: true
+  xy: 190, 131
+  size: 129, 77
+  orig: 1023, 1023
+  offset: 447, 473
+  index: -1
+LEFT_view_eyes_angry
+  rotate: true
+  xy: 179, 2
+  size: 127, 83
+  orig: 1023, 1023
+  offset: 447, 472
+  index: -1
+slingshot_
+  rotate: false
+  xy: 201, 262
+  size: 58, 106
+  orig: 60, 108
+  offset: 1, 1
+  index: -1

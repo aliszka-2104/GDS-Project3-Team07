@@ -1,0 +1,193 @@
+
+Jaga_-03.png
+size: 1986,1680
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back_view_L_hand
+  rotate: true
+  xy: 371, 1247
+  size: 297, 411
+  orig: 297, 411
+  offset: 0, 0
+  index: -1
+Back_view_L_hand_background
+  rotate: true
+  xy: 1204, 1079
+  size: 311, 423
+  orig: 311, 423
+  offset: 0, 0
+  index: -1
+Back_view_R_hand
+  rotate: false
+  xy: 1152, 1410
+  size: 326, 268
+  orig: 326, 268
+  offset: 0, 0
+  index: -1
+Back_view_R_hand_background
+  rotate: false
+  xy: 1629, 1036
+  size: 355, 354
+  orig: 355, 355
+  offset: 0, 1
+  index: -1
+Back_view_head
+  rotate: true
+  xy: 477, 368
+  size: 364, 739
+  orig: 364, 739
+  offset: 0, 0
+  index: -1
+Front_view_L_hand
+  rotate: false
+  xy: 824, 1411
+  size: 326, 267
+  orig: 326, 267
+  offset: 0, 0
+  index: -1
+Front_view_L_hand_background
+  rotate: false
+  xy: 2, 1248
+  size: 367, 309
+  orig: 368, 309
+  offset: 1, 0
+  index: -1
+Front_view_head
+  rotate: true
+  xy: 1218, 368
+  size: 364, 739
+  orig: 364, 739
+  offset: 0, 0
+  index: -1
+Left_view_L_hand
+  rotate: false
+  xy: 2, 530
+  size: 473, 395
+  orig: 473, 395
+  offset: 0, 0
+  index: -1
+Left_view_L_hand_background
+  rotate: true
+  xy: 2, 33
+  size: 495, 413
+  orig: 495, 413
+  offset: 0, 0
+  index: -1
+Left_view_R_hand
+  rotate: false
+  xy: 2, 1559
+  size: 404, 119
+  orig: 404, 119
+  offset: 0, 0
+  index: -1
+Left_view_R_hand_background
+  rotate: false
+  xy: 408, 1546
+  size: 414, 132
+  orig: 414, 132
+  offset: 0, 0
+  index: -1
+Left_view_head
+  rotate: true
+  xy: 2, 927
+  size: 318, 709
+  orig: 318, 709
+  offset: 0, 0
+  index: -1
+Left_view_stick
+  rotate: true
+  xy: 417, 2
+  size: 364, 1022
+  orig: 366, 1024
+  offset: 1, 1
+  index: -1
+front_view_R_hand
+  rotate: true
+  xy: 1480, 1392
+  size: 286, 402
+  orig: 286, 402
+  offset: 0, 0
+  index: -1
+front_view_R_hand_background
+  rotate: true
+  xy: 784, 1103
+  size: 305, 418
+  orig: 305, 418
+  offset: 0, 0
+  index: -1
+front_view_stick
+  rotate: true
+  xy: 713, 734
+  size: 300, 1038
+  orig: 300, 1038
+  offset: 0, 0
+  index: -1
+
+Jaga_-032.png
+size: 1807,1632
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back_view_torso
+  rotate: true
+  xy: 2, 439
+  size: 435, 1055
+  orig: 435, 1055
+  offset: 0, 0
+  index: -1
+Left_view_background
+  rotate: true
+  xy: 2, 876
+  size: 385, 1038
+  orig: 387, 1040
+  offset: 1, 1
+  index: -1
+Left_view_torso
+  rotate: false
+  xy: 1065, 612
+  size: 740, 1018
+  orig: 740, 1018
+  offset: 0, 0
+  index: -1
+front_view_stick_background
+  rotate: true
+  xy: 2, 1263
+  size: 367, 1061
+  orig: 367, 1061
+  offset: 0, 0
+  index: -1
+front_view_torso
+  rotate: true
+  xy: 2, 2
+  size: 435, 1060
+  orig: 435, 1060
+  offset: 0, 0
+  index: -1
+
+Jaga_-033.png
+size: 1699,1089
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back_view_torso_background
+  rotate: false
+  xy: 767, 2
+  size: 467, 1085
+  orig: 467, 1085
+  offset: 0, 0
+  index: -1
+Left_view_torso_background
+  rotate: false
+  xy: 2, 51
+  size: 763, 1036
+  orig: 763, 1036
+  offset: 0, 0
+  index: -1
+front_view_torso_background
+  rotate: false
+  xy: 1236, 8
+  size: 461, 1079
+  orig: 461, 1079
+  offset: 0, 0
+  index: -1

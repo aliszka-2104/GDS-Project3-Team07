@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
+  m_Name: drzewo2
+  m_EditorClassIdentifier: 
+  atlasFile: {fileID: 4900000, guid: b86ae005c2f643d4db4acf7f40e5768d, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 91cf1c37718ab7446940c9051a301296, type: 2}

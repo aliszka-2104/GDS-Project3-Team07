@@ -1,0 +1,181 @@
+
+drzewo2.png
+size: 1578,1056
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_view_torso
+  rotate: false
+  xy: 428, 5
+  size: 450, 494
+  orig: 450, 494
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_1_Leg
+  rotate: true
+  xy: 1342, 167
+  size: 95, 135
+  orig: 95, 135
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_1_Leg_background
+  rotate: true
+  xy: 1423, 775
+  size: 111, 152
+  orig: 111, 152
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_2_Leg
+  rotate: true
+  xy: 1232, 758
+  size: 63, 187
+  orig: 63, 187
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_2_Leg_background
+  rotate: true
+  xy: 1232, 969
+  size: 85, 202
+  orig: 85, 202
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_3_Leg
+  rotate: false
+  xy: 1342, 292
+  size: 70, 96
+  orig: 70, 96
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_3_Leg_background
+  rotate: true
+  xy: 1342, 73
+  size: 92, 118
+  orig: 92, 118
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_4_Leg
+  rotate: true
+  xy: 1421, 658
+  size: 115, 151
+  orig: 115, 151
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_4_Leg_background
+  rotate: false
+  xy: 1436, 888
+  size: 135, 166
+  orig: 135, 166
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_5_Leg
+  rotate: true
+  xy: 1479, 87
+  size: 85, 96
+  orig: 85, 96
+  offset: 0, 0
+  index: -1
+drzewo_Front_view_5_Leg_background
+  rotate: true
+  xy: 1479, 174
+  size: 88, 97
+  orig: 88, 97
+  offset: 0, 0
+  index: -1
+drzewo_Left_view_eyes
+  rotate: true
+  xy: 780, 504
+  size: 54, 66
+  orig: 54, 66
+  offset: 0, 0
+  index: -1
+drzewo_Left_view_eyes_angry
+  rotate: false
+  xy: 1147, 184
+  size: 78, 91
+  orig: 78, 91
+  offset: 0, 0
+  index: -1
+drzewo_front_view_branch_main_1
+  rotate: false
+  xy: 1227, 18
+  size: 113, 370
+  orig: 113, 370
+  offset: 0, 0
+  index: -1
+drzewo_front_view_branch_main_1_background
+  rotate: false
+  xy: 880, 2
+  size: 130, 386
+  orig: 130, 386
+  offset: 0, 0
+  index: -1
+drzewo_front_view_branch_main_2
+  rotate: true
+  xy: 880, 392
+  size: 166, 349
+  orig: 166, 349
+  offset: 0, 0
+  index: -1
+drzewo_front_view_branch_main_2_background
+  rotate: false
+  xy: 1232, 390
+  size: 182, 366
+  orig: 182, 366
+  offset: 0, 0
+  index: -1
+drzewo_front_view_eyes
+  rotate: true
+  xy: 1147, 277
+  size: 113, 78
+  orig: 114, 78
+  offset: 0, 0
+  index: -1
+drzewo_front_view_eyes_angry
+  rotate: false
+  xy: 1232, 823
+  size: 189, 144
+  orig: 189, 144
+  offset: 0, 0
+  index: -1
+drzewo_left_view_branch_main_
+  rotate: false
+  xy: 1012, 13
+  size: 133, 375
+  orig: 133, 375
+  offset: 0, 0
+  index: -1
+drzewo_left_view_branch_main_background
+  rotate: false
+  xy: 1416, 264
+  size: 149, 392
+  orig: 149, 392
+  offset: 0, 0
+  index: -1
+drzewo_left_view_torso
+  rotate: false
+  xy: 403, 501
+  size: 375, 553
+  orig: 375, 553
+  offset: 0, 0
+  index: -1
+drzewo_left_view_torso_background
+  rotate: false
+  xy: 2, 478
+  size: 399, 576
+  orig: 399, 576
+  offset: 0, 0
+  index: -1
+front_view_torso
+  rotate: false
+  xy: 780, 560
+  size: 450, 494
+  orig: 450, 494
+  offset: 0, 0
+  index: -1
+front_view_torso_background_frotn_view_torso
+  rotate: false
+  xy: 2, 12
+  size: 424, 464
+  orig: 424, 464
+  offset: 0, 0
+  index: -1

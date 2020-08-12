@@ -1,0 +1,146 @@
+
+Chlopak_front_view_.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Chlopak_boy_latern_off_
+  rotate: false
+  xy: 793, 7
+  size: 90, 115
+  orig: 90, 115
+  offset: 0, 0
+  index: -1
+Chlopak_boy_latern_on_
+  rotate: false
+  xy: 828, 138
+  size: 90, 115
+  orig: 90, 115
+  offset: 0, 0
+  index: -1
+Front_view_L_hand
+  rotate: true
+  xy: 447, 53
+  size: 27, 154
+  orig: 27, 154
+  offset: 0, 0
+  index: -1
+Front_view_L_hand_background
+  rotate: true
+  xy: 379, 9
+  size: 40, 174
+  orig: 40, 174
+  offset: 0, 0
+  index: -1
+Front_view_L_leg
+  rotate: true
+  xy: 628, 101
+  size: 19, 115
+  orig: 19, 115
+  offset: 0, 0
+  index: -1
+Front_view_L_leg_background
+  rotate: true
+  xy: 555, 2
+  size: 49, 131
+  orig: 49, 131
+  offset: 0, 0
+  index: -1
+Front_view_R_hand
+  rotate: false
+  xy: 587, 102
+  size: 25, 151
+  orig: 25, 151
+  offset: 0, 0
+  index: -1
+Front_view_R_hand_background
+  rotate: true
+  xy: 200, 8
+  size: 40, 177
+  orig: 40, 177
+  offset: 0, 0
+  index: -1
+Front_view_R_leg
+  rotate: true
+  xy: 603, 57
+  size: 25, 115
+  orig: 25, 115
+  offset: 0, 0
+  index: -1
+Front_view_R_leg_background
+  rotate: false
+  xy: 614, 122
+  size: 55, 131
+  orig: 55, 131
+  offset: 0, 0
+  index: -1
+Front_view_boy_crouch
+  rotate: false
+  xy: 688, 2
+  size: 98, 53
+  orig: 98, 53
+  offset: 0, 0
+  index: -1
+Front_view_boy_crouch_background
+  rotate: true
+  xy: 671, 123
+  size: 130, 66
+  orig: 130, 66
+  offset: 0, 0
+  index: -1
+Front_view_but
+  rotate: false
+  xy: 587, 84
+  size: 39, 16
+  orig: 39, 16
+  offset: 0, 0
+  index: -1
+Front_view_eyes
+  rotate: false
+  xy: 720, 59
+  size: 71, 40
+  orig: 71, 40
+  offset: 0, 0
+  index: -1
+Front_view_head
+  rotate: false
+  xy: 283, 51
+  size: 162, 202
+  orig: 162, 202
+  offset: 0, 0
+  index: -1
+Front_view_head_background
+  rotate: false
+  xy: 2, 6
+  size: 196, 247
+  orig: 197, 247
+  offset: 1, 0
+  index: -1
+Front_view_torso
+  rotate: false
+  xy: 447, 82
+  size: 68, 171
+  orig: 68, 171
+  offset: 0, 0
+  index: -1
+Front_view_torso_background
+  rotate: false
+  xy: 200, 50
+  size: 81, 203
+  orig: 81, 203
+  offset: 0, 0
+  index: -1
+LEFT/LEFT_view_eyes
+  rotate: true
+  xy: 739, 124
+  size: 129, 87
+  orig: 1023, 1023
+  offset: 446, 469
+  index: -1
+boy_back_view/Back_view_torso
+  rotate: false
+  xy: 517, 82
+  size: 68, 171
+  orig: 68, 171
+  offset: 0, 0
+  index: -1
