@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public Vector3 target;
 
     public GameObject audioCue;
+    public GameObject dustCloud;
 
     // Movement speed in units per second.
     public float speed = 1.0F;
@@ -40,8 +41,11 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer==LayerMask.NameToLayer("Ground"))Instantiate(audioCue, transform.position, Quaternion.identity);
-
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Instantiate(audioCue, transform.position, Quaternion.identity);
+            Instantiate(dustCloud, transform.position, Quaternion.identity);
+        }
         Debug.Log("Hit with "+collision.gameObject.name);
         Destroy(gameObject);
     }
