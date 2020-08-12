@@ -230,6 +230,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.26
       objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1936030834627252408, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_Enabled

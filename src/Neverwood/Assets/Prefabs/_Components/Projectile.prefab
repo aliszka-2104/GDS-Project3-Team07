@@ -52,6 +52,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   audioCue: {fileID: 5169473923534400030, guid: 7b5dac602b787e649b606efe8bab4ea0,
     type: 3}
+  dustCloud: {fileID: 9092849755807627512, guid: 2474a148d85b1b649a06fd107e607619,
+    type: 3}
   speed: 15
 --- !u!54 &-7144457805332925088
 Rigidbody:
@@ -207,8 +209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2555674288110460373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.005, y: 0.071, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children: []
   m_Father: {fileID: 5474099638919459599}
   m_RootOrder: 1
