@@ -54,7 +54,7 @@ jobs:
         uses: webbertakken/unity-builder@v1.1
         with:
           unityVersion: ${{ matrix.unityVersion }}
-          projectPath: src
+          projectPath: src/Neverwood
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
 
