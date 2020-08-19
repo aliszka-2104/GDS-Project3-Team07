@@ -6,32 +6,58 @@ using UnityEngine.AI;
 public class EnemyAnimator : MonoBehaviour
 {
     public GameObject sprite;
-    public NavMeshAgent agent;
-    public Animator animator;
+
+    private NavMeshAgent navMeshAgent;
+    private Animator animator;
+    private Agent agent;
 
     private float prevVelX = 0;
+    private Quaternion rotation;
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<Agent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        rotation = sprite.transform.rotation;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        sprite.transform.rotation = Quaternion.identity;
-        //animator.SetFloat("X", agent.velocity.x);
-        animator.SetFloat("Z", agent.velocity.z);
+        sprite.transform.rotation = rotation;
+        animator.SetFloat("X", navMeshAgent.velocity.x);
+        animator.SetFloat("Z", navMeshAgent.velocity.z);
 
-        Debug.Log("Vel X "+agent.velocity.x);
-        Debug.Log("Vel Z "+agent.velocity.z);
-
-        if(agent.velocity.x*prevVelX<0)
+        if(navMeshAgent.velocity.x>0.5f || navMeshAgent.velocity.x<-0.5f)
         {
-            Flip();
+            animator.SetBool("Horizontal", true);
         }
-        prevVelX = agent.velocity.x;
+        else
+        {
+            animator.SetBool("Horizontal", false);
+        }
+
+        if (navMeshAgent.velocity.magnitude>0 && navMeshAgent.remainingDistance>0.1f)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
+
+        Debug.Log("Vel X " + navMeshAgent.velocity.x);
+        Debug.Log("Vel Z " + navMeshAgent.velocity.z);
+        Debug.Log("Dist " + navMeshAgent.remainingDistance);
+
+        //if(agent.velocity.x*prevVelX<0)
+        //{
+        //    Flip();
+        //}
+        //prevVelX = agent.velocity.x;
+        //sprite.transform.rotation = Quaternion.identity;
+        sprite.transform.rotation = rotation;
     }
 
     void Flip()
