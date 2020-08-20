@@ -212,10 +212,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1936030833847225941}
-  - component: {fileID: 7864559784207127936}
-  - component: {fileID: 1936030833847225770}
   - component: {fileID: 1936030833847225771}
   - component: {fileID: 1936030833847225942}
+  - component: {fileID: 7864559784207127936}
+  - component: {fileID: 1936030833847225770}
   m_Layer: 26
   m_Name: Player
   m_TagString: Player
@@ -241,34 +241,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7864559784207127936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936030833847225769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40ba6dd64d687c6439fe79e254219f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1936030833847225770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936030833847225769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5464ef7f5b553e4aa64984dde5d1581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstaclesICanCross: 00000000
-  speed: 10
-  movingTo: 0
-  myTarget: {x: 0, y: 0, z: 0}
 --- !u!54 &1936030833847225771
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +275,34 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7864559784207127936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936030833847225769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ba6dd64d687c6439fe79e254219f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1936030833847225770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936030833847225769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5464ef7f5b553e4aa64984dde5d1581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesICanCross: 00000000
+  speed: 10
+  movingTo: 0
+  myTarget: {x: 0, y: 0, z: 0}
 --- !u!1 &1936030834627252412
 GameObject:
   m_ObjectHideFlags: 0
