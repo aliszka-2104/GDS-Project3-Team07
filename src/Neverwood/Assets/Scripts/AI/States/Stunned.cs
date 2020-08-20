@@ -24,7 +24,7 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
 
     public void Entry(object[] data = null)
     {
-        SendMessage("OnTreeStunned");
+        SendMessage("OnStunned", null, SendMessageOptions.DontRequireReceiver);
         stunTime = (float)data[0];
         GetComponent<NavMeshAgent>().ResetPath();
     }
