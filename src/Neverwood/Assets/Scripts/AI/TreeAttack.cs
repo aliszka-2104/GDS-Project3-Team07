@@ -8,6 +8,7 @@ public class TreeAttack : MonoBehaviour
 
     float timeLeft;
     bool attacking = false;
+    Collider playerCollider;
     private void Awake()
     {
         timeLeft = killTime;
@@ -16,6 +17,7 @@ public class TreeAttack : MonoBehaviour
     {
         if(!attacking)
         {
+            playerCollider = player;
             player.GetComponent<PlayerMovement>().stunned = true;
             attacking = true;
             timeLeft = killTime;
@@ -28,6 +30,10 @@ public class TreeAttack : MonoBehaviour
     {
         timeLeft = 0f;
         attacking = false;
+        if (playerCollider != null)
+        {
+            playerCollider.GetComponent<PlayerMovement>().stunned = false;
+        }
     }
     IEnumerator killTimer()
     {

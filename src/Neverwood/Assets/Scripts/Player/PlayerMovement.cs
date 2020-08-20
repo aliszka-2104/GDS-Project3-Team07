@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!player.IsCurentCharacter && !stunned)
+        if (!player.IsCurentCharacter || stunned)
         {
             cc.Move(Vector3.zero);
             return;
