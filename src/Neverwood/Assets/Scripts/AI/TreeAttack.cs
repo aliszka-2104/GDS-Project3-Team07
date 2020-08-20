@@ -21,9 +21,10 @@ public class TreeAttack : MonoBehaviour
             timeLeft = killTime;
             StartCoroutine(killTimer());
         }
+
     }
 
-    public void OnTreeStunned()
+    public void OnStunned()
     {
         timeLeft = 0f;
         attacking = false;
@@ -37,7 +38,8 @@ public class TreeAttack : MonoBehaviour
         }
         if(attacking)
         {
-            Debug.Log("Tree Attack Finished");
+            Debug.Log("Lost");
+            GameManager.instance.ResetLevel();
         }
         attacking = false;
         yield return null;

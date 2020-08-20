@@ -89,7 +89,7 @@ public class Hostile : MonoBehaviour, IState
         {
             if (target.tag == "Player")
             {
-                SendMessage("OnAttackPlayer", target);
+                SendMessage("OnAttackPlayer", target, SendMessageOptions.DontRequireReceiver);
                 //Application.Quit();
             }
         }
