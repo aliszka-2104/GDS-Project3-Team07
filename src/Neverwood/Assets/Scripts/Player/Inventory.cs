@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public struct Item
+public class Item
 {
-    public Item(int ID, string name, int maxCount)
+    public Item(int ID = 99, string name = "", int maxCount = 0)
     {
         itemID = ID;
         itemName = name;
@@ -24,7 +24,8 @@ public class Inventory : MonoBehaviour
     Item[] existingItems =
     {
         new Item(0, "Flint", 10),
-        new Item(1, "Match", 10)
+        new Item(1, "Match", 10),
+        new Item(2, "Fuel", 10)
     };
 
     public Item GetItem(int ID)
@@ -74,7 +75,7 @@ public class Inventory : MonoBehaviour
         else
         {
             int index = 0;
-            while(existingItems[index].itemID != ID) { index++; }
+            while (existingItems[index].itemID != ID) { index++; }
             itemFound.itemID = ID;
             itemFound.itemName = existingItems[index].itemName;
             itemFound.itemCount = 1;
@@ -90,7 +91,7 @@ public class Inventory : MonoBehaviour
         {
             itemFound = GetItem(ID);
             itemFound.itemCount--;
-            if(itemFound.itemCount == 0)
+            if (itemFound.itemCount == 0)
             {
                 items.Remove(itemFound);
             }
