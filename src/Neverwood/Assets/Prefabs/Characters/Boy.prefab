@@ -223,11 +223,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 26
       objectReference: {fileID: 0}
-    - target: {fileID: 1936030833847225770, guid: a7517e48446afff4b9da83a661c86810,
-        type: 3}
-      propertyPath: movingTo
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1936030833847225941, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,6 +319,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 465212920046286544, guid: d20fb670b65564a4da03087a254219b9,
         type: 3}
+    - target: {fileID: 1936030834627252414, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.32875
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030834627252414, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030834627252414, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1936030834627252415, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: sprites.Array.data[0]

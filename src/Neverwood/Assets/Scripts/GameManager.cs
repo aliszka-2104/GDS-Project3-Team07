@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     }
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine("Reset");
+    }
+
+    private IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(3);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

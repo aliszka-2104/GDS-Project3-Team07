@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ public class Player : MonoBehaviour
     {
         myCamera = GetComponentInChildren<Camera>();
         SetCurrentCharacter(false);
+    }
+
+    public void TakeHit()
+    {
+        SendMessage("OnTakeHit");
     }
 
     public void SetCurrentCharacter(bool isCurrent)

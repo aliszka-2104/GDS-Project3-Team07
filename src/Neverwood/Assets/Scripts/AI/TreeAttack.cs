@@ -18,7 +18,7 @@ public class TreeAttack : MonoBehaviour
         if(!attacking)
         {
             playerCollider = player;
-            player.GetComponent<PlayerMovement>().stunned = true;
+            player.GetComponent<PlayerMovement>().Stunned = true;
             attacking = true;
             timeLeft = killTime;
             StartCoroutine(killTimer());
@@ -32,7 +32,7 @@ public class TreeAttack : MonoBehaviour
         attacking = false;
         if (playerCollider != null)
         {
-            playerCollider.GetComponent<PlayerMovement>().stunned = false;
+            playerCollider.GetComponent<PlayerMovement>().Stunned = false;
         }
     }
     IEnumerator killTimer()

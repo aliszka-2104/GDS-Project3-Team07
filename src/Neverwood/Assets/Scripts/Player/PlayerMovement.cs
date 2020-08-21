@@ -7,7 +7,7 @@ using static Obstacle;
 public class PlayerMovement : MonoBehaviour
 {
     public List<OBSTACLE> obstaclesICanCross = new List<OBSTACLE>();
-    public bool stunned { get; set; } = false;
+    public bool Stunned { get; set; } = false;
     public float speed = 5f;
 
     private Player player;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
 
     public bool movingTo = false;
-    public Vector3 myTarget;
+    private Vector3 myTarget;
 
     void Awake()
     {
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!player.IsCurentCharacter || stunned)
+        if (!player.IsCurentCharacter  || Stunned)
         {
             cc.Move(Vector3.zero);
             return;
@@ -84,5 +84,10 @@ public class PlayerMovement : MonoBehaviour
             movingTo = false;
             //collider.enabled = true;
         }
+    }
+
+    void OnTakeHit()
+    {
+        Stunned = true;
     }
 }
