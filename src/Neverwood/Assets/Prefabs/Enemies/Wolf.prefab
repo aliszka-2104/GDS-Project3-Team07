@@ -184,7 +184,7 @@ MonoBehaviour:
   peripheralVisionRange: 5
   hearingRange: 30
   executesPerSecond: 20
-  killRange: 3
+  killRange: 1
   onTargetLostStateChange: 1
 --- !u!114 &4866299735841026748
 MonoBehaviour:
