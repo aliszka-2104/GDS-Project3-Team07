@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 4322374248964269053}
   - component: {fileID: 2851082899142494894}
   - component: {fileID: 6841282012379319766}
+  - component: {fileID: 3951615406639462925}
+  - component: {fileID: 302161638938756283}
   m_Layer: 30
   m_Name: Tree
   m_TagString: NPC
@@ -224,6 +226,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killTime: 5
+--- !u!114 &3951615406639462925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923841249345779134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a590e44cddd78f48a5a25dff4c2a054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 8339529463827796031}
+  flipFactor: 1
+--- !u!114 &302161638938756283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923841249345779134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002606fa8a0e9ad47bb3af7f52ee7b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8339529463827796031
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258670861871713118}
   - component: {fileID: 8044136901227756487}
+  - component: {fileID: 6354122146577725474}
   m_Layer: 30
   m_Name: Sprite
   m_TagString: NPC
@@ -294,8 +323,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3218429820274027220, guid: cc66a4bd002c1764a8832cc48390f48a,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e6eb60a2846daf4c84e352ffe258e5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -306,3 +334,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6354122146577725474
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339529463827796031}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e33b082baeafb54b8dd27b629c9b345, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
