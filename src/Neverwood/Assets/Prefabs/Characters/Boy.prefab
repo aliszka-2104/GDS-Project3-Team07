@@ -334,6 +334,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1936030834627252414, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1936030834627252415, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: sprites.Array.data[0]

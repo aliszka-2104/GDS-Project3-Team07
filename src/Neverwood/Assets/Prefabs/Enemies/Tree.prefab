@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 4322374248964269053}
   - component: {fileID: 2851082899142494894}
   - component: {fileID: 6841282012379319766}
-  - component: {fileID: 3951615406639462925}
   - component: {fileID: 302161638938756283}
   m_Layer: 30
   m_Name: Tree
@@ -138,9 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 0
   spotAngle: 60
-  visionRange: 25
+  visionRange: 10
   peripheralVisionRange: 3
-  hearingRange: 20
+  hearingRange: 10
   executesPerSecond: 10
   splicePath: {fileID: 0}
   onTargetSensedStateChange: 1
@@ -159,8 +158,8 @@ MonoBehaviour:
   movementSpeed: 0
   spotAngle: 90
   visionRange: 35
-  peripheralVisionRange: 5
-  hearingRange: 30
+  peripheralVisionRange: 15
+  hearingRange: 15
   executesPerSecond: 14
   killRange: 2
   noNewTargetTimeFallOff: 2
@@ -182,10 +181,10 @@ MonoBehaviour:
   movementSpeed: 0
   spotAngle: 45
   visionRange: 45
-  peripheralVisionRange: 5
+  peripheralVisionRange: 4
   hearingRange: 30
   executesPerSecond: 20
-  killRange: 3
+  killRange: 4
   onTargetLostStateChange: 1
 --- !u!114 &4322374248964269053
 MonoBehaviour:
@@ -226,20 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killTime: 5
---- !u!114 &3951615406639462925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923841249345779134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a590e44cddd78f48a5a25dff4c2a054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 8339529463827796031}
-  flipFactor: 1
 --- !u!114 &302161638938756283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002606fa8a0e9ad47bb3af7f52ee7b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
 --- !u!1 &8339529463827796031
 GameObject:
   m_ObjectHideFlags: 0
