@@ -1,0 +1,1 @@
+Latarnia, oddzielna od bohatera
