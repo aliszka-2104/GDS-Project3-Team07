@@ -18,6 +18,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(3);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
