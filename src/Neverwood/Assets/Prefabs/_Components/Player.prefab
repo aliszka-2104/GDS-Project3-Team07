@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1936030833847225942}
   - component: {fileID: 7864559784207127936}
   - component: {fileID: 1936030833847225770}
+  - component: {fileID: 5368519858654892813}
   m_Layer: 26
   m_Name: Player
   m_TagString: Player
@@ -285,6 +286,20 @@ MonoBehaviour:
   obstaclesICanCross: 00000000
   speed: 10
   movingTo: 0
+--- !u!114 &5368519858654892813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936030833847225769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7cd682d4fd7c548a3516c1fa4c0850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  flipFactor: 1
 --- !u!1 &1936030834627252412
 GameObject:
   m_ObjectHideFlags: 0
