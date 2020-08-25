@@ -6,7 +6,7 @@ public class Lantern : MonoBehaviour
 {
     public float lanternLength = 10f;
 
-    float lanternLeft;
+    public float lanternLeft;
 
     Light lanternLight;
     Player player;
