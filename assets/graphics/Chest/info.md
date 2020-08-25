@@ -1,0 +1,1 @@
+skrzynia, zamknięta i otwarta
