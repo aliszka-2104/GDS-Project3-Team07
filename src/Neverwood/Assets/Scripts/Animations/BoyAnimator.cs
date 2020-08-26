@@ -41,7 +41,7 @@ public class BoyAnimator : MonoBehaviour
         else
         {
             animator.SetBool("Walking", false);
-            animator.SetFloat("State", -1);
+            //animator.SetFloat("State", -1);
 
         }
 
@@ -98,5 +98,10 @@ public class BoyAnimator : MonoBehaviour
         if (animator.GetFloat("State") != 3) animator.SetFloat("State", 3);
         //animator.SetBool("Walking", false);
         //animator.SetTrigger("Attack");
+    }
+
+    void OnCrossObstacle()
+    {
+        animator.SetTrigger("Jump");
     }
 }

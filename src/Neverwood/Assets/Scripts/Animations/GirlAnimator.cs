@@ -24,7 +24,7 @@ public class GirlAnimator : MonoBehaviour
     {
         if (cc.velocity.magnitude > 0)
         {
-            //animator.SetFloat("State", 2);
+            animator.SetFloat("State", 0);
 
             animator.SetBool("Walking", true);
             if (Mathf.Abs(cc.velocity.x) > Mathf.Abs(cc.velocity.z))
@@ -98,5 +98,15 @@ public class GirlAnimator : MonoBehaviour
         if (animator.GetFloat("State") != 3) animator.SetFloat("State", 3);
         //animator.SetBool("Walking", false);
         //animator.SetTrigger("Attack");
+    }
+
+    void OnCrossObstacle()
+    {
+        animator.SetTrigger("Crawl");
+    }
+    void OnShoot()
+    {
+        animator.SetTrigger("Attack");
+
     }
 }
