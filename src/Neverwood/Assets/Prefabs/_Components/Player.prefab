@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclesICanCross: 00000000
   speed: 10
+  lerpDuration: 0.3
   movingTo: 0
 --- !u!114 &5368519858654892813
 MonoBehaviour:
