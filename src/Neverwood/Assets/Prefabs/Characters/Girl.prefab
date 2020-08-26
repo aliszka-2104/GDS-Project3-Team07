@@ -14,6 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 984123103606939575, guid: 8fea5883edd74064f86cb0ce949863fc,
     type: 3}
+--- !u!114 &2863034936168465359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803090384842467892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4661780a5854c5f4696addc76e0e9d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1803090384062445345}
+  flipFactor: 1
 --- !u!1001 &278085113439315869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,6 +175,11 @@ PrefabInstance:
       propertyPath: obstaclesICanCross.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225770, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: lerpDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1936030833847225941, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -224,8 +243,13 @@ PrefabInstance:
     - target: {fileID: 1936030834627252408, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1936030834627252408, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b2ed0feba2905654fa735f12c1fa70cc, type: 2}
     - target: {fileID: 1936030834627252412, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_Layer
@@ -237,6 +261,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7858889781492664254, guid: d20fb670b65564a4da03087a254219b9,
         type: 3}
+    - target: {fileID: 1936030834627252414, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1936030834627252415, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: sprites.Array.data[0]
@@ -306,11 +335,18 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5368519858654892813, guid: a7517e48446afff4b9da83a661c86810, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7517e48446afff4b9da83a661c86810, type: 3}
 --- !u!1 &1803090384842467892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1936030833847225769, guid: a7517e48446afff4b9da83a661c86810,
+    type: 3}
+  m_PrefabInstance: {fileID: 278085113439315869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1803090384062445345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1936030834627252412, guid: a7517e48446afff4b9da83a661c86810,
     type: 3}
   m_PrefabInstance: {fileID: 278085113439315869}
   m_PrefabAsset: {fileID: 0}

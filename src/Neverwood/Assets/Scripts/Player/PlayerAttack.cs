@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Shoot(Vector3 target)
     {
+        SendMessage("OnShoot");
         var projectileSpawn = transform.position + 2*Vector3.up;
         //var obj = Instantiate(projectile, target, Quaternion.identity);
         var obj = Instantiate(projectile, projectileSpawn, Quaternion.identity);
