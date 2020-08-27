@@ -17,6 +17,7 @@ public class BoyAnimator : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
         rotation = sprite.transform.rotation;
+        animator.SetFloat("Lantern", 1);
     }
 
     // Update is called once per frame
@@ -44,58 +45,13 @@ public class BoyAnimator : MonoBehaviour
             //animator.SetFloat("State", -1);
 
         }
-
-        //sprite.transform.rotation = rotation;
-
-        //if(navMeshAgent.velocity.x>0.5f || navMeshAgent.velocity.x<-0.5f)
-        //{
-        //    animator.SetBool("Horizontal", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("Horizontal", false);
-        //}
-
-        //if (agent.currentState == StateType.Stunned)
-        //{
-        //    Debug.Log("Hit");
-        //    //animator.SetBool("Walking", false);
-        //    //animator.SetTrigger("Hit");
-        //    animator.SetFloat("State", 1);
-        //}
-        //else if (navMeshAgent.velocity.magnitude > 0 && navMeshAgent.remainingDistance > 0.1f)
-        //{
-        //    animator.SetFloat("State", 2);
-
-        //    //animator.SetBool("Walking", true);
-        //    if (Mathf.Abs(navMeshAgent.velocity.x) > Mathf.Abs(navMeshAgent.velocity.z))
-        //    {
-        //        animator.SetFloat("X", navMeshAgent.velocity.x * flipFactor);
-        //        animator.SetFloat("Z", 0);
-        //    }
-        //    else
-        //    {
-        //        animator.SetFloat("X", 0);
-        //        animator.SetFloat("Z", navMeshAgent.velocity.z);
-        //    }
-        //}
-        //else
-        {
-            //animator.SetFloat("State", 1);
-
-            //animator.SetBool("Walking", false);
-        }
-
-        //Debug.Log("Vel X " + navMeshAgent.velocity.x);
-        //Debug.Log("Vel Z " + navMeshAgent.velocity.z);
-        //Debug.Log("Dist " + navMeshAgent.remainingDistance);
-
+        
         sprite.transform.rotation = rotation;
     }
 
     void OnAttackPlayer(Collider player)
     {
-        if (animator.GetFloat("State") != 3) animator.SetFloat("State", 3);
+        //if (animator.GetFloat("State") != 3) animator.SetFloat("State", 3);
         //animator.SetBool("Walking", false);
         //animator.SetTrigger("Attack");
     }
@@ -103,5 +59,11 @@ public class BoyAnimator : MonoBehaviour
     void OnCrossObstacle()
     {
         animator.SetTrigger("Jump");
+    }
+
+    void OnLanternToggle()
+    {
+        if(animator.GetFloat("Lantern")==0)animator.SetFloat("Lantern", 1);
+        if(animator.GetFloat("Lantern")==1)animator.SetFloat("Lantern", 0);
     }
 }

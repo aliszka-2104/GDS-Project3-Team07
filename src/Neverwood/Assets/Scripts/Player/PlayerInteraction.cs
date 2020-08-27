@@ -19,7 +19,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) &&lantern!=null)
         {
-            lantern.SetActive(!lantern.activeSelf);
+            //SendMessage("OnLight");
+            //lantern.SetActive(!lantern.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
