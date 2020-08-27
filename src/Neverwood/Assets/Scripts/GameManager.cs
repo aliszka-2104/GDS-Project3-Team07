@@ -15,6 +15,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine("Reset");
     }
 
+    public void LoadLevel(string name)
+    {
+        StartCoroutine("Load",name);
+    }
+
+    private IEnumerator Load(string name)
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(name);
+    }
+
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(3);

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
+    public string sceneName = "Level1";
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             Debug.Log("Won");
-            GameManager.instance.ResetLevel();
+            GetComponentInChildren<Animator>().SetTrigger("Open");
+            GameManager.instance.LoadLevel(sceneName);
         }
     }
 }
