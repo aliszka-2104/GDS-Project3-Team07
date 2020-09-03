@@ -16,12 +16,12 @@ public class Door : Interactive
         {
             CharacterSwitcher.instance.boy.GetComponent<Inventory>().RemoveItem(3);
             keysLeft--;
-            if(keysLeft == 0)
-            {
-                GetComponent<Collider>().isTrigger = true;
-                GetComponentInChildren<Animator>().SetTrigger("Open");
-                GetComponent<Exit>().Open = true;
-            }
+        }
+        if (keysLeft == 0)
+        {
+            GetComponent<Collider>().isTrigger = true;
+            GetComponentInChildren<Animator>().SetTrigger("Open");
+            GetComponent<Exit>().Open = true;
         }
     }
 }
