@@ -25,7 +25,8 @@ public class Inventory : MonoBehaviour
     {
         new Item(0, "Flint", 10),
         new Item(1, "Match", 10),
-        new Item(2, "Fuel", 10)
+        new Item(2, "Fuel", 10),
+        new Item(3, "Key", 5)
     };
 
     public Item GetItem(int ID)

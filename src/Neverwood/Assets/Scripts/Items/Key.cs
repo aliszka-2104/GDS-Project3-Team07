@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fuel : Interactive
+public class Key : Interactive
 {
     public override void Interact()
     {
-        CharacterSwitcher.instance.boy.GetComponent<Inventory>().AddItem(2);
+        CharacterSwitcher.instance.boy.GetComponent<Inventory>().AddItem(3);
         Destroy(this.gameObject);
-
     }
 }
