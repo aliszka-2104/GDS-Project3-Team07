@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class Item
 };
 public class Inventory : MonoBehaviour
 {
+    public event Action InventoryUpdate;
+
     List<Item> items = new List<Item>();
 
     Item[] existingItems =
@@ -71,6 +74,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 itemFound.itemCount++;
+                InventoryUpdate();
             }
         }
         else
@@ -82,6 +86,7 @@ public class Inventory : MonoBehaviour
             itemFound.itemCount = 1;
             itemFound.itemMaxCount = existingItems[index].itemMaxCount;
             items.Add(itemFound);
+            InventoryUpdate();
         }
     }
 
@@ -92,6 +97,7 @@ public class Inventory : MonoBehaviour
         {
             itemFound = GetItem(ID);
             itemFound.itemCount--;
+            InventoryUpdate();
             if (itemFound.itemCount == 0)
             {
                 items.Remove(itemFound);
@@ -101,5 +107,18 @@ public class Inventory : MonoBehaviour
         {
             throw new System.Exception("Item + ID[" + ID + "] not found");
         }
+    }
+
+    public int GetItemCount(int ID)
+    {
+        foreach (Item item in items)
+        {
+            if (item.itemID == ID)
+            {
+                return item.itemCount;
+            }
+        }
+        
+        return 0;
     }
 }
