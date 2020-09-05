@@ -5,20 +5,25 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectile;
+    public float cooldownTime;
 
     private Player player;
+    private Inventory inventory;
     private GameObject selectedObject;
+    private float nextFireTime;
 
     private void Awake()
     {
         player = GetComponent<Player>();
+        inventory = FindObjectOfType<Inventory>();
     }
     
     void Update()
     {
         if (!player.IsCurentCharacter) return;
         if (!Input.GetMouseButtonDown(0)) return;
-
+        if (Time.time<nextFireTime) return;
+        if (!inventory.TryGetItem(0)) return;
         //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //RaycastHit hitData;
@@ -29,12 +34,15 @@ public class PlayerAttack : MonoBehaviour
         //    Shoot(worldPosition);
         //}
 
-        Shoot(GeteMousePos(transform.position));
+        Shoot(GetMousePosition());
     }
 
     void Shoot(Vector3 target)
     {
         SendMessage("OnShoot");
+        nextFireTime = Time.time + cooldownTime;
+        inventory.RemoveItem(0);
+
         var projectileSpawn = transform.position + 2*Vector3.up;
         //var obj = Instantiate(projectile, target, Quaternion.identity);
         var obj = Instantiate(projectile, projectileSpawn, Quaternion.identity);
@@ -56,10 +64,9 @@ public class PlayerAttack : MonoBehaviour
         return Vector3.zero;
     }
 
-    public Vector3 GeteMousePos(Vector3 aPlayerPos)
+    public Vector3 GetMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float dist;
         RaycastHit hit;
         if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask("Ground","NPC")))
         {
