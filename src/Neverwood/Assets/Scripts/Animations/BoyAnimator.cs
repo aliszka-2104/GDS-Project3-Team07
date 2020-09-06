@@ -25,18 +25,21 @@ public class BoyAnimator : MonoBehaviour
     {
         if (cc.velocity.magnitude > 0)
         {
-            //animator.SetFloat("State", 2);
+            animator.SetFloat("State", 0);
 
             animator.SetBool("Walking", true);
-            if (Mathf.Abs(cc.velocity.x) > Mathf.Abs(cc.velocity.z))
-            {
-                animator.SetFloat("X", cc.velocity.x * flipFactor);
-                animator.SetFloat("Z", 0);
-            }
-            else
+
+            float velX = Mathf.Abs(cc.velocity.x);
+            float velZ = Mathf.Abs(cc.velocity.z);
+            if (velZ > velX || velX - velZ < 0.1f)
             {
                 animator.SetFloat("X", 0);
                 animator.SetFloat("Z", cc.velocity.z);
+            }
+            else
+            {
+                animator.SetFloat("X", cc.velocity.x * flipFactor);
+                animator.SetFloat("Z", 0);
             }
         }
         else
