@@ -25,12 +25,14 @@ public class Campfire : Interactive
 
     public override void Interact()
     {
-        campfireOn.SetActive(true);
-        campfireOff.SetActive(false);
+        //campfireOn.SetActive(true);
+        //campfireOff.SetActive(false);
+        ToggleLight();
     }
 
     public void ToggleLight()
     {
         campfireOn.SetActive(!campfireOn.activeSelf);
+        campfireOff.SetActive(!campfireOff.activeSelf);
     }
 }

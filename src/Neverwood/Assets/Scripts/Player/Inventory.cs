@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 itemFound.itemCount++;
-                InventoryUpdate();
+                InventoryUpdate?.Invoke();
             }
         }
         else
@@ -86,7 +86,7 @@ public class Inventory : MonoBehaviour
             itemFound.itemCount = 1;
             itemFound.itemMaxCount = existingItems[index].itemMaxCount;
             items.Add(itemFound);
-            InventoryUpdate();
+            InventoryUpdate?.Invoke();
         }
     }
 
@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour
         {
             itemFound = GetItem(ID);
             itemFound.itemCount--;
-            InventoryUpdate();
+            InventoryUpdate?.Invoke();
             if (itemFound.itemCount == 0)
             {
                 items.Remove(itemFound);
