@@ -1,0 +1,1 @@
+drzwi otwarte, zamknięte
