@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 input = Vector3.zero;
     private Vector3 moveDirection;
     private Collider[] myColliders;
+    private Vector2 movementVector = Vector2.zero;
 
     public bool movingTo = false;
     private Vector3 myTarget;
@@ -33,24 +34,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!player.IsCurentCharacter  || Stunned)
-        {
-            cc.Move(Vector3.zero);
-            return;
-        }
-
         if (movingTo)
         {
             StartCoroutine("Lerp");
         }
         else
         {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection *= speed;
-            cc.Move(moveDirection * Time.deltaTime);
-            transform.rotation = Quaternion.identity;
-
-            playerDirection.SetDirection(moveDirection);
+            Move();
         }
     }
 
@@ -62,6 +52,25 @@ public class PlayerMovement : MonoBehaviour
         SendMessage("OnCrossObstacle");
         movingTo = true;
         myTarget = new Vector3(target.x, 0, target.z);
+    }
+    public void ChangeDirection(Vector2 inputVector)
+    {
+        movementVector = inputVector;
+    }
+    private void Move()
+    {
+        if (Stunned) return;
+        if (movementVector == Vector2.zero)
+        {
+            cc.Move(Vector2.zero);
+            return;
+        }
+        moveDirection = new Vector3(movementVector.x, 0, movementVector.y * 1.5f);
+        moveDirection *= speed;
+        cc.Move(moveDirection * Time.deltaTime);
+        transform.rotation = Quaternion.identity;
+
+        playerDirection.SetDirection(moveDirection);
     }
 
     //void Teleport(Vector3 target)

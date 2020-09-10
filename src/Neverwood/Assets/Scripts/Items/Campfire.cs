@@ -27,7 +27,10 @@ public class Campfire : Interactive
     {
         //campfireOn.SetActive(true);
         //campfireOff.SetActive(false);
-        ToggleLight();
+        if (CharacterSwitcher.instance.boy.IsCurrentCharacter)
+        {
+            ToggleLight();
+        }
     }
 
     public void ToggleLight()

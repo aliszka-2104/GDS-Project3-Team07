@@ -15,7 +15,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!player.IsCurentCharacter) return;
+        if (!player.IsCurrentCharacter) return;
 
         if (Input.GetKeyDown(KeyCode.E) &&lantern!=null)
         {

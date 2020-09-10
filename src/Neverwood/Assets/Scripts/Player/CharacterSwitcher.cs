@@ -6,8 +6,16 @@ using UnityEngine;
 public class CharacterSwitcher : MonoBehaviour
 {
     public static CharacterSwitcher instance;
-    public Player boy;
-    public Player girl;
+    public Player boy { get; set; }
+    public Player girl { get; set; }
+    public Player CurrentCharacter
+    {
+        get
+        {
+            return characters[currentCharacter];
+        }
+    }
+
     public Action onCharacterSwitch;
 
     private Player[] characters;
@@ -26,12 +34,10 @@ public class CharacterSwitcher : MonoBehaviour
         characters[currentCharacter].SetCurrentCharacter(true);
     }
 
-    void Update()
+    public void OnCharacterSwitch()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchCharacter();
-        }
+        instance.CurrentCharacter.GetComponent<PlayerMovement>().ChangeDirection(Vector2.zero);
+        SwitchCharacter();
     }
 
     private void SwitchCharacter()

@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
-    public virtual void Interact()
-    {
-        Debug.Log("Interact " + this.name);
-    }
+    public virtual void Interact() => Debug.Log("Interact " + this.name);
 }

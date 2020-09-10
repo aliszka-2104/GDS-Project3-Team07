@@ -17,28 +17,10 @@ public class PlayerAttack : MonoBehaviour
         player = GetComponent<Player>();
         inventory = FindObjectOfType<Inventory>();
     }
-    
-    void Update()
+
+    public void Shoot(Vector3 target)
     {
-        if (!player.IsCurentCharacter) return;
-        if (!Input.GetMouseButtonDown(0)) return;
-        if (Time.time<nextFireTime) return;
-        if (!inventory.TryGetItem(0)) return;
-        //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //RaycastHit hitData;
-
-        //if (Physics.Raycast(ray, out hitData, 1000))
-        //{
-        //    worldPosition = hitData.point;
-        //    Shoot(worldPosition);
-        //}
-
-        Shoot(GetMousePosition());
-    }
-
-    void Shoot(Vector3 target)
-    {
+        if (Time.time < nextFireTime) return;
         SendMessage("OnShoot");
         nextFireTime = Time.time + cooldownTime;
         inventory.RemoveItem(0);
@@ -52,26 +34,26 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public Vector3 GetPlayerPlaneMousePos(Vector3 aPlayerPos)
-    {
-        Plane plane = new Plane(Vector3.up, aPlayerPos);
-        Ray  ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float dist;
-        if (plane.Raycast(ray, out dist))
-        {
-            return ray.GetPoint(dist);
-        }
-        return Vector3.zero;
-    }
+    //public Vector3 GetPlayerPlaneMousePos(Vector3 aPlayerPos)
+    //{
+    //    Plane plane = new Plane(Vector3.up, aPlayerPos);
+    //    Ray  ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    float dist;
+    //    if (plane.Raycast(ray, out dist))
+    //    {
+    //        return ray.GetPoint(dist);
+    //    }
+    //    return Vector3.zero;
+    //}
 
-    public Vector3 GetMousePosition()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask("Ground","NPC")))
-        {
-            return hit.point;
-        }
-        return Vector3.zero;
-    }
+    //public Vector3 GetMousePosition()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask("Ground","NPC")))
+    //    {
+    //        return hit.point;
+    //    }
+    //    return Vector3.zero;
+    //}
 }

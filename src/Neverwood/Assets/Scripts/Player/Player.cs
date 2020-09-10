@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool IsCurentCharacter { get; set; }
+    public bool IsCurrentCharacter { get; set; }
     private Camera myCamera;
 
     void Awake()
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     public void SetCurrentCharacter(bool isCurrent)
     {
-        IsCurentCharacter = isCurrent;
+        IsCurrentCharacter = isCurrent;
         if (isCurrent)
         {
             myCamera.gameObject.SetActive(true);

@@ -183,7 +183,7 @@ MonoBehaviour:
   peripheralVisionRange: 20
   hearingRange: 60
   executesPerSecond: 20
-  killRange: 7
+  killRange: 4.5
   onTargetLostStateChange: 1
 --- !u!136 &799426340180311681
 CapsuleCollider:

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Lantern : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class Lantern : MonoBehaviour
 
     Light lanternLight;
     Player player;
+    NavMeshObstacle obstacle;
 
     private void Awake()
     {
         lanternLeft = lanternLength;
         lanternLight = GetComponent<Light>();
         player = gameObject.GetComponentInParent<Player>();
+        obstacle = GetComponent<NavMeshObstacle>();
     }
     private void Update()
     {
@@ -47,6 +50,7 @@ public class Lantern : MonoBehaviour
         if(lanternLeft > 0f)
         {
             lanternLight.enabled = !lanternLight.enabled;
+            obstacle.enabled = !obstacle.enabled;
         }
         else
         {
