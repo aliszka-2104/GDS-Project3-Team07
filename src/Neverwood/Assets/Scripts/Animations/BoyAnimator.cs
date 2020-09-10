@@ -6,18 +6,24 @@ public class BoyAnimator : MonoBehaviour
 {
     public GameObject sprite;
     public float flipFactor = 1;
+    public float[] lanternStates={1,0};
 
     private Animator animator;
     private CharacterController cc;
-
     private Quaternion rotation;
+    private int currentLanternStateIndex=0;
+
+    public void UpdateLanternState()
+    {
+        animator.SetFloat("Lantern", lanternStates[currentLanternStateIndex]);
+    }
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
         rotation = sprite.transform.rotation;
-        animator.SetFloat("Lantern", 1);
+        UpdateLanternState();
     }
 
     // Update is called once per frame
@@ -66,7 +72,10 @@ public class BoyAnimator : MonoBehaviour
 
     void OnLanternToggle()
     {
-        if(animator.GetFloat("Lantern")==0)animator.SetFloat("Lantern", 1);
-        if(animator.GetFloat("Lantern")==1)animator.SetFloat("Lantern", 0);
+        currentLanternStateIndex++;
+        currentLanternStateIndex = currentLanternStateIndex % lanternStates.Length;
+        UpdateLanternState();
+        //if (animator.GetFloat("Lantern")==0)animator.SetFloat("Lantern", 1);
+        //if(animator.GetFloat("Lantern")==1)animator.SetFloat("Lantern", 0);
     }
 }

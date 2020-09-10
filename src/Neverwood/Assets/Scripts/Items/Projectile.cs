@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
             Instantiate(audioCue, transform.position, Quaternion.identity);
             Instantiate(dustCloud, transform.position, Quaternion.identity);
         }
-        Debug.Log("Hit with "+collision.gameObject.name);
+        //Debug.Log("Hit with "+collision.gameObject.name);
         Destroy(gameObject);
     }
 }

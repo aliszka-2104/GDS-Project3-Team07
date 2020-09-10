@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectile;
     public float cooldownTime;
+    public string[] layerNames = {"Ground", "NPC"};
 
     private Player player;
     private Inventory inventory;
@@ -68,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask("Ground","NPC")))
+        if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask(layerNames)))
         {
             return hit.point;
         }
