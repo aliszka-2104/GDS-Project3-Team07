@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectile;
     public float cooldownTime;
+    public string[] layerNames = {"Ground", "NPC"};
 
     private Player player;
     private Inventory inventory;

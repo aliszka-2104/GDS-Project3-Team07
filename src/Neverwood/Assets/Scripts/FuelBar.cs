@@ -10,7 +10,7 @@ public class FuelBar : MonoBehaviour
 
     void Start()
     {
-        lantern = GameObject.FindObjectOfType<Lantern>();
+        lantern = FindObjectOfType<Lantern>();
     }
 
     void Update()
