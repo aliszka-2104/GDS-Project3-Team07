@@ -33,27 +33,4 @@ public class PlayerAttack : MonoBehaviour
             obj.GetComponent<Projectile>().GoToTarget(target);
         }
     }
-
-    //public Vector3 GetPlayerPlaneMousePos(Vector3 aPlayerPos)
-    //{
-    //    Plane plane = new Plane(Vector3.up, aPlayerPos);
-    //    Ray  ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    float dist;
-    //    if (plane.Raycast(ray, out dist))
-    //    {
-    //        return ray.GetPoint(dist);
-    //    }
-    //    return Vector3.zero;
-    //}
-
-    //public Vector3 GetMousePosition()
-    //{
-    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(ray,out hit,1000,LayerMask.GetMask("Ground","NPC")))
-    //    {
-    //        return hit.point;
-    //    }
-    //    return Vector3.zero;
-    //}
 }
