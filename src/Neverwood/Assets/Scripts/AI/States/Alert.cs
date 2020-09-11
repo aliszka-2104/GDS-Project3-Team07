@@ -41,7 +41,7 @@ public class Alert : MonoBehaviour, IState
     public StateType stateType { get; } = StateType.Alert;
     public void Entry(object[] data = null)                     //Data[1] holds a bool that tells if Alert was changed from Hostile (there's no min time if true)
     {
-        GetComponent<NavMeshAgent>().speed = movementSpeed;
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().speed = movementSpeed;
         GetComponent<Vision>().spotAngle = spotAngle;
         GetComponent<Vision>().range = visionRange;
         GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
@@ -107,7 +107,7 @@ public class Alert : MonoBehaviour, IState
     }
     void SetDestinationToTarget()
     {
-        GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
     }
     Collider TargetSense()
     {

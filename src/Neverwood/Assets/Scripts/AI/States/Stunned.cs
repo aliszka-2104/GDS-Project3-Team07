@@ -26,7 +26,7 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
     {
         SendMessage("OnStunned", null, SendMessageOptions.DontRequireReceiver);
         stunTime = (float)data[0];
-        GetComponent<NavMeshAgent>().ResetPath();
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().ResetPath();
     }
 
     public object[] Exit()

@@ -35,7 +35,7 @@ public class Hostile : MonoBehaviour, IState
     public StateType stateType { get; } = StateType.Hostile;
     public void Entry(object[] data = null)
     {
-        GetComponent<NavMeshAgent>().speed = movementSpeed;
+        if(GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().speed = movementSpeed;
         GetComponent<Vision>().spotAngle = spotAngle;
         GetComponent<Vision>().range = visionRange;
         GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
@@ -67,7 +67,7 @@ public class Hostile : MonoBehaviour, IState
 
     void SetDestinationToTarget()
     {
-        GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
     }
     Collider TargetSense()
     {

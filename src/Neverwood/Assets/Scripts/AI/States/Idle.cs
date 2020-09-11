@@ -47,7 +47,7 @@ public class Idle : MonoBehaviour, IState
         GetComponent<Hearing>().range = hearingRange;
 
         target = null;
-        GetComponent<NavMeshAgent>().ResetPath();
+        if(GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().ResetPath();
         if (splicePath != null)
         {
             GoToWaypoint(splicePath.path[currentWaypoint]);
@@ -99,7 +99,7 @@ public class Idle : MonoBehaviour, IState
     void GoToWaypoint(Vector3 wp)
     {
         destination = new Vector3(wp.x, transform.position.y, wp.z);
-        GetComponent<NavMeshAgent>().SetDestination(destination);
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().SetDestination(destination);
     }
     void HandlePathFollow()
     {
