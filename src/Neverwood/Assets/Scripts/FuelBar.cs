@@ -15,6 +15,13 @@ public class FuelBar : MonoBehaviour
 
     void Update()
     {
-        image.fillAmount = lantern.lanternLeft / lantern.lanternLength;
+        if (lantern)
+        {
+            image.fillAmount = lantern.lanternLeft / lantern.lanternLength;
+        }
+        else
+        {
+            lantern = FindObjectOfType<Lantern>();
+        }
     }
 }

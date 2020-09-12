@@ -13,18 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lantern: {fileID: 3204796618746439666}
---- !u!114 &1213831057589463954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803090384842467892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bf1804d19eb9f4e868d1bfef13af26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!208 &485517299917249231
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -32,7 +20,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3204796618746439666}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
   m_Extents: {x: 6, y: 5, z: 6}
@@ -462,6 +450,11 @@ PrefabInstance:
     - target: {fileID: 1349384136012005127, guid: 4d68dc34282339d498fbbcb7a1e496d7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368509513673850307, guid: 4d68dc34282339d498fbbcb7a1e496d7,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8520179096274092326, guid: 4d68dc34282339d498fbbcb7a1e496d7,

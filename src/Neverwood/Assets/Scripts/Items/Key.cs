@@ -6,7 +6,7 @@ public class Key : Interactive
 {
     public override void Interact()
     {
-        CharacterSwitcher.instance.boy.GetComponent<Inventory>().AddItem(3);
+        Inventory.instance.AddItem(3);
         Destroy(this.gameObject);
     }
 }

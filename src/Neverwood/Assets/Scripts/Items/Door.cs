@@ -12,9 +12,9 @@ public class Door : Interactive
     }
     public override void Interact()
     {
-        if(CharacterSwitcher.instance.boy.GetComponent<Inventory>().TryGetItem(3))
+        if(Inventory.instance.TryGetItem(3))
         {
-            CharacterSwitcher.instance.boy.GetComponent<Inventory>().RemoveItem(3);
+            Inventory.instance.RemoveItem(3);
             keysLeft--;
         }
         if (keysLeft == 0)

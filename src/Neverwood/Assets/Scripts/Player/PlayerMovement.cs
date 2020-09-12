@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         playerDirection.SetDirection(moveDirection);
+        if (transform.position.y != 0) transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
     }
 
     //void Teleport(Vector3 target)

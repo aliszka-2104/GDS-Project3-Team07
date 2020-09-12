@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 984123103606939575, guid: 8fea5883edd74064f86cb0ce949863fc,
     type: 3}
+  cooldownTime: 0
+  layerNames:
+  - Ground
+  - NPC
 --- !u!114 &2863034936168465359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +157,7 @@ PrefabInstance:
     - target: {fileID: 1936030833571427299, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_Intensity
-      value: 0.007957747
+      value: 0.039788734
       objectReference: {fileID: 0}
     - target: {fileID: 1936030833571427299, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
@@ -238,6 +242,26 @@ PrefabInstance:
     - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936030833847225942, guid: a7517e48446afff4b9da83a661c86810,
+        type: 3}
+      propertyPath: m_MinMoveDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936030834627252408, guid: a7517e48446afff4b9da83a661c86810,

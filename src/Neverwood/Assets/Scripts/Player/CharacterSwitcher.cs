@@ -24,13 +24,12 @@ public class CharacterSwitcher : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        boy = GameObject.Find("Boy").GetComponent<Player>();
+        girl = GameObject.Find("Girl").GetComponent<Player>();
+        characters = new[] { girl, boy };
     }
     void Start()
     {
-        boy = GameObject.Find("Boy").GetComponent<Player>();
-        girl = GameObject.Find("Girl").GetComponent<Player>();
-
-        characters = new[] {girl,boy };
         characters[currentCharacter].SetCurrentCharacter(true);
     }
 

@@ -7,7 +7,7 @@ public class Exit : MonoBehaviour
     public string sceneName = "Level1";
     public bool Open { get; set; } = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Player" && Open)
         {

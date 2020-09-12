@@ -6,7 +6,7 @@ public class Fuel : Interactive
 {
     public override void Interact()
     {
-        CharacterSwitcher.instance.boy.GetComponent<Inventory>().AddItem(2);
+        Inventory.instance.AddItem(2);
         Destroy(this.gameObject);
 
     }

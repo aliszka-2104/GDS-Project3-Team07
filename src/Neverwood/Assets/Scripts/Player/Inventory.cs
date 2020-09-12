@@ -22,6 +22,8 @@ public class Inventory : MonoBehaviour
 {
     public event Action InventoryUpdate;
 
+    public static Inventory instance;
+
     List<Item> items = new List<Item>();
 
     Item[] existingItems =
@@ -31,6 +33,11 @@ public class Inventory : MonoBehaviour
         new Item(2, "Fuel", 10),
         new Item(3, "Key", 5)
     };
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public Item GetItem(int ID)
     {

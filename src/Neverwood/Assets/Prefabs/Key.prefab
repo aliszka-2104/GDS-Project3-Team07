@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3231008125646691332}
   - component: {fileID: 760443610956129794}
-  - component: {fileID: 91677354750419946}
+  - component: {fileID: 8953549777399679013}
   m_Layer: 9
   m_Name: Key
   m_TagString: Untagged
@@ -125,20 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 877f851a1adb2f1419e0ddcd6afe8295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &91677354750419946
-CapsuleCollider:
+--- !u!135 &8953549777399679013
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5630942195135035991}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5903106282929637772
 GameObject:
   m_ObjectHideFlags: 0

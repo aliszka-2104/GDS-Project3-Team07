@@ -9,9 +9,9 @@ public class IntroLantern : Interactive
     public event Action LanternPickedUp;
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
             GetComponent<Animator>().SetTrigger("FallDown");
             gameObject.layer = LayerMask.NameToLayer("Interactive");

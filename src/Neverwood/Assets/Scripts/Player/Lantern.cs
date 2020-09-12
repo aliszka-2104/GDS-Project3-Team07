@@ -19,6 +19,7 @@ public class Lantern : MonoBehaviour
         lanternLight = GetComponent<Light>();
         player = gameObject.GetComponentInParent<Player>();
         obstacle = GetComponent<NavMeshObstacle>();
+        obstacle.enabled = false;
     }
     private void Update()
     {
@@ -28,6 +29,7 @@ public class Lantern : MonoBehaviour
             if(lanternLeft <= 0f)
             {
                 lanternLight.enabled = false;
+                obstacle.enabled = false;
             }
         }
     }
