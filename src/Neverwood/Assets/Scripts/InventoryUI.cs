@@ -11,10 +11,10 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventory = FindObjectOfType<Inventory>();
-        inventory.InventoryUpdate += OnScoreChange;
+        inventory.InventoryUpdate += OnInventoryUpdate;
     }
 
-    void OnScoreChange()
+    void OnInventoryUpdate()
     {
         ammoText.text = inventory.GetItemCount(0).ToString();
     }

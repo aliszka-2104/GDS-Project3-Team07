@@ -8,7 +8,7 @@ public class FuelBar : MonoBehaviour
     public Image image;
     private Lantern lantern;
 
-    void Start()
+    void Awake()
     {
         lantern = FindObjectOfType<Lantern>();
     }

@@ -12,9 +12,11 @@ public class Lantern : MonoBehaviour
     Light lanternLight;
     Player player;
     NavMeshObstacle obstacle;
+    Inventory inventory;
 
     private void Awake()
     {
+        inventory = FindObjectOfType<Inventory>();
         lanternLeft = lanternLength;
         lanternLight = GetComponent<Light>();
         player = gameObject.GetComponentInParent<Player>();
@@ -35,10 +37,10 @@ public class Lantern : MonoBehaviour
     }
     public void UseFuel()
     {
-        bool fuelInInven = player.GetComponent<Inventory>().TryGetItem(2);
+        bool fuelInInven = inventory.TryGetItem(2);
         if(fuelInInven)
         {
-            player.GetComponent<Inventory>().RemoveItem(2);
+            inventory.RemoveItem(2);
             lanternLeft = lanternLength;
             Debug.Log("Fuel loaded");
         }
