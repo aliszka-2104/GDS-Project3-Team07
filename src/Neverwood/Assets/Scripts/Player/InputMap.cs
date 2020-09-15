@@ -53,4 +53,9 @@ public class InputMap : MonoBehaviour
             shootPos = Vector3.zero;
         }
     }
+    public void OnFollow(InputValue value)
+    {
+        PlayerMovement otherPlayerMovement = CharacterSwitcher.instance.CurrentCharacter.OtherPlayer.GetComponent<PlayerMovement>();
+        otherPlayerMovement.IsFollowing = !otherPlayerMovement.IsFollowing;
+    }
 }

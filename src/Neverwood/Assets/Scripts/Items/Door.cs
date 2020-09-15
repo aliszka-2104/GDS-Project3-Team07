@@ -12,7 +12,7 @@ public class Door : Interactive
     }
     public override void Interact()
     {
-        if(Inventory.instance.TryGetItem(3))
+        if (Inventory.instance.TryGetItem(3))
         {
             Inventory.instance.RemoveItem(3);
             keysLeft--;

@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 using static Obstacle;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool movingTo = false;
     private Vector3 myTarget;
+    private NavMeshPath targetPath;
+    public bool IsFollowing { get; set; } = true;
 
     void Awake()
     {
@@ -30,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         cc = GetComponent<CharacterController>();
         playerDirection = GetComponentInChildren<PlayerDirection>();
         myColliders = GetComponentsInChildren<Collider>();
+        targetPath = new NavMeshPath();
+    }
+
+    private void Start()
+    {
+        myTarget = player.OtherPlayer.transform.position;
     }
 
     void Update()
@@ -40,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (!player.IsCurrentCharacter)
+            {
+                if (IsFollowing) Follow();
+                else movementVector = Vector2.zero;
+                myTarget = player.OtherPlayer.transform.position;
+            }
             Move();
         }
     }
@@ -74,6 +90,26 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y != 0) transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
     }
 
+    private void Follow()
+    {
+        if (Vector3.Distance(transform.position, player.OtherPlayer.transform.position) > 3f)
+        {
+            targetPath.ClearCorners();
+            bool success = NavMesh.CalculatePath(transform.position, player.OtherPlayer.transform.position, (1 << 0), targetPath);
+            Vector3 moveDirection;
+            if (!success || targetPath.corners.Length == 0 || targetPath.status == NavMeshPathStatus.PathPartial)
+            {
+                moveDirection = Vector3.zero;
+                IsFollowing = false;
+            }
+            else moveDirection = targetPath.corners[1] - transform.position;
+            movementVector = new Vector2(moveDirection.x, moveDirection.z).normalized;
+        }
+        else
+        {
+            movementVector = Vector3.zero;
+        }
+    }
     //void Teleport(Vector3 target)
     //{
     //    cc.enabled = false;

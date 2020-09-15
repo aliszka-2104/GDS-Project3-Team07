@@ -12,7 +12,7 @@ public class EnemyAnimator : MonoBehaviour
     private Animator animator;
     private Agent agent;
 
-    private float prevVelX = 0;
+    //private float prevVelX = 0;
     private Quaternion rotation;
 
     void Awake()

@@ -56,13 +56,13 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995758768401361653}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 1.75, y: 2.5, z: 1.1}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 0
+  m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.5, z: 1}
   m_TimeToStationary: 0.5
 --- !u!1 &1611222797470713773
@@ -309,12 +309,17 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7525f326d03fb4f4db0e8607dc68280a,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7525f326d03fb4f4db0e8607dc68280a,
         type: 3}
       propertyPath: m_Layer
       value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7525f326d03fb4f4db0e8607dc68280a,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7525f326d03fb4f4db0e8607dc68280a, type: 3}

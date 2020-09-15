@@ -7,6 +7,20 @@ public class Player : MonoBehaviour
 {
     public bool IsCurrentCharacter { get; set; }
     private Camera myCamera;
+    public Player OtherPlayer
+    {
+        get
+        {
+            if(this == CharacterSwitcher.instance.boy)
+            {
+                return CharacterSwitcher.instance.girl;
+            }
+            else
+            {
+                return CharacterSwitcher.instance.boy;
+            }
+        }
+    }
 
     void Awake()
     {

@@ -36,6 +36,18 @@ public class CharacterSwitcher : MonoBehaviour
     public void OnCharacterSwitch()
     {
         instance.CurrentCharacter.GetComponent<PlayerMovement>().ChangeDirection(Vector2.zero);
+        if(Vector3.Distance(boy.transform.position, girl.transform.position) < 3f && CurrentCharacter.OtherPlayer.GetComponent<PlayerMovement>().IsFollowing)
+        {
+            CurrentCharacter.GetComponent<PlayerMovement>().IsFollowing = true;
+        }
+        else if (Vector3.Distance(boy.transform.position, girl.transform.position) < 3f && !CurrentCharacter.OtherPlayer.GetComponent<PlayerMovement>().IsFollowing)
+        {
+            CurrentCharacter.GetComponent<PlayerMovement>().IsFollowing = false;
+        }
+        else if (Vector3.Distance(boy.transform.position, girl.transform.position) >= 3f)
+        {
+            CurrentCharacter.GetComponent<PlayerMovement>().IsFollowing = false;
+        }
         SwitchCharacter();
     }
 
