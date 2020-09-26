@@ -5,11 +5,29 @@ using UnityEngine;
 public class Exit : MonoBehaviour
 {
     public string sceneName = "Level1";
-    public bool Open { get; set; } = false;
+    public bool Open { get; set; } = true;
+
+    private int charactersToGo = 2;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            charactersToGo--;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            charactersToGo++;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player" && Open)
+        if (other.tag == "Player" && Open && charactersToGo == 0)
         {
             Debug.Log("Won");
             GameManager.instance.LoadLevel(sceneName);
