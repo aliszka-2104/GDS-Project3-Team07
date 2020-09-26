@@ -7,16 +7,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private GameObject GameOverScreen;
-    private GameObject VictoryScreen;
-    private GameObject InGameScreen;
+    public GameObject GameOverScreen;
+    public GameObject VictoryScreen;
+    public GameObject InGameScreen;
 
     private void Awake()
     {
         instance = this;
-        GameOverScreen = GameObject.Find("Game over");
-        VictoryScreen = GameObject.Find("Victory");
-        InGameScreen = GameObject.Find("In game");
+        //GameOverScreen = GameObject.Find("Game over");
+        //VictoryScreen = GameObject.Find("Victory");
+        //InGameScreen = GameObject.Find("In game");
     }
 
     private void Start()

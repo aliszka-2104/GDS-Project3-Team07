@@ -53,7 +53,8 @@ public class Inventory : MonoBehaviour
         }
         if(!gotAlready)
         {
-            throw new System.Exception("Item + ID[" + ID + "] not found");
+            //throw new System.Exception("Item + ID[" + ID + "] not found");
+            return null;
         }
         return itemFound;
     }
@@ -76,7 +77,8 @@ public class Inventory : MonoBehaviour
             itemFound = GetItem(ID);
             if (itemFound.itemCount == itemFound.itemMaxCount)
             {
-                throw new System.Exception("Maximum number of + [" + itemFound.itemName + "] item already aquired");
+                //throw new System.Exception("Maximum number of + [" + itemFound.itemName + "] item already aquired");
+                return;
             }
             else
             {
@@ -112,7 +114,8 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            throw new System.Exception("Item + ID[" + ID + "] not found");
+            //throw new System.Exception("Item + ID[" + ID + "] not found");
+            return;
         }
     }
 
