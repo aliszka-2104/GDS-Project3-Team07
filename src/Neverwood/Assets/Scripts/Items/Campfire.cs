@@ -37,5 +37,9 @@ public class Campfire : Interactive
     {
         campfireOn.SetActive(!campfireOn.activeSelf);
         campfireOff.SetActive(!campfireOff.activeSelf);
+        if(campfireOff.activeSelf)
+        {
+            campfireOff.GetComponentInChildren<Animator>().SetTrigger("Off");
+        }
     }
 }
