@@ -20,11 +20,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!inventory.TryGetItem(0)) return;
         if (Time.time < nextFireTime) return;
-        SendMessage("OnShoot");
+        var direction = target - transform.position;
+        SendMessage("OnShoot",new Vector2(direction.x,direction.z));
         nextFireTime = Time.time + cooldownTime;
         inventory.RemoveItem(0);
 
-        var projectileSpawn = transform.position + 2*Vector3.up;
+        var projectileSpawn = transform.position + Vector3.up;
         //var obj = Instantiate(projectile, target, Quaternion.identity);
         var obj = Instantiate(projectile, projectileSpawn, Quaternion.identity);
         var projectileComponent = obj.GetComponent<Projectile>();

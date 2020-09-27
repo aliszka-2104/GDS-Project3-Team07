@@ -107,9 +107,18 @@ public class GirlAnimator : MonoBehaviour
     {
         animator.SetTrigger("Crawl");
     }
-    void OnShoot()
+    void OnShoot(Vector2 direction)
     {
+        if (direction.y > direction.x || direction.x - direction.y < 0.1f)
+        {
+            animator.SetFloat("X", 0);
+            animator.SetFloat("Z", direction.y);
+        }
+        else
+        {
+            animator.SetFloat("X", direction.x);
+            animator.SetFloat("Z", 0);
+        }
         animator.SetTrigger("Attack");
-
     }
 }
