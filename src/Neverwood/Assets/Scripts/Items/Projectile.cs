@@ -23,14 +23,12 @@ public class Projectile : MonoBehaviour
     }
 
     // Move to the target end position.
-    void FixedUpdate()
+    void Update()
     {
         if (!moving) return;
-        var direction = target - transform.position;
-        var velocity = direction.normalized * speed * Time.fixedDeltaTime;
-        velocity = new Vector3(velocity.x,velocity.y,velocity.z*1.5f);
 
-        GetComponent<Rigidbody>().MovePosition(transform.position+velocity);
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, target, step);
     }
 
     internal void GoToTarget(Vector3 target)
@@ -38,13 +36,12 @@ public class Projectile : MonoBehaviour
         //this.target = new Vector3(target.x,0,target.z);
         this.target = target;
         moving = true;
-        Debug.Log(Vector3.Distance(target,transform.position));
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("NPC"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Instantiate(audioCue, transform.position, Quaternion.identity);
             Instantiate(dustCloud, transform.position, Quaternion.identity);

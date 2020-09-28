@@ -6,32 +6,32 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectile;
     public float cooldownTime;
-    //public string[] layerNames = {"Ground", "NPC"};
+    public string[] layerNames = {"Ground", "NPC"};
 
+    private Player player;
     private Inventory inventory;
+    private GameObject selectedObject;
     private float nextFireTime;
 
     private void Awake()
     {
+        player = GetComponent<Player>();
         inventory = FindObjectOfType<Inventory>();
     }
 
     public void Shoot(Vector3 target)
     {
-        if (!inventory.TryGetItem(0)) return;
         if (Time.time < nextFireTime) return;
-        var direction = target - transform.position;
-        SendMessage("OnShoot",new Vector2(direction.x,direction.z));
+        SendMessage("OnShoot");
         nextFireTime = Time.time + cooldownTime;
         inventory.RemoveItem(0);
 
-        var projectileSpawn = transform.position + Vector3.up;
+        var projectileSpawn = transform.position + 2*Vector3.up;
         //var obj = Instantiate(projectile, target, Quaternion.identity);
         var obj = Instantiate(projectile, projectileSpawn, Quaternion.identity);
-        var projectileComponent = obj.GetComponent<Projectile>();
-        if (projectileComponent)
+        if(obj.GetComponent<Projectile>()!=null)
         {
-            projectileComponent.GoToTarget(target);
+            obj.GetComponent<Projectile>().GoToTarget(target);
         }
     }
 }

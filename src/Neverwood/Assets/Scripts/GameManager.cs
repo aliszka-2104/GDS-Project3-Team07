@@ -6,26 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public GameObject GameOverScreen;
-    public GameObject VictoryScreen;
-    public GameObject InGameScreen;
-
     private void Awake()
     {
         instance = this;
-        //GameOverScreen = GameObject.Find("Game over");
-        //VictoryScreen = GameObject.Find("Victory");
-        //InGameScreen = GameObject.Find("In game");
     }
-
-    private void Start()
-    {
-        GameOverScreen.SetActive(false);
-        VictoryScreen.SetActive(false);
-        InGameScreen.SetActive(true);
-    }
-
     public void ResetLevel()
     {
         StartCoroutine("Reset");
@@ -44,17 +28,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Reset()
     {
-        ShowGameOverScreen();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    private void ShowGameOverScreen()
-    {
-        GameOverScreen.SetActive(true);
-    }
-    private void ShowVictoryScreen()
-    {
-        VictoryScreen.SetActive(true);
     }
 }

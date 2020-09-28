@@ -14,7 +14,7 @@ public class Buttons : MonoBehaviour
     }
     public void StartButton()
     {
-        SceneManager.LoadSceneAsync("Level1");
+        SceneManager.LoadSceneAsync("Intro");
     }
     public void CreditsButton()
     {

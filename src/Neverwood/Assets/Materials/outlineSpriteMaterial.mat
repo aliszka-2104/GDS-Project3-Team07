@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: outlineSpriteMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 5ebc40a6ffc921a40b7f01e9dc3075cc,
+  m_Shader: {fileID: -6465566751694194690, guid: 111c62caa47f9b043b4399c283dfdf2b,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -129,11 +129,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_845727B0: 1
-    - Vector1_8BA1626D: 0.01
-    - Vector1_9FB89E8E: 0
-    - Vector1_BF90A224: 0.1
+    - Vector1_9FB89E8E: 1
     - Vector1_CA834DD6: 1
-    - Vector1_CC1BA696: 10
+    - Vector1_CC1BA696: 1
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -235,7 +233,7 @@ Material:
     - _SurfaceType: 0
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 0.05
+    - _Thickness: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2

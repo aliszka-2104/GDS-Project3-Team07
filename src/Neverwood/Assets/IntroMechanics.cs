@@ -12,28 +12,27 @@ public class IntroMechanics : MonoBehaviour
     private PlayerAttack playerAttack;
     private Lantern playerLantern;
 
-    private void Awake()
-    {
-        //lantern.GetComponent<IntroLantern>().LanternHit += OnLanternHit;
-        lantern.GetComponent<IntroLantern>().LanternPickedUp += OnLanternPickedUp;
-        playerLantern = FindObjectOfType<Lantern>();
-        boyAnimator=FindObjectOfType<BoyAnimator>();
-        playerAttack = FindObjectOfType<PlayerAttack>();
-    }
-
     void Start()
     {
-        lanternStates = boyAnimator.lanternStates;
+        playerLantern = CharacterSwitcher.instance.boy.GetComponentInChildren<Lantern>();
         playerLantern.gameObject.SetActive(false);
-        boyAnimator.lanternStates = new float[] { -1 };
+
+        lantern.GetComponent<IntroLantern>().LanternHit += OnLanternHit;
+        lantern.GetComponent<IntroLantern>().LanternPickedUp += OnLanternPickedUp;
+
+        boyAnimator=CharacterSwitcher.instance.boy.GetComponent<BoyAnimator>();
+        lanternStates = boyAnimator.lanternStates;
+        boyAnimator.lanternStates = new float[] {-1};
         boyAnimator.UpdateLanternState();
-        //playerAttack.layerNames = new string[] { "Ground", "NPC", "Lantern" };
+
+        playerAttack = CharacterSwitcher.instance.girl.GetComponent<PlayerAttack>();
+        playerAttack.layerNames = new string[]{ "Ground", "NPC","Lantern"};
     }
 
-    //void OnLanternHit()
-    //{
-    //    playerAttack.layerNames = new string[] { "Ground", "NPC" };
-    //}
+    void OnLanternHit()
+    {
+        playerAttack.layerNames = new string[] { "Ground", "NPC" };
+    }
 
     void OnLanternPickedUp()
     {
