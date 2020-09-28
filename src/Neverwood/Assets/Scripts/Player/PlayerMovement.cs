@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (movingTo)
         {
-            StartCoroutine("Lerp");
+            StartCoroutine(Lerp());
         }
         else
         {

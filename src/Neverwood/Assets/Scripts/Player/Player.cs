@@ -2,29 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
     public bool IsCurrentCharacter { get; set; }
-    private Camera myCamera;
-    public Player OtherPlayer
-    {
-        get
-        {
-            if(this == CharacterSwitcher.instance.boy)
-            {
-                return CharacterSwitcher.instance.girl;
-            }
-            else
-            {
-                return CharacterSwitcher.instance.boy;
-            }
-        }
-    }
+    private CinemachineVirtualCamera myCamera;
 
     void Awake()
     {
-        myCamera = GetComponentInChildren<Camera>();
+        myCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         SetCurrentCharacter(false);
     }
 
@@ -38,9 +25,9 @@ public class Player : MonoBehaviour
         IsCurrentCharacter = isCurrent;
         if (isCurrent)
         {
-            myCamera.gameObject.SetActive(true);
+            myCamera.Priority=10;
             return;
         }
-        myCamera.gameObject.SetActive(false);
+        myCamera.Priority=0;
     }
 }

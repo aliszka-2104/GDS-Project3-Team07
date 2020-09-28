@@ -13,6 +13,7 @@ public class IntroLantern : Interactive
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
+            if (other) Destroy(other.gameObject);
             GetComponent<Animator>().SetTrigger("FallDown");
             gameObject.layer = LayerMask.NameToLayer("Interactive");
             LanternHit?.Invoke();
@@ -21,6 +22,7 @@ public class IntroLantern : Interactive
 
     public override void Interact()
     {
+        if (!CharacterSwitcher.instance.boy.IsCurrentCharacter) return;
         LanternPickedUp?.Invoke();
     }
 }

@@ -6,7 +6,7 @@ public class BoyAnimator : MonoBehaviour
 {
     public GameObject sprite;
     public float flipFactor = 1;
-    public float[] lanternStates={1,0};
+    public float[] lanternStates={0,1};
 
     private Animator animator;
     private CharacterController cc;

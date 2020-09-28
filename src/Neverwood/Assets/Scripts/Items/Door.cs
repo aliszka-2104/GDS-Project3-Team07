@@ -9,6 +9,7 @@ public class Door : Interactive
     private void Awake()
     {
         keysLeft = keysNeeded;
+        GetComponent<Exit>().Open = false;
     }
     public override void Interact()
     {
