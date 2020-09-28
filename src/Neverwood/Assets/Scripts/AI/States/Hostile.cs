@@ -17,6 +17,8 @@ public class Hostile : MonoBehaviour, IState
     public float hearingRange = 4f;
     public int executesPerSecond = 20;
     public float killRange = 1f;
+    public AudioClip[] soundEffects;
+    public AudioClip[] attackEffects;
     [Header("State Links")]
     public StateType onTargetLostStateChange = StateType.Alert;
 
@@ -25,6 +27,8 @@ public class Hostile : MonoBehaviour, IState
 
     WaitForSeconds waitFor;
     Collider target;
+    private float untilNextSound;
+    bool killed = false;
 
     #endregion
     #region Unity callbacks
@@ -40,6 +44,8 @@ public class Hostile : MonoBehaviour, IState
         GetComponent<Vision>().range = visionRange;
         GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
         GetComponent<Hearing>().range = hearingRange;
+
+        untilNextSound = 0.1f;
 
         target = data[0] as Collider;
         SetDestinationToTarget();
@@ -58,6 +64,19 @@ public class Hostile : MonoBehaviour, IState
         {
             KillRangeCheck();
             SetDestinationToTarget();
+        }
+
+        if (soundEffects.Length > 0)
+        {
+            if (untilNextSound <= 0f)
+            {
+                int soundEffectIndex = Random.Range(0, soundEffects.Length);
+                GetComponent<AudioSource>().clip = soundEffects[soundEffectIndex];
+                GetComponent<AudioSource>().Play();
+
+                untilNextSound = Random.Range(1f, 2f);
+            }
+            untilNextSound -= Time.deltaTime;
         }
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
     }
@@ -85,11 +104,17 @@ public class Hostile : MonoBehaviour, IState
     }
     void KillRangeCheck()
     {
-        if (Vector3.Distance(target.transform.position, transform.position) <= killRange)
+        if (Vector3.Distance(target.transform.position, transform.position) <= killRange && !killed)
         {
             if (target.tag == "Player")
             {
                 SendMessage("OnAttackPlayer", target, SendMessageOptions.DontRequireReceiver);
+                if (attackEffects.Length > 0)
+                {
+                    GetComponent<AudioSource>().clip = attackEffects[Random.Range(0, attackEffects.Length)];
+                    GetComponent<AudioSource>().Play();
+                    killed = true;
+                }
                 //Application.Quit();
             }
         }

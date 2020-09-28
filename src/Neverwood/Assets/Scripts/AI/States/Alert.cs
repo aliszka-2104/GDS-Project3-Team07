@@ -20,6 +20,7 @@ public class Alert : MonoBehaviour, IState
     public float killRange = 1f;
     public float noNewTargetTimeFallOff = 2f;
     public float minTimeInAlertState = 2f;
+    public AudioClip[] soundEffects;
     [Header("State Links")]
     public StateType onTargetSensedStateChange = StateType.Hostile;
     public StateType onTimeFallOffStateChange = StateType.Idle;
@@ -31,6 +32,7 @@ public class Alert : MonoBehaviour, IState
     Collider target;
     float noNewTargetTimer;
     float minTimeInAlertTimer;
+    private float untilNextSound;
 
     #endregion
     #region Unity callbacks
@@ -56,6 +58,8 @@ public class Alert : MonoBehaviour, IState
                 minTimeInAlertTimer = 0f;
             }
         }
+
+        untilNextSound = 0.1f;
 
         SetDestinationToTarget();
         StartCoroutine(NoNewTargetFallOff(noNewTargetTimeFallOff));
@@ -83,6 +87,18 @@ public class Alert : MonoBehaviour, IState
         {
             target = null;
             target = TargetSense();
+        }
+        if (soundEffects.Length > 0)
+        {
+            if (untilNextSound <= 0f)
+            {
+                int soundEffectIndex = UnityEngine.Random.Range(0, soundEffects.Length);
+                GetComponent<AudioSource>().clip = soundEffects[soundEffectIndex];
+                GetComponent<AudioSource>().Play();
+
+                untilNextSound = UnityEngine.Random.Range(1f, 2f);
+            }
+            untilNextSound -= Time.deltaTime;
         }
         minTimeInAlertTimer -= 1f / executesPerSecond;
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);

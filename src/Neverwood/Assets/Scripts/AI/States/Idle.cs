@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Vision))]
 [RequireComponent(typeof(Hearing))]
+[RequireComponent(typeof(AudioSource))]
 public class Idle : MonoBehaviour, IState
 {
     #region State parameters
@@ -19,6 +20,7 @@ public class Idle : MonoBehaviour, IState
     public float hearingRange = 7f;
     public int executesPerSecond = 10;
     public Splice splicePath;
+    public AudioClip[] soundEffects;
     [Header("State Links")]
     public StateType onTargetSensedStateChange = StateType.Alert;
 
@@ -30,6 +32,7 @@ public class Idle : MonoBehaviour, IState
     Vector3 destination;
     private int currentWaypoint = 0;
     private bool goingForward = true;
+    private float untilNextSound;
 
     #endregion
     #region Unity callbacks
@@ -52,6 +55,8 @@ public class Idle : MonoBehaviour, IState
         {
             GoToWaypoint(splicePath.path[currentWaypoint]);
         }
+
+        untilNextSound = 2f;
     }
     public object[] Exit()
     {
@@ -67,6 +72,18 @@ public class Idle : MonoBehaviour, IState
         if (splicePath != null)
         {
             HandlePathFollow();
+        }
+        if(soundEffects.Length > 0)
+        {
+            if (untilNextSound <= 0f)
+            {
+                int soundEffectIndex = UnityEngine.Random.Range(0, soundEffects.Length);
+                GetComponent<AudioSource>().clip = soundEffects[soundEffectIndex];
+                GetComponent<AudioSource>().Play();
+
+                untilNextSound = UnityEngine.Random.Range(2f, 10f);
+            }
+            untilNextSound -= Time.deltaTime;
         }
         yield return waitFor = new WaitForSeconds(1f / executesPerSecond);
     }
