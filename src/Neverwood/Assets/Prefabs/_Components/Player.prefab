@@ -689,7 +689,6 @@ GameObject:
   - component: {fileID: 1777484235524720987}
   - component: {fileID: 2819159763329902397}
   - component: {fileID: 980925024679159525}
-  - component: {fileID: 385601511346606737}
   m_Layer: 25
   m_Name: Hearing
   m_TagString: Untagged
@@ -758,19 +757,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &385601511346606737
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357795324914545017}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1199999, y: 3.0952454, z: 1.6477852}
-  m_Center: {x: 0, y: 0.523139, z: -0.031344652}
 --- !u!1 &6787009413465434701
 GameObject:
   m_ObjectHideFlags: 0

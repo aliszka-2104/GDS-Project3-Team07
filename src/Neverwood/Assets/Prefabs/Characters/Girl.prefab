@@ -29,6 +29,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1803090384062445345}
   flipFactor: 1
+--- !u!135 &3834581767810520691
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620460529191507684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.6
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &278085113439315869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -367,6 +380,12 @@ PrefabInstance:
 --- !u!1 &1803090384842467892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1936030833847225769, guid: a7517e48446afff4b9da83a661c86810,
+    type: 3}
+  m_PrefabInstance: {fileID: 278085113439315869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6620460529191507684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6357795324914545017, guid: a7517e48446afff4b9da83a661c86810,
     type: 3}
   m_PrefabInstance: {fileID: 278085113439315869}
   m_PrefabAsset: {fileID: 0}

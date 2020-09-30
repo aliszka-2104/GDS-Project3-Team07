@@ -15,10 +15,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private CharacterController cc;
     private PlayerDirection playerDirection;
+    private Collider hearingCollider;
     private Vector3 input = Vector3.zero;
     private Vector3 moveDirection;
     private Collider[] myColliders;
     private Vector2 movementVector = Vector2.zero;
+    private float audioStartTime = 0.5f;
+    private float audioStopTime = 0.15f;
+    private float timeToAudioStart;
+    private float timeToAudioStop;
 
     public bool movingTo = false;
     private Vector3 myTarget;
@@ -30,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
         cc = GetComponent<CharacterController>();
         playerDirection = GetComponentInChildren<PlayerDirection>();
         myColliders = GetComponentsInChildren<Collider>();
+    }
+
+    private void OnEnable()
+    {
+        hearingCollider = transform.Find("Colliders").Find("Hearing").GetComponent<Collider>();
+        timeToAudioStart = audioStartTime;
+        timeToAudioStop = 0f;
     }
 
     void Update()
@@ -60,11 +72,29 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         if (Stunned) return;
+
         if (movementVector == Vector2.zero)
         {
+            timeToAudioStart = audioStartTime;
+            hearingCollider.enabled = false;
             cc.Move(Vector2.zero);
             return;
         }
+
+        if (timeToAudioStart > 0f) timeToAudioStart -= Time.deltaTime;
+        else if (!hearingCollider.enabled)
+        {
+            timeToAudioStop = audioStopTime;
+            hearingCollider.enabled = true;
+        }
+        else if (timeToAudioStop > 0f) timeToAudioStop -= Time.deltaTime;
+        else
+        {
+            timeToAudioStart = audioStartTime;
+            hearingCollider.enabled = false;
+        }
+
+
         moveDirection = new Vector3(movementVector.x, 0, movementVector.y * 1.5f);
         moveDirection *= speed;
         cc.Move(moveDirection * Time.deltaTime);

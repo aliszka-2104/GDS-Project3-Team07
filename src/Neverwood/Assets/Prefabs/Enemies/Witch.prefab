@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab58ef2b28a47343b5f74138697342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 3
   centerOffset: {x: 0, y: 0, z: 0}
   senseMask:
     serializedVersion: 2
@@ -192,7 +192,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 268435456
   spotAngle: 0
-  peripheralVisionRange: 10
+  peripheralVisionRange: 3
   DEBUGActive: 1
   DEBUGColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7376450769571358718
@@ -266,8 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 25
   spotAngle: 0
-  visionRange: 10
-  peripheralVisionRange: 10
+  visionRange: 3
+  peripheralVisionRange: 3
   hearingRange: 50
   executesPerSecond: 10
   splicePath: {fileID: 0}
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 15
   spotAngle: 0
-  visionRange: 15
-  peripheralVisionRange: 15
+  visionRange: 3
+  peripheralVisionRange: 3
   hearingRange: 60
   executesPerSecond: 14
   killRange: 5
@@ -330,11 +330,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 30
   spotAngle: 0
-  visionRange: 20
-  peripheralVisionRange: 20
+  visionRange: 4
+  peripheralVisionRange: 4
   hearingRange: 60
   executesPerSecond: 20
-  killRange: 4.5
+  killRange: 5
   minAudioGap: 2
   maxAudioGap: 10
   soundEffects:
