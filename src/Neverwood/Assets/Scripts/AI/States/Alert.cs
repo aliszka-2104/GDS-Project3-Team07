@@ -20,6 +20,8 @@ public class Alert : MonoBehaviour, IState
     public float killRange = 1f;
     public float noNewTargetTimeFallOff = 2f;
     public float minTimeInAlertState = 2f;
+    public float minAudioGap = 2f;
+    public float maxAudioGap = 10f;
     public AudioClip[] soundEffects;
     [Header("State Links")]
     public StateType onTargetSensedStateChange = StateType.Hostile;
@@ -94,9 +96,9 @@ public class Alert : MonoBehaviour, IState
             {
                 int soundEffectIndex = UnityEngine.Random.Range(0, soundEffects.Length);
                 GetComponent<AudioSource>().clip = soundEffects[soundEffectIndex];
-                GetComponent<AudioSource>().Play();
+                if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
 
-                untilNextSound = UnityEngine.Random.Range(1f, 2f);
+                untilNextSound = Random.Range(minAudioGap, maxAudioGap);
             }
             untilNextSound -= Time.deltaTime;
         }

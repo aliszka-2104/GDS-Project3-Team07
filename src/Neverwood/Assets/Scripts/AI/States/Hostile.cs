@@ -17,6 +17,8 @@ public class Hostile : MonoBehaviour, IState
     public float hearingRange = 4f;
     public int executesPerSecond = 20;
     public float killRange = 1f;
+    public float minAudioGap = 2f;
+    public float maxAudioGap = 10f;
     public AudioClip[] soundEffects;
     public AudioClip[] attackEffects;
     [Header("State Links")]
@@ -39,7 +41,7 @@ public class Hostile : MonoBehaviour, IState
     public StateType stateType { get; } = StateType.Hostile;
     public void Entry(object[] data = null)
     {
-        if(GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().speed = movementSpeed;
+        if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().speed = movementSpeed;
         GetComponent<Vision>().spotAngle = spotAngle;
         GetComponent<Vision>().range = visionRange;
         GetComponent<Vision>().peripheralVisionRange = peripheralVisionRange;
@@ -72,9 +74,9 @@ public class Hostile : MonoBehaviour, IState
             {
                 int soundEffectIndex = Random.Range(0, soundEffects.Length);
                 GetComponent<AudioSource>().clip = soundEffects[soundEffectIndex];
-                GetComponent<AudioSource>().Play();
+                if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
 
-                untilNextSound = Random.Range(1f, 2f);
+                untilNextSound = Random.Range(minAudioGap, maxAudioGap);
             }
             untilNextSound -= Time.deltaTime;
         }
@@ -111,8 +113,8 @@ public class Hostile : MonoBehaviour, IState
                 SendMessage("OnAttackPlayer", target, SendMessageOptions.DontRequireReceiver);
                 if (attackEffects.Length > 0)
                 {
-                    GetComponent<AudioSource>().clip = attackEffects[Random.Range(0, attackEffects.Length)];
-                    GetComponent<AudioSource>().Play();
+                    transform.GetChild(1).GetComponent<AudioSource>().clip = attackEffects[Random.Range(0, attackEffects.Length)];
+                    transform.GetChild(1).GetComponent<AudioSource>().Play();
                     killed = true;
                 }
                 //Application.Quit();
