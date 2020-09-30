@@ -48,6 +48,10 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(audioCue, transform.position, Quaternion.identity);
             Instantiate(dustCloud, transform.position, Quaternion.identity);
+            if(collision.gameObject.GetComponent<Hittable>()!=null)
+            {
+                collision.gameObject.GetComponent<Hittable>().GetHit();
+            }
         }
         //Debug.Log("Hit with "+collision.gameObject.name);
         Destroy(gameObject);
