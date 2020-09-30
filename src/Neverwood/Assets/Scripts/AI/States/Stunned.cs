@@ -7,6 +7,8 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
 {
     #region State parameters
 
+    public AudioClip[] soundEffects;
+
     #endregion
     #region Private value holders 
 
@@ -25,6 +27,13 @@ public class Stunned : MonoBehaviour, IState                //Dummy state for st
     public void Entry(object[] data = null)
     {
         SendMessage("OnStunned", null, SendMessageOptions.DontRequireReceiver);
+
+        if(soundEffects.Length > 0)
+        {
+            GetComponent<AudioSource>().clip = soundEffects[UnityEngine.Random.Range(0, soundEffects.Length)];
+            GetComponent<AudioSource>().Play();
+        }
+
         stunTime = (float)data[0];
         if (GetComponent<NavMeshAgent>().enabled) GetComponent<NavMeshAgent>().ResetPath();
     }

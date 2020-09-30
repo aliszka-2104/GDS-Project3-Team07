@@ -11,12 +11,20 @@ public class GameManager : MonoBehaviour
     public GameObject VictoryScreen;
     public GameObject InGameScreen;
 
+    public AudioClip[] musicClips;
+
+    private Dictionary<string, AudioClip> levelMusic = new Dictionary<string, AudioClip>();
+
     private void Awake()
     {
         instance = this;
         //GameOverScreen = GameObject.Find("Game over");
         //VictoryScreen = GameObject.Find("Victory");
         //InGameScreen = GameObject.Find("In game");
+
+        levelMusic.Add("Mainmenu", musicClips[0]);
+        levelMusic.Add("Level1", musicClips[1]);
+        levelMusic.Add("Level2", musicClips[2]);
     }
 
     private void Start()
@@ -24,6 +32,10 @@ public class GameManager : MonoBehaviour
         GameOverScreen.SetActive(false);
         VictoryScreen.SetActive(false);
         InGameScreen.SetActive(true);
+
+        GetComponent<AudioSource>().clip = levelMusic[SceneManager.GetActiveScene().name];
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().loop = true;
     }
 
     public void ResetLevel()

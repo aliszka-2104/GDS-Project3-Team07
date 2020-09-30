@@ -43,11 +43,13 @@ public class CharacterSwitcher : MonoBehaviour
     {
         onCharacterSwitch?.Invoke();
 
+        characters[currentCharacter].GetComponent<AudioListener>().enabled = false;
         characters[currentCharacter].SetCurrentCharacter(false);
 
         currentCharacter++;
         currentCharacter %= characters.Length;
 
         characters[currentCharacter].SetCurrentCharacter(true);
+        characters[currentCharacter].GetComponent<AudioListener>().enabled = true;
     }
 }
