@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 995758768401361654}
   - component: {fileID: 8485873570535878116}
   - component: {fileID: 1465347313036728746}
-  m_Layer: 12
+  m_Layer: 28
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2900976406545998430}
   - component: {fileID: 3005123175377513595}
-  m_Layer: 28
+  - component: {fileID: 1110256913291499595}
+  - component: {fileID: 1817431680808662586}
+  - component: {fileID: 7638527932042034696}
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,6 +149,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1110256913291499595
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611222797470713773}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ddf23fc593363a4ba312591687085fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1817431680808662586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611222797470713773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979660ad62026744aac5a89778662c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &7638527932042034696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611222797470713773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9584426, y: 3.8258383, z: 0.20000026}
+  m_Center: {x: 0.005645686, y: 2.7805512, z: -0.0000030115489}
 --- !u!1 &6918203641404225137
 GameObject:
   m_ObjectHideFlags: 0

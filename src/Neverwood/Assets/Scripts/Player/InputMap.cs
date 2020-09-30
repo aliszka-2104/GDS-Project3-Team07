@@ -44,7 +44,7 @@ public class InputMap : MonoBehaviour
         Vector2 mousePos = value.Get<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Ground", "NPC", "Lantern")))
+        if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Ground", "NPC", "Lantern", "Hittable")))
         {
             shootPos = hit.point;
         }
