@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventory.InventoryUpdate += OnInventoryUpdate;
         if (!door) keysText.transform.parent.gameObject.SetActive(false);
+        OnInventoryUpdate();
     }
 
     void OnInventoryUpdate()
