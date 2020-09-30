@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:src/Neverwood/Assets/Audio.meta
 guid: 7bbf27e78036e9d43a0c2917b2884c24
+=======
+guid: ac57876fffad3bb4cb5e66de2e48f2f7
+>>>>>>> develop:src/Neverwood/Assets/Effects/Firefly2.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2442334854386955151}
   - component: {fileID: 2442334854386955136}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: FireFlyLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,6 +200,6 @@ MonoBehaviour:
   useOldInspector: 0
   useVolumetric: 1
   featuresFoldout: 1
-  showAdditionalSettings: 0
+  showAdditionalSettings: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
