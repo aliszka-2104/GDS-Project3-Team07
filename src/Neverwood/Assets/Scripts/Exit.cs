@@ -31,13 +31,14 @@ public class Exit : MonoBehaviour
     {
         if (other.tag == "Player" && Open && charactersToGo == 0 && !exited)
         {
-            Debug.Log("Won");
             if (sceneName == "End")
             {
+                Debug.Log("Won");
                 this.gameObject.AddComponent<Ending>();
             }
-            else
+            else if (sceneName == "Level2" && Inventory.instance.TryGetItem(3))
             {
+                Debug.Log("Won");
                 GameManager.instance.LoadLevel(sceneName);
             }
             exited = true;

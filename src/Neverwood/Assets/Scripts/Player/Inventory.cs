@@ -83,7 +83,6 @@ public class Inventory : MonoBehaviour
             else
             {
                 itemFound.itemCount++;
-                InventoryUpdate?.Invoke();
             }
         }
         else
@@ -97,6 +96,7 @@ public class Inventory : MonoBehaviour
             items.Add(itemFound);
             InventoryUpdate?.Invoke();
         }
+        InventoryUpdate?.Invoke();
     }
 
     public void RemoveItem(int ID)
