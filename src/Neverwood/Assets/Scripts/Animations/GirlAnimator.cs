@@ -105,7 +105,9 @@ public class GirlAnimator : MonoBehaviour
 
     void OnCrossObstacle()
     {
+        var x = Mathf.Abs(cc.velocity.x) > 0 ? Mathf.Sign(cc.velocity.x) : 1;
         animator.SetTrigger("Crawl");
+        animator.SetFloat("X", x);
     }
     void OnShoot(Vector2 direction)
     {
