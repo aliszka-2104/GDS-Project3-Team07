@@ -18,8 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Shoot(Vector3 target)
     {
-        if (!inventory.TryGetItem(0)) return;
-        if (Time.time < nextFireTime) return;
+        if (!CanShoot()) return;
         var direction = target - transform.position;
         SendMessage("OnShoot",new Vector2(direction.x,direction.z));
         nextFireTime = Time.time + cooldownTime;
@@ -33,5 +32,14 @@ public class PlayerAttack : MonoBehaviour
         {
             projectileComponent.GoToTarget(target);
         }
+    }
+
+    public bool CanShoot()
+    {
+        if (!CharacterSwitcher.instance.girl.IsCurrentCharacter) return false;
+        if (!inventory.TryGetItem(0)) return false;
+        if (Time.time < nextFireTime) return false;
+
+        return true;
     }
 }

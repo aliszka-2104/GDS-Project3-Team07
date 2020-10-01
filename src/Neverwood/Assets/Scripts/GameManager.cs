@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject VictoryScreen;
     public GameObject InGameScreen;
+    public Texture2D attackCursor;
 
     public AudioClip[] musicClips;
 
     private Dictionary<string, AudioClip> levelMusic = new Dictionary<string, AudioClip>();
+    private PlayerAttack playerAttack;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
         levelMusic.Add("Mainmenu", musicClips[0]);
         levelMusic.Add("Level1", musicClips[1]);
         levelMusic.Add("Level2", musicClips[2]);
+        playerAttack = FindObjectOfType<PlayerAttack>();
+        Cursor.SetCursor(attackCursor,new Vector2(attackCursor.width/2,attackCursor.height/2),CursorMode.Auto);
     }
 
     private void Start()
@@ -36,6 +40,11 @@ public class GameManager : MonoBehaviour
         GetComponent<AudioSource>().clip = levelMusic[SceneManager.GetActiveScene().name];
         GetComponent<AudioSource>().Play();
         GetComponent<AudioSource>().loop = true;
+    }
+
+    private void LateUpdate()
+    {
+        Cursor.visible = playerAttack.CanShoot();
     }
 
     public void ResetLevel()

@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10df557333bbc14d8b44f45b8e13f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScreen: {fileID: 0}
+  VictoryScreen: {fileID: 0}
+  InGameScreen: {fileID: 0}
+  attackCursor: {fileID: 2800000, guid: acf020b42b5d4be4690dfef15752ee2b, type: 3}
+  musicClips: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 984123103606939575, guid: 8fea5883edd74064f86cb0ce949863fc,
     type: 3}
-  cooldownTime: 0
+  cooldownTime: 0.5
 --- !u!114 &2863034936168465359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ PrefabInstance:
     - target: {fileID: 1936030833847225770, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
       propertyPath: lerpDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1936030833847225941, guid: a7517e48446afff4b9da83a661c86810,
         type: 3}
