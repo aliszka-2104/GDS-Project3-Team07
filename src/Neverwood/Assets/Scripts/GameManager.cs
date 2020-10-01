@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
         VictoryScreen.SetActive(false);
         InGameScreen.SetActive(true);
 
+        if(SceneManager.GetActiveScene().name == "Level2")
+        {
+            Inventory.instance.AddItem(3);
+        }
+
         GetComponent<AudioSource>().clip = levelMusic[SceneManager.GetActiveScene().name];
         GetComponent<AudioSource>().Play();
         GetComponent<AudioSource>().loop = true;

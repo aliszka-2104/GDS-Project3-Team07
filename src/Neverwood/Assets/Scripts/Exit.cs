@@ -9,6 +9,8 @@ public class Exit : MonoBehaviour
 
     private int charactersToGo = 2;
 
+    bool exited = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -27,10 +29,18 @@ public class Exit : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && Open && charactersToGo == 0)
+        if (other.tag == "Player" && Open && charactersToGo == 0 && !exited)
         {
             Debug.Log("Won");
-            GameManager.instance.LoadLevel(sceneName);
+            if (sceneName == "End")
+            {
+                this.gameObject.AddComponent<Ending>();
+            }
+            else
+            {
+                GameManager.instance.LoadLevel(sceneName);
+            }
+            exited = true;
         }
     }
 }

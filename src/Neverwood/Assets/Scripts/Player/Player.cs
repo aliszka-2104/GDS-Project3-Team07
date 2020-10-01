@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
     public void TakeHit()
     {
         SendMessage("OnTakeHit");
+        
     }
+
 
     public void SetCurrentCharacter(bool isCurrent)
     {

@@ -45,6 +45,7 @@ public class TreeAttack : MonoBehaviour
         if(attacking)
         {
             Debug.Log("Lost");
+
             GameManager.instance.ResetLevel();
         }
         attacking = false;
