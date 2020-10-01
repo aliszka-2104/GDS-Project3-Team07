@@ -719,6 +719,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 711203051024551314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3634432453449001966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4300562054894626428, guid: 5e97b4a37df5c2b4094866444e7e37b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 711203051024551314}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &711203052419982983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,6 +848,11 @@ PrefabInstance:
       propertyPath: musicClips.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: ff38b48ee0baa2d469c5af9771c71d07, type: 3}
+    - target: {fileID: 7227486857962749156, guid: 9a6279f329186004c8a87b6711d0e85c,
+        type: 3}
+      propertyPath: FadingScreen
+      value: 
+      objectReference: {fileID: 3634432453449001966}
     - target: {fileID: 7227486857962749157, guid: 9a6279f329186004c8a87b6711d0e85c,
         type: 3}
       propertyPath: m_Name

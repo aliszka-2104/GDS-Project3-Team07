@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject VictoryScreen;
     public GameObject InGameScreen;
+    public GameObject FadingScreen;
     public Texture2D attackCursor;
 
     public AudioClip[] musicClips;
 
     private Dictionary<string, AudioClip> levelMusic = new Dictionary<string, AudioClip>();
     private PlayerAttack playerAttack;
+    private Animator fadingScreenAnimator;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         levelMusic.Add("Level2", musicClips[2]);
         playerAttack = FindObjectOfType<PlayerAttack>();
         Cursor.SetCursor(attackCursor,new Vector2(attackCursor.width/2,attackCursor.height/2),CursorMode.Auto);
+        fadingScreenAnimator = FadingScreen.GetComponent<Animator>();
     }
 
     private void Start()
@@ -64,12 +67,14 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Load(string name)
     {
+        fadingScreenAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(name);
     }
 
     private IEnumerator Reset()
     {
+        fadingScreenAnimator.SetTrigger("FadeOut");
         ShowGameOverScreen();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
