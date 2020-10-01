@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Collider[] myColliders;
     private Vector2 movementVector = Vector2.zero;
-    private float audioStartTime = 0.5f;
-    private float audioStopTime = 0.15f;
+    private float audioStartTime = 1.5f;
+    private float audioStopTime = 0.5f;
     private float timeToAudioStart;
     private float timeToAudioStop;
 
