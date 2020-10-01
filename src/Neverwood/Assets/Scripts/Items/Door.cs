@@ -9,20 +9,23 @@ public class Door : Interactive
     private void Awake()
     {
         keysLeft = keysNeeded;
-        GetComponent<Exit>().Open = false;
+        if(GetComponent<Exit>().sceneName == "End")GetComponent<Exit>().Open = false;
     }
     public override void Interact()
     {
-        if(Inventory.instance.TryGetItem(3))
+        if (GetComponent<Exit>().sceneName == "End")
         {
-            Inventory.instance.RemoveItem(3);
-            keysLeft--;
-        }
-        if (keysLeft == 0)
-        {
-            GetComponent<Collider>().isTrigger = true;
-            GetComponentInChildren<Animator>().SetTrigger("Open");
-            GetComponent<Exit>().Open = true;
+            if (Inventory.instance.TryGetItem(3))
+            {
+                Inventory.instance.RemoveItem(3);
+                keysLeft--;
+            }
+            if (keysLeft == 0)
+            {
+                GetComponent<Collider>().isTrigger = true;
+                GetComponentInChildren<Animator>().SetTrigger("Open");
+                GetComponent<Exit>().Open = true;
+            }
         }
     }
 }
