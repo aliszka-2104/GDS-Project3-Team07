@@ -10,7 +10,7 @@ public class AuditoryCue : MonoBehaviour
     #region Cue parameters
 
     public float length = 1f;
-    public float range = 5f;
+    public float range = 25f;
 
     #endregion
     private void Start()
