@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - NPC
+  - Bridge
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - Interactive
+  - Projectile
+  - Ground
+  - Lantern
+  - Hittable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Hearing
+  - Vision
+  - Muffling
+  - Obscuring
+  - 
+  - NPC
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Land
+    uniqueID: 307467841
+    locked: 0
+  - name: Environment
+    uniqueID: 3004126737
+    locked: 0
+  - name: Props
+    uniqueID: 3817179797
+    locked: 0
+  - name: Characters
+    uniqueID: 556476341
+    locked: 0
